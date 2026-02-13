@@ -20,7 +20,7 @@
   name = "Stories"
   pageRef = "stories"
   weight = 20
-  pre = "route"
+  pre = "pencil"
 
 [[main]]
   name = "Insights"
