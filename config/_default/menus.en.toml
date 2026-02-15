@@ -28,12 +28,6 @@
   weight = 30
   pre = "lightbulb"
 
-[[main]]
-  name = "About"
-  pageRef = "about"
-  weight = 40
-  pre = "user"
-
 #[[main]]
 #  name = "Blog"
 #  pageRef = "posts"

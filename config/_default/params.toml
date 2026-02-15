@@ -41,7 +41,8 @@ giteaDefaultServer = "https://git.fsfe.org"
 forgejoDefaultServer = "https://v11.next.forgejo.org"
 
 [Header]
-  layout = "basic" # valid options: basic, fixed, fixed-fill, fixed-gradient, fixed-fill-blur
+  layout = "fixed" # valid options: basic, fixed, fixed-fill, fixed-gradient, fixed-fill-blur
+  logo = "assets/img/profile.png"
 
 [footer]
   showMenu = true
@@ -52,12 +53,12 @@ forgejoDefaultServer = "https://v11.next.forgejo.org"
 
 [homepage]
   layout = "custom" # valid options: page, profile, hero, card, background, custom
-  # homepageImage = "assets/img/profile.png" # used in: hero, and card
-  showRecent = false
-  showRecentItems = 5
+  homepageImage = "assets/img/profile.png" # used in: hero, and card
+  showRecent = true
+  showRecentItems = 3
   showMoreLink = false
   showMoreLinkDest = "/posts/"
-  cardView = false
+  cardView = true
   cardViewScreenWidth = false
   layoutBackgroundBlur = false # only used when layout equals background
   disableHeroImageFilter = false # only used when layout equals hero
@@ -69,7 +70,7 @@ forgejoDefaultServer = "https://v11.next.forgejo.org"
   showDateOnlyInArticle = false
   showDateUpdated = false
   showAuthor = true
-  # showAuthorBottom = false
+  showAuthorBottom = true
   showHero = false
   # heroStyle = "basic" # valid options: basic, big, background, thumbAndBackground
   layoutBackgroundBlur = true # only used when heroStyle equals background or thumbAndBackground

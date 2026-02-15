@@ -1,6 +1,11 @@
 #particles-js canvas {
     display: block;
-    vertical-align: bottom;
-    -webkit-transform: translate3d(0, 0, 0); /* Performance boost */
+    -webkit-transform: translate3d(0, 0, 0);
+    /* Performance boost */
     transform: translate3d(0, 0, 0);
+}
+
+/* Add space above the social icons on the homepage */
+.prose .flex.flex-wrap.justify-center {
+    margin-top: 1.5rem;
 }
