@@ -1,11 +1,34 @@
 #particles-js canvas {
     display: block;
     -webkit-transform: translate3d(0, 0, 0);
-    /* Performance boost */
     transform: translate3d(0, 0, 0);
 }
 
-/* Add space above the social icons on the homepage */
+/* 1. Target ONLY the logo in the top navigation bar */
+header nav img.navbar-logo,
+.navbar-logo {
+    height: 38px !important;
+    /* Sleek toolbar height */
+    width: 38px !important;
+    /* Keep 1:1 for a circle */
+    max-width: none !important;
+    border-radius: 9999px !important;
+    object-fit: cover !important;
+    aspect-ratio: 1 / 1 !important;
+}
+
+/* 2. Target ONLY the main homepage profile picture */
+/* We target the image inside the prose div, but outside the nav */
+main .prose img.rounded-full,
+.layout-custom .prose img {
+    height: auto !important;
+    width: 100% !important;
+    max-width: 250px !important;
+    /* Forces the main image to be large */
+    border-radius: 9999px !important;
+}
+
+/* Space above the social icons */
 .prose .flex.flex-wrap.justify-center {
     margin-top: 1.5rem;
 }
