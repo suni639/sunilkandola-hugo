@@ -5,8 +5,7 @@
 }
 
 /* 1. Target ONLY the logo in the top navigation bar */
-header nav img.navbar-logo,
-.navbar-logo {
+.main-menu img.logo {
     height: 38px !important;
     /* Sleek toolbar height */
     width: 38px !important;
@@ -31,4 +30,11 @@ main .prose img.rounded-full,
 /* Space above the social icons */
 .prose .flex.flex-wrap.justify-center {
     margin-top: 1.5rem;
+}
+
+/* Fix author picture size at the end of articles */
+.author img {
+    width: 6rem !important;
+    height: 6rem !important;
+    max-width: none !important;
 }
