@@ -33,7 +33,7 @@ main .prose img.rounded-full,
 }
 
 /* Fix author picture size at the end of articles */
-.author img {
+main .prose .author img {
     width: 6rem !important;
     height: 6rem !important;
     max-width: none !important;
