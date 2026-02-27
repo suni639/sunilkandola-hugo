@@ -32,7 +32,7 @@
   name = "About"
   pageRef = "/about"
   weight = 40
-  pre = "user"
+  pre = "mug-hot"
 
 #[[main]]
 #  name = "Blog"
