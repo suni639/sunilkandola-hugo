@@ -1,8 +1,8 @@
----
-title: "About"
-date: 2026-02-13
-draft: false
----
++++
+title = "About"
+date = 2026-02-13
+draft = false
++++
 
 Hi, I’m Sunil. 
 
