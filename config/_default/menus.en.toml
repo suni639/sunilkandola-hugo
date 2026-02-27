@@ -30,7 +30,7 @@
 
 [[main]]
   name = "About"
-  pageRef = "about"
+  pageRef = "/about"
   weight = 40
   pre = "user"
 
