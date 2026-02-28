@@ -4,18 +4,20 @@ date = 2026-02-13
 draft = false
 +++
 
-Hi, I’m Sunil. 
+Hi, I’m Sunil.
 
-I started this site for a simple reason: I recently became a dad. I wanted a space to document my work, my interests and stories, as well as the lessons I'm picking up along the way, so that one day I can share them with my son. And perhaps someone else might find value in them too.
+I started this site for a pretty simple reason: I’ve just become a dad. I wanted a space to park my work, my interests, and the various lessons I’m picking up along the way, mostly so my son can look back at them one day. If anyone else finds a bit of value in these pages, that’s a bonus.
 
-My career hasn't followed a conventional straight line, and that’s been my greatest asset. 
+I’ve always seen life as a book. A series of chapters filled with unexpected twists and turns.
 
-I started out leading teams in the British Army, which included a large chunk of my 20s in the Middle East, navigating complex geopolitical landscapes. From there, I transitioned corporate life working on strategic initiatives at JPMorgan, earned my MBA at Oxford, and most recently co-founded a mission-driven maternity brand from the ground up with my wife. 
+For a long time, my main motivation was simply to make the story as interesting as possible. I’ve been fortunate enough to travel to over 70 countries and have lived in both Eastern Europe and the Middle East. Whether it was leading teams in the British Army during my 20s or cycling solo and unsupported from the UK to Beijing, I’ve lived by a fairly simple mantra: make a positive impact where I can and live the most interesting life possible.
 
-Moving between being a public servant, high-finance capitalist, and a startup founder has given me a unique perspective. Above all, it has taught me how to navigate ambiguity, build strong communities, and turn complex challenges into clear paths forward.
+That drive to do *difficult and different* things used to be about what the story looked like when all was said and done. Now that I’m a father, the motivation has shifted. It’s less about the external "plot" and more about becoming the best version of myself for him and my family.
 
-But there’s more to life than the resume. I believe in pushing boundaries and testing the limits of resilience. Whether it's completing in grueling multi-day ultras (like the Marathon des Sables) or cycling solo, unsupported from the UK to Beijing, I’ve found that the mental and physical adaptability you gain on endurance challenges is exactly what you need in life and leadership. 
+A massive part of my story, however, has always been a deep-seated love for technology. I’m a tech nerd at heart, and that’s been the common thread through every chapter. In the military, that meant diving into the weeds of radio and satellite communications. Later, I backed that practical experience with a Computer Science background and eventually moved into the strategy side of a blockchain start-up.
 
-Right now, I’m based in Leamington Spa, UK. I'm enjoying fatherhood, documenting my learnings here, and looking for my next great adventure (either physical or professional, but most likely the latter with a toddler in tow). 
+I still spend a lot of my time down the *deep tech* rabbit hole. I’m particularly love applying frontier tech to different industries. Such as exploring the intersection of blockchain and AI/ML, or computer vision in fashion, or using data science to better understand national energy policy to name a few. This website is partly my digital sandbox; a place to share those technical deep dives alongside more personal stories and insights.
+
+I’m currently based in the UK. Between fatherhood, entrepreneurship, and documenting my projects here, I’m always on the lookout for my next big adventure (physical or metaphorical), though "adventure" these days is usually dictated by a nap schedule.
 
 Thanks for stopping by. I hope you find something here that sparks an idea, or at least, a good read.
