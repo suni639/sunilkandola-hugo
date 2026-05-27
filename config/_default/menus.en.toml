@@ -32,7 +32,7 @@
   name = "Intelligence"
   pageRef = "intel"
   weight = 35
-  pre = "brain"
+  pre = "newspaper"
 
 [[main]]
   name = "About"
