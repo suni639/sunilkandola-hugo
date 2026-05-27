@@ -1,8 +1,8 @@
 +++
-title = "DA-INTEL-01: Automated Institutional Digital Asset Intelligence"
+title = "Automated Digital Asset Intelligence"
 date = 2026-05-27
 draft = false
-description = "Building a fully automated pipeline that scrapes, filters, AI-synthesises, and publishes a weekly institutional-grade digital asset intelligence briefing."
+description = "Pipeline that scrapes, filters, AI-synthesises, and publishes a weekly digital asset intelligence briefing."
 summary = "An automated pipeline that ingests news from six institutional sources, applies an AI noise gate to strip retail speculation, synthesises the signal into a structured briefing with Gemini, and publishes it to this site and by email — every Friday, with no manual steps."
 
 tags = ["Python", "AI", "Automation", "Hugo", "Digital Assets", "Gemini"]
@@ -80,7 +80,7 @@ The output is published in two forms simultaneously:
 
 **Website post**: The briefing is written to `content/intel/` in the Hugo site repository as a markdown file with YAML front matter. The date is stored as explicit UTC (`2026-05-27T09:00:00+00:00`) to prevent Hugo's `buildFuture = false` config from silently excluding it. A `git add / commit / push` sequence runs automatically — triggering a GitHub Actions workflow that builds the Hugo site with the Blowfish theme (including submodule initialisation) and deploys to Cloudflare Pages.
 
-**Email newsletter**: The same markdown is converted to styled HTML using Python's `markdown` library and a handwritten CSS template. It's delivered via Gmail SMTP with 3 retry attempts spaced 15 minutes apart. The email and site publish are independent — if SMTP fails, the site still gets the briefing.
+**Email newsletter**: The same markdown is converted to styled HTML and sent to my inbox using Python's `markdown` library and a handwritten CSS template. It's delivered via Gmail SMTP with 3 retry attempts spaced 15 minutes apart. The email and site publish are independent — if SMTP fails, the site still gets the briefing.
 
 ### 5. State Management
 
@@ -92,7 +92,7 @@ After a successful run, processed article URLs are appended to `system_state.jso
 
 The pipeline runs end-to-end without human intervention. A Friday morning produces:
 
-- A new post at [sunilkandola.com/intel/](/intel/) within ~3 minutes of the scheduled run completing
+- A new post at [sunilkandola.com/intel/](/intel/) within ~3 minutes of the scheduled run completing (see tab on the top navigation menu)
 - An HTML newsletter in the inbox, structured identically to the site post
 - A state file updated with the week's processed URLs
 

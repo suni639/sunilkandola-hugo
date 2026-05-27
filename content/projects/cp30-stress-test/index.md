@@ -2,7 +2,7 @@
 # -- Front Matter (Metadata) --
 title = "CP30 Stress Test"
 date = 2026-02-13
-draft = false  # Set to true to hide from the live site
+draft = true  # Set to true to hide from the live site
 description = "A one-sentence summary for SEO and Google search."
 summary = "The text that appears on your homepage cards."
 
