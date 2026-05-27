@@ -29,6 +29,12 @@
   pre = "lightbulb"
 
 [[main]]
+  name = "Intelligence"
+  pageRef = "intel"
+  weight = 35
+  pre = "brain"
+
+[[main]]
   name = "About"
   pageRef = "/about"
   weight = 40
