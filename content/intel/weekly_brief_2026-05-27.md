@@ -1,5 +1,5 @@
 ---
-title: "Institutional Digital Asset Intelligence Briefing: 27 May 2026"
+title: "Digital Asset Digest: 27 May 2026"
 date: 2026-05-27T09:00:00+00:00
 draft: false
 tags: ["digital-assets", "cbdc", "regulation", "tokenisation"]

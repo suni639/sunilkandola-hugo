@@ -3,7 +3,7 @@ title = "Automated Digital Asset Intelligence"
 date = 2026-05-27
 draft = false
 description = "Pipeline that scrapes, filters, AI-synthesises, and publishes a weekly digital asset intelligence briefing."
-summary = "An automated pipeline that ingests news from six institutional sources, applies an AI noise gate to strip retail speculation, synthesises the signal into a structured briefing with Gemini, and publishes it to this site and by email — every Friday, with no manual steps."
+summary = "An automated pipeline that ingests news from six institutional sources, applies an AI noise gate to strip retail speculation, synthesises the signal into a structured briefing with Gemini, and publishes it to this site and by email — every Monday, with no manual steps."
 
 tags = ["Python", "AI", "Automation", "Hugo", "Digital Assets", "Gemini"]
 categories = ["Projects"]
@@ -23,13 +23,13 @@ The institutional digital asset landscape — CBDCs, RWA tokenisation, wholesale
 
 The same feeds that carry a substantive ECB paper on Project Pontes also carry token price pumps, retail exchange listings, and speculative commentary. Reading everything to find the relevant 15% is a poor use of time. And the institutional framing — systemic impact, infrastructure alignment, regulatory motivation — rarely comes pre-applied.
 
-The gap I wanted to close: **a briefing that reads like it was written by a sharp analyst who only cares about institutional plumbing, delivered automatically every Friday morning.**
+The gap I wanted to close: **a briefing that reads like it was written by a sharp analyst who only cares about institutional plumbing, delivered automatically every Monday morning.**
 
 ---
 
 ## Solution
 
-The system — DA-INTEL-01 — is a single Python pipeline (`weekly_run.py`) that runs on a Windows Task Scheduler job every Friday at 09:00. It covers five distinct stages:
+The system — DA-INTEL-01 — is a single Python pipeline (`weekly_run.py`) that runs on a Windows Task Scheduler job every Monday at 08:00 (UK time). It covers five distinct stages:
 
 ### 1. Ingestion
 
@@ -90,7 +90,7 @@ After a successful run, processed article URLs are appended to `system_state.jso
 
 ## Outcome
 
-The pipeline runs end-to-end without human intervention. A Friday morning produces:
+The pipeline runs end-to-end without human intervention. A Monday morning produces:
 
 - A new post at [sunilkandola.com/intel/](/intel/) within ~3 minutes of the scheduled run completing (see tab on the top navigation menu)
 - An HTML newsletter in the inbox, structured identically to the site post
