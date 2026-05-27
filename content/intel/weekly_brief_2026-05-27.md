@@ -7,15 +7,14 @@ categories: ["Intelligence"]
 summary: "Weekly synthesis of wholesale banking, CBDCs, RWAs, and digital asset regulations."
 ---
 
-# Institutional Digital Asset Intelligence Briefing: 27 May 2026
 
-## 1. THE WEEKLY MACRO SYNTHESIS
+## 1. MACRO VIEW
 
-The institutional digital asset landscape is undergoing a significant, albeit variegated, structural transformation, driven by a global push for enhanced financial infrastructure and increasing geopolitical considerations. A clear acceleration towards various forms of digital money – encompassing wholesale Central Bank Digital Currencies (CBDCs), tokenised bank liabilities, and regulated stablecoins – is evident, all aimed at bolstering payment efficiency and improving asset settlement. However, this evolution is characterised by diverging jurisdictional strategies and a heightened focus on monetary sovereignty.
-
-The United States appears to be prioritising regulated stablecoins, underlined by the **[enactment of the GENIUS Act](https://www.bis.org/review/r260518h.htm)**, which seeks to reinforce the dollar's global reserve status. In contrast, Europe, spearheaded by the ECB, is advancing the **[digital euro](https://www.bis.org/review/r260518h.htm)**, partly as a strategic defence against "infrastructure dollarisation" and to fortify the euro's international role in emerging tokenised markets. This strategic intent was underscored by a Brussels think tank, **[Bruegel](https://www.ledgerinsights.com/bruegel-makes-the-case-for-euro-stablecoins-but-ignores-the-elephant-in-the-room/)**, which warned against the potential entrenchment of dollar stablecoins as default settlement assets.
-
-This geopolitical and monetary competition is spurring substantial investment in wholesale CBDC infrastructure and Real-World Asset (RWA) tokenisation globally, with a prioritised focus on interoperability and foundational DvP settlement mechanics. The **[Atlantic Council CBDC Tracker Update - May 2026](atlantic_council_cbdc_tracker_2026-21)** provides compelling evidence, indicating that 146 countries are exploring CBDCs, with 77 in advanced phases. Notably, advanced economies are largely deprioritising retail CBDCs in favour of wholesale infrastructure, exemplified by initiatives such as the ECB’s **[Project Pontes](atlantic_council_cbdc_tracker_2026-21)** and Singapore’s live wholesale CBDC issuance. The overarching drive is unequivocally towards upgrading how central bank money operates within inter-institutional frameworks, with tokenisation and programmability emerging as critical features for future financial market utilities.
+- **Dollar vs. Euro stablecoin war is now structural.** The US [GENIUS Act](https://www.bis.org/review/r260518h.htm) is live, cementing regulated dollar stablecoins as the default settlement asset for tokenised markets. The ECB is resisting euro stablecoin proposals while pushing for a 2029 digital euro — Bruegel warns this risks locking the euro out of tokenised capital markets entirely ("infrastructure dollarisation").
+- **Wholesale CBDC is the real race.** 146 countries exploring CBDCs; 77 in advanced phases. Advanced economies (Canada, Australia, Norway) have abandoned retail CBDC in favour of wholesale rails. Key live projects: NY Fed's [Project Agorá](atlantic_council_cbdc_tracker_2026-21), ECB's [Project Pontes](atlantic_council_cbdc_tracker_2026-21), Singapore's live w-CBDC issuance.
+- **mBridge volume up 2,500× since the Russia-Ukraine conflict.** Driven overwhelmingly by e-CNY. All 11 BRICS members are in CBDC pilots; India proposed linking them for cross-border trade settlement.
+- **RWA tokenisation is still in "digitise the old" mode.** Hamilton Lane's GPA fund gets its third tokenisation outing. UK experts publish a paper arguing the industry is squandering the opportunity — composability, not digitalisation, is the point.
+- **SEC stock tokenisation exemption delayed.** Unresolved issues around corporate actions (dividends, voting rights) and anonymous DeFi holdings blocking progress.
 
 ## 2. CORE PILLAR DEVELOPMENTS
 
