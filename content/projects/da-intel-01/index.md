@@ -29,7 +29,7 @@ The gap I wanted to close: **a briefing that reads like it was written by a shar
 
 ## Solution
 
-The system — DA-INTEL-01 — is a single Python pipeline (`weekly_run.py`) that runs on a Windows Task Scheduler job every Monday at 08:00 (UK time). It covers five distinct stages:
+The system — DA-INTEL-01 — is a single Python pipeline (`intelligence_engine.py`) that runs automatically on a GitHub Actions scheduled workflow every Monday at 07:00 UTC (matching 08:00 AM UK time during British Summer Time). It covers five distinct stages:
 
 ### 1. Ingestion
 
@@ -78,7 +78,7 @@ The prompt explicitly bans hedge language (*"appears to", "it is evident that", 
 
 The output is published in two forms simultaneously:
 
-**Website post**: The briefing is written to `content/intel/` in the Hugo site repository as a markdown file with YAML front matter. The date is stored as explicit UTC (`2026-05-27T09:00:00+00:00`) to prevent Hugo's `buildFuture = false` config from silently excluding it. A `git add / commit / push` sequence runs automatically — triggering a GitHub Actions workflow that builds the Hugo site with the Blowfish theme (including submodule initialisation) and deploys to Cloudflare Pages.
+**Website post**: The briefing is written to `content/intel/` in the Hugo site repository as a markdown file with YAML front matter. The date is stored as explicit UTC (`2026-05-27T09:00:00+00:00`) to prevent Hugo's `buildFuture = false` config from silently excluding it. A `git add / commit / push` sequence runs automatically from the GitHub Actions runner back to the Hugo repository, triggering a secondary build workflow that deploys the static site to Cloudflare Pages (with recursive submodule initialisation for the Blowfish theme).
 
 **Email newsletter**: The same markdown is converted to styled HTML and sent to my inbox using Python's `markdown` library and a handwritten CSS template. It's delivered via Gmail SMTP with 3 retry attempts spaced 15 minutes apart. The email and site publish are independent — if SMTP fails, the site still gets the briefing.
 
@@ -106,7 +106,7 @@ The system currently tracks approximately 150–200 articles per week across the
 
 **Prompt schema discipline matters more than prompt length.** Early versions of the Gemini prompt described the desired output in prose. The model produced prose back — long, hedged, and structured however it felt appropriate. Switching to an explicit markdown schema with labelled sections and example bullets eliminated most of the variance. If you want consistent output, show the model exactly what consistent looks like.
 
-**Naive timestamps are a silent failure mode in static site generators.** Hugo excludes future-dated content by default and does it without errors or warnings — the file simply doesn't appear. Python's `datetime.now()` produces a naive local timestamp that Hugo interprets as UTC. Running at 09:00 BST (UTC+1) means the timestamp reads 09:00 UTC — one hour in the future. Fixed by using `datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S+00:00')` to produce an explicit UTC timestamp.
+**Naive timestamps are a silent failure mode in static site generators.** Hugo excludes future-dated content by default and does it without errors or warnings — the file simply doesn't appear. Python's `datetime.now()` produces a naive local timestamp that Hugo interprets as UTC. Running at 09:00 BST (UTC+1) means the timestamp reads 09:00 UTC — one hour in the future. Fixed by using `datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%S+00:00')` to produce an explicit, timezone-aware UTC timestamp.
 
 **Decouple publish from delivery.** The original design gated the Git push on successful email delivery. If SMTP failed (transient network, app password expiry), the site also didn't update. These are independent concerns and should be independent code paths.
 
@@ -125,5 +125,5 @@ The system currently tracks approximately 150–200 articles per week across the
 | Email delivery | Gmail SMTP via `smtplib` |
 | Site | Hugo + Blowfish theme |
 | CI/CD | GitHub Actions → Cloudflare Pages |
-| Scheduling | Windows Task Scheduler |
-| Secrets management | Windows Registry (`HKCU:\Environment`) |
+| Scheduling | GitHub Actions (cron schedule) |
+| Secrets management | GitHub Repository Secrets (with Windows Registry fallback for local runs) |
