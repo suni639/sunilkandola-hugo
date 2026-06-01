@@ -31,7 +31,7 @@ The system (`DA-INTEL-01`) runs as a Python script (`intelligence_engine.py`) tr
 
 ### System Architecture
 
-```mermaid
+{{< mermaid >}}
 graph TD
     A[Sources Ingestion] -->|Harvest RSS and Web Trackers| B[Ingestion Layer]
     B -->|Ingested Articles| C[The Noise Gate Filter]
@@ -41,7 +41,7 @@ graph TD
     E -->|Format HTML Newsletter| G[Email Dispatch via SMTP]
     F -->|Commit State and Push| H[Repository State Commit]
     G -->|Delivery Failsafe Check| I[Logs and Error Audit]
-```
+{{< /mermaid >}}
 
 The pipeline operates across five stages:
 
