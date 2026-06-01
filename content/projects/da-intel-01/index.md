@@ -71,7 +71,7 @@ The briefing is written in British English with inline source links.
 ### 4. Publishing
 The generated brief is distributed through two channels:
 - **Hugo Website**: Saved to `content/intel/` as a markdown file with YAML front matter. The runner automatically commits and pushes this to the Hugo site repository, which triggers a deploy to Cloudflare Pages.
-- **Email Newsletter**: Formatted into HTML using a styled template and sent via Gmail SMTP directly to the developer's inbox. This serves a dual purpose: it acts as a passive health-check notification confirming the weekly automation pipeline ran successfully, and it delivers a readable summary to consume digital asset news on the go. If email delivery fails, it retries three times (10-second intervals in GitHub Actions, 15 minutes locally) but does not block the website build.
+- **Email Newsletter**: Formatted into HTML using a styled template and sent via Gmail SMTP directly to my personal inbox. This serves a dual purpose: it acts as a passive health-check notification confirming the weekly automation pipeline ran successfully, and it delivers a readable summary to consume digital asset news on the go. If email delivery fails, it retries three times (10-second intervals in GitHub Actions, 15 minutes locally) but does not block the website build.
 
 ### 5. State Persistence
 Upon successful execution, the runner updates `system_state.json` and commits/pushes it back to the main repository. This ensures state is preserved across ephemeral virtual machines so that subsequent runs have the updated list of processed URLs.
