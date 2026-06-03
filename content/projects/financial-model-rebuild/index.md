@@ -36,7 +36,7 @@ For a pre-launch startup, these static models hide the real risks. They mask the
 
 My first instinct was to move away from Excel altogether. I wrote a python-first financial engine and built a Streamlit web dashboard to run real-time sensitivity dials. 
 
-```mermaid
+{{< mermaid >}}
 graph TD
     A[assumptions.yaml<br>Master Inputs] --> B(Python engine/calculations.py<br>Streamlit Dashboard)
     A --> C(openpyxl compiler/generate_maternity_model_6yr.py)
@@ -44,7 +44,7 @@ graph TD
     D --> E[Cover Page & Control Panel]
     D --> F[Executive Charts Dashboard]
     D --> G[Dynamic 3-Statement Model]
-```
+{{< /mermaid >}}
 
 The Python dashboard was great for sliding levers and seeing immediate graphs, but I quickly hit a roadblock when it came to sharing the model. 
 
