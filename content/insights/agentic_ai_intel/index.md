@@ -36,7 +36,7 @@ graph TD
     D -->|Gmail & Hugo| E((External Delivery))
 {{< /mermaid >}}
 
-* **The Research Scout (`scout`)**: Scrapes CoinDesk, The Block, and the Bank for International Settlements (BIS). If it spots a terse summary of a major project (like Project Agorá or mBridge), it autonomously queries search engines to find the underlying technical specifications and enriches the data.
+* **The Research Scout (`scout`)**: Scrapes CoinDesk, The Block, the Bank for International Settlements (BIS), Ledger Insights, the European Central Bank (ECB), and the Bank of England (BoE). If it spots a terse summary of a major project (like Project Agorá or mBridge), it autonomously queries search engines to find the underlying technical specifications and enriches the data.
 * **The Macro Strategist (`strategist`)**: Acts as the Noise Gate. It evaluates every article against strict wholesale market filters, immediately discarding spot price changes, memecoin news, or retail wallet updates, and categorising institutional developments.
 * **The Chief Editor & QC (`editor`)**: Compiles the briefing. It runs a self-correction loop to eliminate generic AI phrases (e.g. *appears to*, *it is evident that*) and enforces strict British English spelling (*tokenised*, *utilising*, *programmes*).
 * **The Publisher (`publisher`)**: Converts the markdown into a styled HTML newsletter, emails it to my inbox, prepends website metadata, and commits/pushes the post to my Hugo-based website repository.
