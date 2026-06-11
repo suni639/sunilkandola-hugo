@@ -43,6 +43,18 @@ graph TD
 
 ---
 
+### Tackling Link Integrity: Propagating and Normalising URLs
+
+One of the early challenges of this multi-agent structure was link integrity. Because the *Strategist* stripped down feed data to write structured updates, the *Editor* was originally tasked with embedding links back to primary sources without direct access to the raw URL feeds. This resulted in the model fabricating relative placeholders (like `[Project Pontes](atlantic_council_cbdc_tracker_2026-22)`) or guessing outdated URLs from years prior, which broke on the live Hugo website (producing 404 errors).
+
+We solved this through a two-fold architectural upgrade:
+1. **URL Propagation**: We restructured the payload schema so the *Research Scout*'s verified URLs are passed directly through the *Strategist*'s JSON developments payload all the way to the *Editor*, ensuring the model has absolute primary source links to embed.
+2. **Automated Post-Processing Filter**: We added a validation layer to our runner script. It parses the final Markdown, checks all links, and automatically normalises any relative or malformed paths (paths not beginning with `http`, `https`, or `#`) to safe, absolute Google Search query fallbacks.
+
+This ensures that the newsletter and live website briefings are 100% free of dead links or broken redirects.
+
+---
+
 ### Why Agentic is Better
 
 Standard automation follows a single linear path; agentic systems follow objectives. By separating the workflow into distinct cognitive stages, each step is optimised. The Strategist's focus is purely on filtering, the Editor's focus is on phrasing and QC, and the Scout handles research. The final briefing is significantly sharper, completely free from price speculation, and reads like a professional analyst note.

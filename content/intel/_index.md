@@ -9,4 +9,6 @@ cascade:
   showHeadingAnchors: true
 ---
 
-Weekly intelligence digests focused on institutional digital assets, central bank digital currencies, tokenisation, and financial regulation. Clean of retail speculation, token price actions, or market hype.
+Weekly intelligence digests focused on institutional digital assets, central bank digital currencies, tokenisation, and financial regulation.
+
+These reports are produced autonomously by a collaborative [multi-agent agentic AI pipeline](/insights/agentic_ai_intel/) (consisting of a Research Scout, Macro Strategist, and Chief Editor) that harvests high-signal developments, applies a strict institutional noise gate, and compiles a weekly brief completely clean of retail speculation, token price actions, or market hype.

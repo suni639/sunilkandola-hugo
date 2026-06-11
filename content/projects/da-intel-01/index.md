@@ -2,10 +2,10 @@
 title = "Automated Digital Asset Intelligence"
 date = 2026-05-27
 draft = false
-description = "A scheduled Python pipeline that scrapes institutional news, filters out retail crypto speculation using Gemini, and publishes a weekly digest."
-summary = "An automated pipeline that scrapes news from six institutional sources, filters out price speculation, synthesises the developments with Gemini, and publishes a weekly briefing by email and to this site every Monday."
+description = "A scheduled Python pipeline that runs a collaborative multi-agent AI system (Research Scout, Macro Strategist, and Chief Editor) to curate, enrich, filter, and compile weekly digital asset briefings."
+summary = "An automated multi-agent AI system that curates, enriches, and filters institutional digital asset news, compiling and publishing a weekly briefing to email and this website."
 
-tags = ["Python", "AI", "Automation", "Hugo", "Digital Assets", "Gemini"]
+tags = ["Python", "AI", "Automation", "Hugo", "Digital Assets", "Gemini", "Agentic AI", "Multi-Agent Systems", "Google GenAI"]
 categories = ["Projects"]
 
 showAuthor = true
@@ -27,20 +27,18 @@ However, these feeds are heavily cluttered with retail cryptocurrency speculatio
 
 ## Solution
 
-The system (`DA-INTEL-01`) runs as a Python script (`intelligence_engine.py`) triggered by GitHub Actions every Monday at 07:00 UTC (08:00 AM UK BST / 07:00 AM UK GMT).
+The system (`DA-INTEL-01`) operates as an automated, multi-agent AI pipeline (`pipeline/run_pipeline.py`) triggered by GitHub Actions every Monday at 07:00 UTC.
 
-### System Architecture
+### System Architecture & Agent Graph
 
 {{< mermaid >}}
 graph TD
-    A[Sources Ingestion] -->|Harvest RSS and Web Trackers| B[Ingestion Layer]
-    B -->|Ingested Articles| C[The Noise Gate Filter]
-    C -->|Exclude Retail Price and Speculation| D[Gemini Synthesis Layer]
-    D -->|Synthesise in British English| E[Output Formatting]
-    E -->|Write Markdown Brief| F[Hugo Website Publish]
-    E -->|Format HTML Newsletter| G[Email Dispatch via SMTP]
-    F -->|Commit State and Push| H[Repository State Commit]
-    G -->|Delivery Failsafe Check| I[Logs and Error Audit]
+    A[Ingestion Layer] -->|raw_enriched_feed.json| B[Research Scout]
+    B -->|Enriched data via web search| C[Macro Strategist]
+    C -->|Filtered strategic_analysis.json| D[Chief Editor & QC]
+    D -->|Compiled output_briefing.md| E[Publisher Layer]
+    E -->|SMTP Newsletter| F((Gmail Inbox))
+    E -->|Git Auto-Publish| G((Hugo Website))
 {{< /mermaid >}}
 
 The pipeline operates across five stages:
@@ -85,6 +83,10 @@ Upon successful execution, the runner updates `system_state.json` and commits/pu
 * **Deprecation Warning Cleanup**: Replacing deprecated standard functions like `datetime.utcnow()` with modern, timezone-aware `datetime.datetime.now(datetime.timezone.utc)` prevents runtime warning logs from cluttering execution metrics.
 * **Process Decoupling**: Separating email delivery from git publishing prevents transient SMTP errors from blocking the website deployment.
 * **Submodule Checkouts**: Auto-build engines like Cloudflare Pages can fail to check out Hugo theme submodules. Configuring GitHub Actions to clone with `submodules: recursive` guarantees the theme builds correctly.
+
+### Upgrading to Agentic AI
+
+To learn more about why and how this project was migrated from a single monolithic script to a collaborative multi-agent system, check out the detailed insight post: [Ditching the Dumb Robot: Why I Rebuilt My Digital Asset Intel Tracker with Agentic AI](/insights/agentic_ai_intel/).
 
 ---
 
