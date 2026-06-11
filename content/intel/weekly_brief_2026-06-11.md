@@ -1,6 +1,6 @@
 ---
 title: "Digital Asset Digest: 11 June 2026"
-date: 2026-06-11T09:46:40+00:00
+date: 2026-06-11T09:47:03+00:00
 draft: false
 tags: ["digital-assets", "cbdc", "regulation", "tokenisation"]
 categories: ["Intelligence"]
