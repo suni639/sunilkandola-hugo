@@ -2,12 +2,13 @@
 title = "A Regulatory Early-Warning System for Digital Assets and Payments"
 date = 2026-11-15
 draft = false
-description = "A scheduled Python pipeline that watches regulator feeds in the UK, EU, US and beyond, scores each publication for execution risk with Gemini, compares it against rules in other jurisdictions, and emails red alerts and a Monday digest."
-summary = "Regulators publish something relevant to stablecoins, tokenisation or payments almost every week. I built a scanner that reads the feeds every two hours, scores what matters, compares it with the rules elsewhere, and only emails me when it's worth it."
+description = "A scanner that reads regulator feeds across the UK, EU, US and beyond, rates each publication for impact and cross-border divergence, and emails red alerts and a Monday digest."
+summary = "Regulators publish something that matters for stablecoins, tokenisation or payments most weeks. This scanner reads the feeds every two hours, rates each item, and emails me only the ones that need attention."
 
 featureImage = "feature.png"
+featured = true
 
-tags = ["Python", "AI", "Automation", "Gemini", "RAG", "Regulation", "Digital Assets", "Stablecoins", "Payments", "Supabase"]
+tags = ["Python", "Automation", "Regulation", "Digital Assets", "Stablecoins", "Payments", "RAG", "Supabase"]
 categories = ["Projects"]
 
 showAuthor = true
@@ -17,93 +18,84 @@ showTableOfContents = true
 +++
 
 {{< lead >}}
-Regulators publish something that matters for stablecoins, tokenisation or payments almost every week, and the important items are buried among press releases about consumer contracts and scam warnings. I built a scanner that reads the feeds for me, scores each item, and checks how it compares with the rules in other countries.
+Regulators publish something that matters for stablecoins, tokenisation or payments most weeks, usually among consumer notices and newsletters. This scanner reads the feeds every two hours, rates each item, and emails me only the ones that need attention.
 {{< /lead >}}
 
-## The problem
+## Why I built it
 
-If you work anywhere near digital assets or payments, the rulebook is moving in several places at once. The Bank of England and FCA are building a UK stablecoin regime. The EU's MiCA is live and its supervisors are now using it. The US passed the GENIUS Act and its regulators are writing the detail. Global bodies like the BIS set standards that tend to reach UK and EU law a year or two later.
+Digital asset rules are being written in several places at once. The UK is consulting on stablecoins, the EU is applying MiCA, and the US is implementing the GENIUS Act. Global bodies such as the BIS set standards that tend to reach national rulebooks a year or two later.
 
-Keeping up means checking a dozen regulator websites, most of which publish far more noise than signal. And reading a new rule is only half the job. The question that matters is usually: *how does this compare with everyone else?* A stablecoin reserve set-up that satisfies one regulator can fail another. Those gaps are where cross-border payments and custody arrangements break.
-
-My earlier [Digital Asset Intelligence](/projects/da-intel-01/) project produces a weekly news briefing. This one is narrower and stricter: primary regulator publications only, scored for risk, with a comparison across jurisdictions.
+Reading each publication is only half the work. The more useful question is how a new rule compares with everyone else's, because an arrangement that is compliant in one country can fall short in the next. Those gaps are where cross-border payment and custody arrangements come under pressure.
 
 ---
 
 ## How it works
 
-Every two hours on weekdays, a GitHub Actions job runs the scanner. Each publication passes through four steps, and most fall away early.
-
 {{< mermaid >}}
 graph TD
-    A[Regulator RSS feeds<br>BoE, PRA, FCA, ESMA, EBA,<br>OCC, Fed, BIS, FINMA] --> B{Keyword filter}
-    B -->|Not about digital<br>assets or payments| X[Ignored]
-    B --> C[Gemini scores<br>execution risk 0-100]
-    C -->|Below 60| D[(Stored)]
-    C -->|60 or above| E[Compare against UK, EU,<br>US and Singapore rules]
-    E --> D
-    D -->|85+ or high divergence| F((Instant red alert))
-    D -->|Mondays| G((Weekly digest))
+    A[Collect<br>regulator feeds] --> B{Filter<br>on topic?}
+    B -->|No| X[Dropped]
+    B -->|Yes| C[Rate<br>impact score]
+    C -->|60+| D[Compare<br>UK, EU, US, SG]
+    C -->|Below 60| L[(Logged)]
+    D --> E((Red alert<br>or Monday digest))
 {{< /mermaid >}}
 
-**1. A cheap filter first.** A plain keyword check throws out anything that isn't about stablecoins, tokenisation, custody, settlement, operational resilience and the like. It costs nothing, and it means the AI only sees items that might matter.
+1. **Collect.** Every two hours on weekdays, the scanner reads the feeds of the Bank of England, PRA, FCA, ESMA, EBA, OCC, Federal Reserve, BIS and FINMA.
+2. **Filter.** A keyword screen keeps items on stablecoins, tokenisation, custody, settlement and operational resilience. Most publications stop here.
+3. **Rate.** Each remaining item gets an impact score. Anything scoring 60 or more is also checked against a library of UK, EU, US and Singapore rules for divergence.
+4. **Deliver.** Red alerts go out straight away. Other items scoring 60 or more wait for the Monday digest.
 
-**2. A risk score.** Gemini reads each remaining item as a payments and digital asset risk analyst would, and gives it an *execution risk* score from 0 to 100. In plain terms, that's how directly, and how soon, the publication forces a bank to change how it moves, holds or settles money. Gemini also suggests two or three checks a second-line risk team should run, and writes a three-sentence summary in the style of a risk-committee paper.
+---
 
-**3. A comparison across jurisdictions.** For anything scoring 60 or more, the scanner searches a small library of rule summaries covering the UK, EU, US and Singapore. It does this by meaning rather than keywords, using embeddings stored in a Postgres database. Gemini then writes a four-column table showing where a workflow that passes in one place would fail in another. It also gives a second rating, *divergence*, from High through Medium and Low to Aligned. That measures how far apart the rules are, i.e. whether the same arrangement would pass in one country and fail in another.
+## How the scoring works
 
-**4. Email only when it's worth it.** The score decides what happens next:
+Each item can receive two ratings.
 
-| Score | Typically | What happens |
+**Impact score (0 to 100).** How directly, and how soon, the publication would force a bank to change how it moves, holds or settles money.
+
+| Score | Typical publication | Result |
 |---|---|---|
-| 85–100 | Final rules affecting settlement, reserves, custody or capital | Instant red-alert email, and in the Monday digest |
-| 60–84 | Consultations and speeches signalling a change | Cross-country comparison, then the Monday digest |
-| Below 60 | Background or only loosely related | Stored, not emailed |
+| 85+ | Final rule or supervisory decision affecting settlement, reserves, custody or capital | Red alert the same day |
+| 60–84 | Consultation, guidance or speech signalling a change | Divergence check, then the Monday digest |
+| Under 60 | Research, background or loosely related news | Logged, no email |
 
-High divergence also triggers a red alert, even below 85: a gap between countries can matter more than the rule itself.
+**Divergence (High, Medium, Low or Aligned).** How far the same requirement differs across the UK, EU, US and Singapore. High means an arrangement that passes in one country would fail in another. Only items scoring 60 or more are checked.
 
----
+**When an alert fires.** An impact score of 85 or more, or High divergence at any score from 60 up. A large gap between countries can matter as much as the rule itself.
 
-## What it found on day one
-
-The first real run picked up 12 items from the last two months. Scores ranged from 25 to 88, and the order was about right. (The two red alerts were held back on this first run, for reasons explained below.)
-
-| Score | Publication | Outcome |
-|---|---|---|
-| 88 | OCC final rule implementing the GENIUS Act | Red alert (high divergence) |
-| 87 | EBA classifies USDC as the EU's first *significant* e-money token | Red alert (high divergence) |
-| 72 | Bank of England approach to tokenised collateral in central clearing | Monday digest |
-| 68 | FCA on preparing for quantum computing risk | Monday digest |
-| 25 | FCA on fair consumer contracts | Stored only |
-
-The score is a judgement, not a measurement. Running the same items twice moved some scores by a few points; USDC came out at 88, then 87. That's why the bands are wide, and why every email links to the source.
-
-The USDC item shows what the comparison step adds. Being classed as significant under MiCA means the issuer must hold at least 60% of its reserves as deposits at commercial banks. The GENIUS Act lets US issuers back tokens mainly with short-dated Treasury bills and repo. Singapore and the UK proposals allow different mixes again. So one stablecoin can be compliant in the US and fall short in the EU, and the scanner put that in its headline.
+The ratings are judgements. Rerunning the same item can move its score by a point or two, so the bands are deliberately wide and every email links to the original publication.
 
 ---
 
-## Lessons along the way
+## Case study: USDC becomes a significant e-money token
 
-**Review the AI's first plan.** I started from a design another AI drafted. The idea was sound, but the code wouldn't have worked as written. Two of its ten feed addresses were dead. The comparison step searched a rules database that nothing ever filled, so Gemini would have quietly invented the other jurisdictions' positions. It also used an embedding model that had since been retired. None of this would have crashed loudly. It would just have produced confident nonsense.
+On 14 October the European Banking Authority classified USDC as the first *significant* e-money token in the EU. This is how the scanner handled it.
 
-**Ground the comparison, and show your working.** The prompt tells Gemini to use only the retrieved rule summaries, and to write "No baseline on file" rather than fill a gap from memory. Each email lists which rules it compared against. The comparison is only as good as that library, so the summaries carry a "checked on" date that I fill in as I verify each one against the source.
+**Collected.** The announcement appeared in the EBA's news feed.
 
-**Don't flood the inbox on day one.** The first run treats everything already in the feeds as new. So when the database is empty, the scanner stores and scores everything without sending a single alert.
+**Filtered.** "E-money token" is on the keyword list, so the item went through.
 
-**The free tier wasn't enough.** Gemini's free tier allowed 20 requests a day, and the first backfill used that up halfway through. The scanner now stops cleanly when the quota runs out and picks up the rest next time. Moving to a small prepaid credit removed the limit, and the cost at this volume is tiny.
+**Impact score: 88.** A formal supervisory decision that changes how an issuer must hold its reserves sits in the top band. The scanner tagged it under reserves, custody, settlement and operational resilience.
 
-**Check your environment variables.** After I moved to the paid tier, the free-tier errors carried on. The cause was an old API key from another project, saved in my Windows settings, which was quietly taking priority over this project's settings. Ten minutes of confusion, one line of code to fix.
+**Divergence: High.** Significant status under MiCA requires at least 60% of reserves to be held as deposits at commercial banks. The US GENIUS Act allows a stablecoin to be backed mainly by short-dated Treasury bills and repo. Singapore and the UK proposals each use a different mix again. A reserve structure built for the US would not meet the EU requirement.
+
+**Delivered.** A red alert with the score, a four-country comparison table, three checks for a second-line risk team and a three-sentence summary written for a risk committee paper.
+
+{{< figure src="feature.png" alt="Red alert email showing a score of 88 out of 100, high divergence, and the start of a UK, EU, US and Singapore comparison table for the EBA's USDC decision" caption="The top of the red alert for the USDC decision." >}}
+
+The same run looked at 291 feed entries, and 12 passed the filter. Two qualified as red alerts: this one and the OCC's final rule implementing the GENIUS Act. Three went to the Monday digest, including the Bank of England's approach to tokenised collateral in central clearing. The other seven were logged without an email.
 
 ---
 
-## Technical stack
+## Under the hood
 
 | Component | Technology |
 |---|---|
-| Pipeline | Python (`httpx`, `feedparser`, `pydantic`) |
-| Scoring and comparison | Google Gemini, with schema-checked JSON output |
-| Rule search | Gemini embeddings + pgvector on Supabase Postgres |
-| Email | Gmail SMTP |
-| Scheduling | GitHub Actions (every 2 hours on weekdays, plus a Monday digest) |
+| Pipeline | Python |
+| Ratings and comparison | Google Gemini, with a structured output format |
+| Rule library and search | Postgres with pgvector, hosted on Supabase |
+| Email | Gmail |
+| Scheduling | GitHub Actions: every two hours on weekdays, digest on Mondays at 07:30 UTC |
 
-*The scores and comparisons are generated automatically and are a prompt to read the source, not a substitute for it.*
+*Ratings are generated automatically. Each email links to the source publication, which remains the authority.*
