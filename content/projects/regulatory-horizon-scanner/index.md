@@ -5,6 +5,8 @@ draft = false
 description = "A scheduled Python pipeline that watches regulator feeds in the UK, EU, US and beyond, scores each publication for execution risk with Gemini, compares it against rules in other jurisdictions, and emails red alerts and a Monday digest."
 summary = "Regulators publish something relevant to stablecoins, tokenisation or payments almost every week. I built a scanner that reads the feeds every two hours, scores what matters, compares it with the rules elsewhere, and only emails me when it's worth it."
 
+featureImage = "feature.png"
+
 tags = ["Python", "AI", "Automation", "Gemini", "RAG", "Regulation", "Digital Assets", "Stablecoins", "Payments", "Supabase"]
 categories = ["Projects"]
 
