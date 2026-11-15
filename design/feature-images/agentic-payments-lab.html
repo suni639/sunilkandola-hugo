@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1200px; height: 821px; }
+  body {
+    font-family: "Segoe UI", -apple-system, Roboto, sans-serif;
+    background: #f8fafc; color: #0f172a;
+    display: flex; flex-direction: column;
+  }
+  .top { background: #0f172a; color: #fff; padding: 46px 64px 40px; }
+  .eyebrow { font-size: 20px; letter-spacing: .14em; text-transform: uppercase; color: #fbbf24; font-weight: 700; }
+  h1 { font-size: 64px; font-weight: 800; margin-top: 10px; letter-spacing: -.01em; }
+  .q { font-size: 26px; color: #cbd5e1; margin-top: 10px; }
+
+  .flow { flex: 1; display: flex; align-items: center; justify-content: space-between; padding: 0 56px; gap: 0; }
+  .node { background: #fff; border: 3px solid #0f172a; border-radius: 16px; text-align: center; font-weight: 700; }
+  .agent { width: 190px; padding: 26px 10px; font-size: 26px; }
+  .agent .ico { font-size: 46px; display: block; margin-bottom: 6px; }
+
+  .arrow { flex: 0 0 54px; height: 4px; background: #0f172a; position: relative; }
+  .arrow::after { content: ""; position: absolute; right: -2px; top: -9px;
+    border-left: 16px solid #0f172a; border-top: 11px solid transparent; border-bottom: 11px solid transparent; }
+
+  .controls { width: 330px; padding: 18px 18px 14px; border-color: #b45309; background: #fffbeb; }
+  .controls .label { font-size: 17px; letter-spacing: .1em; text-transform: uppercase; color: #b45309; margin-bottom: 10px; }
+  .gate { background: #fff; border: 2px solid #f59e0b; border-radius: 10px; padding: 10px 8px; margin-bottom: 9px;
+    font-size: 23px; display: flex; align-items: center; gap: 10px; justify-content: flex-start; }
+  .gate:last-child { margin-bottom: 0; }
+  .gate .tick { color: #fff; background: #15803d; width: 30px; height: 30px; border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center; font-size: 19px; flex: 0 0 30px; }
+
+  .rails { display: flex; flex-direction: column; gap: 14px; width: 270px; }
+  .rail { padding: 18px 12px; font-size: 25px; display: flex; align-items: center; gap: 12px; justify-content: flex-start; padding-left: 20px; }
+  .rail .dot { width: 18px; height: 18px; border-radius: 50%; flex: 0 0 18px; }
+
+  .bottom { display: flex; justify-content: space-between; align-items: center; padding: 0 64px 34px; }
+  .audit { font-size: 21px; color: #475569; display: flex; align-items: center; gap: 10px; }
+  .audit b { color: #0f172a; }
+  .parts { display: flex; gap: 10px; align-items: center; font-size: 19px; color: #475569; }
+  .p { width: 40px; height: 40px; border-radius: 8px; border: 2px solid #94a3b8; display: inline-flex;
+    align-items: center; justify-content: center; font-weight: 700; color: #64748b; background: #fff; }
+  .p.done { background: #0f172a; border-color: #0f172a; color: #fff; }
+</style></head>
+<body>
+  <div class="top">
+    <div class="eyebrow">Hands-on series · 6 parts</div>
+    <h1>Agentic Payments Lab</h1>
+    <div class="q">What could go wrong when AI pays, and how would you know?</div>
+  </div>
+
+  <div class="flow">
+    <div class="node agent"><span class="ico">🤖</span>AI agent</div>
+    <div class="arrow"></div>
+    <div class="node controls">
+      <div class="label">Controls in the way</div>
+      <div class="gate"><span class="tick">✓</span>Mandate with limits</div>
+      <div class="gate"><span class="tick">✓</span>Fixed checks in code</div>
+      <div class="gate"><span class="tick">✓</span>Human approver</div>
+    </div>
+    <div class="arrow"></div>
+    <div class="rails">
+      <div class="node rail"><span class="dot" style="background:#2563eb"></span>Bank transfer</div>
+      <div class="node rail"><span class="dot" style="background:#db2777"></span>Card</div>
+      <div class="node rail"><span class="dot" style="background:#16a34a"></span>Digital money</div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="audit">🧾 <span><b>Every step logged</b>, then I try to break it</span></div>
+    <div class="parts">
+      <span class="p done">1</span><span class="p done">2</span><span class="p">3</span><span class="p">4</span><span class="p">5</span><span class="p">6</span>
+    </div>
+  </div>
+</body></html>
