@@ -41,10 +41,10 @@ graph TD
     D --> E((Red alert<br>or Monday digest))
 {{< /mermaid >}}
 
-1. **Collect.** Every two hours on weekdays, the scanner reads regulator feeds. In the UK that means the Bank of England, PRA, FCA and HM Treasury, including the FCA's consultation papers and policy statements, where many rules are first set out. Abroad it covers ESMA, the EBA, OCC, Federal Reserve, BIS and FINMA.
+1. **Collect.** Every two hours on weekdays, the scanner reads regulator feeds. In the UK that means the Bank of England, PRA, FCA and HM Treasury, including the FCA's consultation papers and policy statements, where many rules are first set out. Abroad it covers ESMA and the EBA in the EU; the OCC, Federal Reserve, SEC and FinCEN in the US; FINMA in Switzerland; and the global standard setters: the BIS, the Financial Stability Board and IOSCO.
 2. **Filter.** A keyword screen keeps items on stablecoins, tokenisation, custody, settlement and operational resilience. Most publications stop here.
 3. **Rate.** Each remaining item gets an impact score. Anything scoring 60 or more is also checked against a library of UK, EU, US and Singapore rules for divergence.
-4. **Deliver.** Red alerts go out straight away. Every item scoring 60 or more, alerts included, appears in the Monday digest.
+4. **Deliver.** Red alerts go out straight away. Every item scoring 60 or more, alerts included, appears in the Monday digest. Publications on the same story are grouped. When the SEC proposed new crypto custody rules, two commissioners published statements the same day, and all three became one entry with the statements linked underneath.
 
 ---
 
