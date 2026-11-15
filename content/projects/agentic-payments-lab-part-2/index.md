@@ -182,3 +182,25 @@ The one ineffective control is the fake-bill risk, which has no control yet. A r
 ## What's next
 
 Part 3 puts the AI in a shop. It pays by card, carries a signed identity that the merchant can check, and has to deal with disputes when something goes wrong. That's also where the gaps found here get their natural fixes: signing the supplier's actual bank details, not just its code, and checking the agent's identity at the payment provider.
+
+---
+
+## Sources
+
+Checked on 15 November 2026. Where an official announcement couldn't be found, the most reliable summaries are
+listed.
+
+**The Agent Payments Protocol (AP2) and the FIDO Alliance**
+- [Agent Payments Protocol (AP2) explained](https://agenticcommerceprotocol.info/standards/ap2)
+- [PPC Land: FIDO Alliance forms working groups to lock down AI agent payments](https://ppc.land/fido-alliance-forms-working-groups-to-lock-down-ai-agent-payments/)
+- [Spark: how AP2 standardises AI commerce](https://www.spark.money/research/google-ap2-agent-payment-protocol)
+
+**Commercial variable recurring payments (VRP), live June 2026**
+- [Open Banking Tracker: commercial VRP and the UK Payments Initiative](https://www.openbankingtracker.com/guides/commercial-vrp-ukpi)
+- [TrueLayer: the complete guide to commercial VRP](https://truelayer.com/blog/recurring-payments/the-complete-guide-to-cvrp/)
+- [Plaid: commercial VRP in the UK](https://plaid.com/en-gb/resources/payments/variable-recurring-payments-uk/)
+
+**HM Treasury and the FCA on consent and liability for AI payments**
+- [Baker McKenzie: consultation on modernisation of payments regulation](https://www.bakermckenzie.com/en/insight/publications/2026/07/united-kingdom-consultation-on-modernisation-of-payments-regulation)
+- [Lewis Silkin: HM Treasury consults on a future-proof framework for payments](https://www.lewissilkin.com/insights/2026/07/16/hm-treasury-consults-on-a-future-proof-framework-for-payments-stablecoins-and-op-102nc2h)
+- [Bratby Law: agentic payments and HM Treasury's July 2026 consultation](https://bratby.law/agentic-payments-accountability-gap/)

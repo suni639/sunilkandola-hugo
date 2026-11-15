@@ -233,6 +233,30 @@ there is no one to call afterwards.
 
 ---
 
+## Sources
+
+Checked on 15 November 2026. Official sources are listed first for each topic.
+
+**Fraud refunds (authorised push payment fraud)**
+- [Payment Systems Regulator: APP scams reimbursement requirement, consolidated policy statement PS25/5](https://www.psr.org.uk/media/rhelv4op/ps25-5-app-scams-reimbursement-consolidated-policy-statement-may-2025.pdf)
+- [Norton Rose Fulbright: APP fraud round-up](https://www.nortonrosefulbright.com/en/knowledge/publications/9e38c87a/app-fraud-round-up-recent-developments-and-key-takeaways)
+
+**Faster Payments: speed and settlement**
+- [Pay.UK: how Faster Payments work](https://www.wearepay.uk/what-we-do/payment-systems/faster-payment-system/how-faster-payments-work/)
+- [Bank of England: working paper on RTGS and instant payment schemes (2026)](https://www.bankofengland.co.uk/-/media/boe/files/working-paper/2026/substitution-between-rtgs-and-instant-payment-schemes.pdf)
+- [Bank of England: RTGS and CHAPS service description](https://www.bankofengland.co.uk/-/media/boe/files/payments/rtgs-and-chaps-service-description)
+- [Stripe: a guide to Faster Payments](https://stripe.com/resources/more/what-is-faster-payments-a-guide-to-the-uks-real-time-bank-transfer-system)
+
+**Payment message codes (ISO 20022)**
+- [Token.io: ISO 20022 statuses](https://support.token.io/hc/en-us/articles/28803889578393-What-are-the-ISO20022-statuses)
+- [Cobase: pain.002 status message guide](https://www.cobase.com/insight-hub/pain.002-status-message-guide)
+
+**Variable recurring payments**
+- [Open Banking Tracker: commercial VRP and the UK Payments Initiative](https://www.openbankingtracker.com/guides/commercial-vrp-ukpi)
+- [TrueLayer: the complete guide to commercial VRP](https://truelayer.com/blog/recurring-payments/the-complete-guide-to-cvrp/)
+
+---
+
 ## Glossary
 
 | Term | Meaning |
