@@ -44,7 +44,7 @@ graph TD
 1. **Collect.** Every two hours on weekdays, the scanner reads the feeds of the Bank of England, PRA, FCA, ESMA, EBA, OCC, Federal Reserve, BIS and FINMA.
 2. **Filter.** A keyword screen keeps items on stablecoins, tokenisation, custody, settlement and operational resilience. Most publications stop here.
 3. **Rate.** Each remaining item gets an impact score. Anything scoring 60 or more is also checked against a library of UK, EU, US and Singapore rules for divergence.
-4. **Deliver.** Red alerts go out straight away. Other items scoring 60 or more wait for the Monday digest.
+4. **Deliver.** Red alerts go out straight away. Every item scoring 60 or more, alerts included, appears in the Monday digest.
 
 ---
 
@@ -56,7 +56,7 @@ Each item can receive two ratings.
 
 | Score | Typical publication | Result |
 |---|---|---|
-| 85+ | Final rule or supervisory decision affecting settlement, reserves, custody or capital | Red alert the same day |
+| 85+ | Final rule or supervisory decision affecting settlement, reserves, custody or capital | Red alert the same day, then the Monday digest |
 | 60–84 | Consultation, guidance or speech signalling a change | Divergence check, then the Monday digest |
 | Under 60 | Research, background or loosely related news | Logged, no email |
 
@@ -76,15 +76,21 @@ On 14 October the European Banking Authority classified USDC as the first *signi
 
 **Filtered.** "E-money token" is on the keyword list, so the item went through.
 
-**Impact score: 88.** A formal supervisory decision that changes how an issuer must hold its reserves sits in the top band. The scanner tagged it under reserves, custody, settlement and operational resilience.
+**Impact score: 87.** A formal supervisory decision that changes how an issuer must hold its reserves sits in the top band. The scanner tagged it under reserves, custody, settlement and operational resilience.
 
 **Divergence: High.** Significant status under MiCA requires at least 60% of reserves to be held as deposits at commercial banks. The US GENIUS Act allows a stablecoin to be backed mainly by short-dated Treasury bills and repo. Singapore and the UK proposals each use a different mix again. A reserve structure built for the US would not meet the EU requirement.
 
-**Delivered.** A red alert with the score, a four-country comparison table, three checks for a second-line risk team and a three-sentence summary written for a risk committee paper.
+**Delivered.** A red alert that opens with the two ratings and the areas affected, then sets out the impact, compares the rules across the four jurisdictions, lists three checks for a second-line risk team and ends with a three-sentence summary ready for a risk committee paper.
 
-{{< figure src="feature.png" alt="Red alert email showing a score of 88 out of 100, high divergence, and the start of a UK, EU, US and Singapore comparison table for the EBA's USDC decision" caption="The top of the red alert for the USDC decision." >}}
+{{< figure src="feature.png" alt="Red alert email showing a score of 87 out of 100, high divergence, the areas affected, and the start of a UK, EU, US and Singapore comparison for the EBA's USDC decision" caption="The top of the red alert for the USDC decision." >}}
 
-The same run looked at 291 feed entries, and 12 passed the filter. Two qualified as red alerts: this one and the OCC's final rule implementing the GENIUS Act. Three went to the Monday digest, including the Bank of England's approach to tokenised collateral in central clearing. The other seven were logged without an email.
+The same run looked at 291 feed entries, and 12 passed the filter. Two qualified as red alerts: this one and the OCC's final rule implementing the GENIUS Act. Three more scored between 60 and 84, including the Bank of England's approach to tokenised collateral in central clearing. The other seven were logged without an email.
+
+### The Monday digest
+
+All five items scoring 60 or more went into the following Monday's digest. It opens with one line on the week, *"5 signals this week: 2 high priority and 3 to watch"*, then gives the highest-scoring item in full, in the same format as an alert. Everything else is a short table with each item's score, divergence and publication date, so the week can be read in under a minute.
+
+{{< figure src="digest.png" alt="Weekly digest email: a one-line summary of five signals, the OCC GENIUS Act rule as the top signal, and an 'Other signals' table listing the EBA USDC decision at 87 with high divergence and the Bank of England tokenised collateral paper at 72 with medium divergence" caption="An excerpt from the Monday digest. The top signal's full detail is cut for length." >}}
 
 ---
 
