@@ -23,7 +23,7 @@ Regulators publish something that matters for stablecoins, tokenisation or payme
 
 ## Why I built it
 
-Digital asset rules are being written in several places at once. The UK is consulting on stablecoins, the EU is applying MiCA, and the US is implementing the GENIUS Act. Global bodies such as the BIS set standards that tend to reach national rulebooks a year or two later.
+Digital asset rules are being written in several places at once. The UK has finalised its stablecoin rules, which start in 2027, the EU is applying MiCA, and the US is implementing the GENIUS Act. Global bodies such as the BIS set standards that tend to reach national rulebooks a year or two later.
 
 Reading each publication is only half the work. The more useful question is how a new rule compares with everyone else's, because an arrangement that is compliant in one country can fall short in the next. Those gaps are where cross-border payment and custody arrangements come under pressure.
 
@@ -52,15 +52,15 @@ graph TD
 
 Each item can receive two ratings.
 
-**Impact score (0 to 100).** How directly, and how soon, the publication would force a bank to change how it moves, holds or settles money.
+**Impact score (0 to 100).** How directly, and how soon, the publication would force a bank to change how it moves, holds or settles money, judged by a language model against a written rubric.
 
 | Score | Typical publication | Result |
 |---|---|---|
-| 85+ | Final rule or supervisory decision affecting settlement, reserves, custody or capital | Red alert the same day, then the Monday digest |
+| 85+ | Final rule or supervisory decision affecting settlement, reserves, custody or capital | Divergence check, red alert the same day, then the Monday digest |
 | 60–84 | Consultation, guidance or speech signalling a change | Divergence check, then the Monday digest |
 | Under 60 | Research, background or loosely related news | Logged, no email |
 
-**Divergence (High, Medium, Low or Aligned).** How far the same requirement differs across the UK, EU, US and Singapore. Only items scoring 60 or more are checked, in three steps.
+**Divergence (High, Medium, Low or Aligned).** How far the same requirement differs across the UK, EU, US and Singapore. In short: if no single arrangement can satisfy both a final new rule and another country's rules, divergence is High. It is worked out in three steps for every item scoring 60 or more.
 
 1. **Find the comparable rules.** The scanner searches a library of about 30 rule summaries, each written from and checked against the regulator's own text, and takes the closest for each country. It also draws on recent UK publications it has already scored, so the UK position stays current. Rules on a different subject are set aside.
 2. **Label each country.** Each country is judged on its own against the new publication and given one label:
@@ -95,7 +95,7 @@ On 14 October the European Banking Authority classified USDC as the first *signi
 
 **Divergence: Medium.** Significant status under MiCA requires at least 60% of reserves to be held as bank deposits. The UK's final stablecoin rules ask for at least 5% in on-demand deposits, and US and Singapore rules lean on short-dated government debt. The UK, US and Singapore were each labelled Adjustment: a single reserve could meet the EU rule and theirs, but only with changes. With no outright conflict, divergence is Medium, and the alert came from the impact score.
 
-The OCC's final rule implementing the GENIUS Act shows the contrast. It was rated High, because the UK and EU columns are both Conflict: a reserve held mainly in US Treasuries cannot meet the Bank of England's requirement for at least 30% in central bank deposits, or MiCA's bank-deposit minimum.
+The OCC's final rule implementing the GENIUS Act shows the contrast. It was rated High, because the UK and EU columns are both Conflict: a reserve held mainly in US Treasuries cannot meet MiCA's bank-deposit minimum, or the Bank of England's requirement that a systemic sterling stablecoin hold at least 30% in central bank deposits (no stablecoin has been recognised as systemic yet).
 
 **Delivered.** A red alert that opens with the two ratings and the areas affected, then sets out the impact, compares the rules across the four jurisdictions with each column's label, lists three checks for a second-line risk team and ends with a three-sentence summary ready for a risk committee paper.
 
@@ -105,7 +105,7 @@ The same run looked at 291 feed entries, and 12 passed the filter. Two qualified
 
 ### The Monday digest
 
-By the following Monday, with the SEC, FinCEN, FSB and IOSCO feeds added, the digest held ten publications. It opens with one line on the week, *"8 signals this week (10 publications): 2 high priority and 6 to watch. 3 are UK developments."* The SEC's crypto custody proposal and two commissioners' statements on it count as one signal. The highest-scoring item follows in full, in the same format as an alert. The rest sit in two short tables, UK developments first and then international, each showing score, divergence and publication date. A UK consultation stays visible even in a week when a foreign rule scores higher, and the whole digest takes under a minute to read.
+By the following Monday, with the SEC, FinCEN, FSB and IOSCO feeds added, the digest held ten publications as eight signals, since the SEC's custody proposal and two statements on it count as one. After a one-line summary of the week and the top item in full, UK developments and international items sit in separate short tables, so a UK consultation stays visible even when a foreign rule scores higher.
 
 {{< figure src="digest.png" alt="Weekly digest email: a one-line summary of eight signals, the OCC GENIUS Act rule as the top signal with high divergence, its comparison table labelled Conflict for the UK and EU, This publication for the US and Adjustment for Singapore, and the start of the UK developments table" caption="An excerpt from the Monday digest. Dashed lines mark where longer sections are cut." >}}
 
