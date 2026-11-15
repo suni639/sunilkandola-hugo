@@ -1,0 +1,33 @@
+{{/*
+  Series landing page: title, a short intro, the articles in reading order, then the page's own
+  content as background. Used by a section's _index.md with `layout = "series"` in its front matter
+  (first used by projects/agentic-payments-lab). Articles are ordered by their `weight`; pages with
+  [build] list = "never" (such as build notes) are left out automatically.
+*/}}
+{{ define "main" }}
+  {{ .Scratch.Set "scope" "list" }}
+
+  <header>
+    <h1 class="mt-5 text-4xl font-extrabold text-neutral-900 dark:text-neutral">{{ .Title }}</h1>
+  </header>
+
+  {{ with .Params.intro }}
+    <section class="prose mt-4 max-w-prose dark:prose-invert">
+      {{ . | markdownify }}
+    </section>
+  {{ end }}
+
+  <section class="mt-8 space-y-10 w-full">
+    <h2 class="text-2xl font-bold text-neutral-700 dark:text-neutral-300">{{ .Params.listHeading | default "Read the series" }}</h2>
+    {{ range .Pages.ByWeight }}
+      {{ partial "article-link/simple.html" . }}
+    {{ end }}
+  </section>
+
+  {{ with .Content }}
+    <section class="prose mt-16 max-w-prose dark:prose-invert">
+      <h2>{{ $.Params.aboutHeading | default "About the series" }}</h2>
+      {{ . }}
+    </section>
+  {{ end }}
+{{ end }}

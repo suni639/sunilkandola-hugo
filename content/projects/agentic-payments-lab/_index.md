@@ -1,7 +1,10 @@
 +++
 title = "Agentic Payments Lab"
 draft = false
-orderByWeight = true
+layout = "series"
+intro = """AI agents are starting to make payments for people, and money itself is becoming programmable. In this hands-on series I build small, entirely fictional payment systems with AI, then try to break them, asking one question throughout: **what could go wrong, and how would you know?**
+
+No technical or banking background needed. New to payments? Start with the primer, then read the parts in order."""
 description = "A six-part, hands-on series exploring how AI agents will make payments, and what it takes to make that safe, building towards the convergence of AI and blockchain-based money."
 summary = "Six hands-on projects on AI agents in payments, from a simple invoice-paying assistant to an agent treasury working across bank transfers, cards and digital money."
 
@@ -62,7 +65,3 @@ the session-by-session detail.
 - **Honest results.** Each part reports which safeguards worked and which didn't.
 
 The code for every part is on [GitHub](https://github.com/suni639/agentic-payments-lab).
-
-## Read the series
-
-Start with the primer if payments are new to you, then read the parts in order.
