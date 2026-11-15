@@ -41,7 +41,7 @@ graph TD
     D --> E((Red alert<br>or Monday digest))
 {{< /mermaid >}}
 
-1. **Collect.** Every two hours on weekdays, the scanner reads the feeds of the Bank of England, PRA, FCA, ESMA, EBA, OCC, Federal Reserve, BIS and FINMA.
+1. **Collect.** Every two hours on weekdays, the scanner reads regulator feeds. In the UK that means the Bank of England, PRA, FCA and HM Treasury, including the FCA's consultation papers and policy statements, where many rules are first set out. Abroad it covers ESMA, the EBA, OCC, Federal Reserve, BIS and FINMA.
 2. **Filter.** A keyword screen keeps items on stablecoins, tokenisation, custody, settlement and operational resilience. Most publications stop here.
 3. **Rate.** Each remaining item gets an impact score. Anything scoring 60 or more is also checked against a library of UK, EU, US and Singapore rules for divergence.
 4. **Deliver.** Red alerts go out straight away. Every item scoring 60 or more, alerts included, appears in the Monday digest.
@@ -88,9 +88,9 @@ The same run looked at 291 feed entries, and 12 passed the filter. Two qualified
 
 ### The Monday digest
 
-All five items scoring 60 or more went into the following Monday's digest. It opens with one line on the week, *"5 signals this week: 2 high priority and 3 to watch"*, then gives the highest-scoring item in full, in the same format as an alert. Everything else is a short table with each item's score, divergence and publication date, so the week can be read in under a minute.
+All five items scoring 60 or more went into the following Monday's digest. It opens with one line on the week, *"5 signals this week: 2 high priority and 3 to watch. 2 are UK developments."* The highest-scoring item follows in full, in the same format as an alert. The rest sit in two short tables, UK developments first and then international, each showing score, divergence and publication date. A UK consultation stays visible even in a week when a foreign rule scores higher, and the whole digest takes under a minute to read.
 
-{{< figure src="digest.png" alt="Weekly digest email: a one-line summary of five signals, the OCC GENIUS Act rule as the top signal, and an 'Other signals' table listing the EBA USDC decision at 87 with high divergence and the Bank of England tokenised collateral paper at 72 with medium divergence" caption="An excerpt from the Monday digest. The top signal's full detail is cut for length." >}}
+{{< figure src="digest.png" alt="Weekly digest email: a one-line summary of five signals, the OCC GENIUS Act rule as the top signal, and a table listing the EBA USDC decision at 87 with high divergence and the Bank of England tokenised collateral paper at 72 with medium divergence" caption="An excerpt from the first Monday digest, before UK and international items were listed separately. The top signal's full detail is cut for length." >}}
 
 ---
 
