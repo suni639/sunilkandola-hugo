@@ -64,8 +64,10 @@ graph LR
 5. **Settlement.** The banks themselves square up, so the money has really moved between them, not just been
    promised.
 
-In the UK, a Faster Payment usually does all of this in seconds, at any time of day. Other systems take longer,
-and some settle in batches at set times.
+In the UK, a Faster Payment usually reaches the payee within seconds, at any time of day. Some take longer, for
+example when a bank holds a payment to check it for fraud. Settlement comes later: the banks square up in batches,
+three times each working day, through their accounts at the Bank of England. Other systems are slower still. Bacs,
+which carries Direct Debits, takes about three working days.
 
 **Why the steps matter for this series.** Each step is a place where a control can sit, and each is a place where
 something can go wrong. Part 1's pretend bank shows a payment moving through *accepted → settling → settled*,
@@ -118,8 +120,9 @@ The rules on who bears a loss depend on what went wrong:
   you.
 - **Authorised payments to a fraudster.** If you were tricked into sending money yourself, for example by a fake
   "our bank details have changed" letter, the payment counts as authorised. That is called **authorised push
-  payment (APP) fraud**. Since October 2024, UK rules require banks to reimburse many APP fraud victims, up to a
-  limit, but a business that pays the wrong account may still bear the loss.
+  payment (APP) fraud**. Since October 2024, UK rules require payment firms to reimburse most APP fraud victims who
+  paid by Faster Payments or CHAPS, up to £85,000 a claim. That protection covers individuals, micro-businesses and
+  charities. A larger business isn't covered, so if it pays a fraudster's account, it usually bears the loss.
 - **Card payments** are different. A cardholder can ask their card issuer to reverse a payment, for example for goods
   that never arrived. This is called a **chargeback**, and it is a big part of Part 3.
 
