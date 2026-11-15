@@ -2,6 +2,7 @@
 title = "Agentic Payments Lab"
 draft = false
 layout = "series"
+featured = true
 intro = """AI agents are starting to make payments for people, and money itself is becoming programmable. In this hands-on series I build small, entirely fictional payment systems with AI, then try to break them, asking one question throughout: **what could go wrong, and how would you know?**
 
 No technical or banking background needed. New to payments? Start with the primer, then read the parts in order."""

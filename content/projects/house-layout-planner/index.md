@@ -6,6 +6,7 @@ description = "How I used AI to turn an estate agent's floor plan and a video to
 summary = "We're buying a house we can't go back into before completion, and furnishing it from scratch. In about two hours, without writing any code, I had a 3D planner of it that tells us what fits."
 
 featureImage = "feature.png"
+featured = true
 
 tags = ["AI", "Generative AI", "3D Modelling", "Three.js", "Home", "Interior Design"]
 categories = ["Projects"]

@@ -43,9 +43,9 @@
   <section class="prose dark:prose-invert w-full">{{ .Content }}</section>
 </article>
 {{/* Site override of the Blowfish profile partial (copied from theme e9699d8c).
-     Only change: a "Featured" section above "Recent", listing any page with
-     `featured = true` in its front matter, newest first. */}}
-{{ $featured := where site.RegularPages "Params.featured" true }}
+     Only change: a "Featured" section above "Recent", listing any page or section
+     (e.g. a series index) with `featured = true` in its front matter, newest first. */}}
+{{ $featured := where site.Pages "Params.featured" true }}
 {{ with $featured }}
   <section>
     <h2 class="mt-8 text-2xl font-extrabold mb-10">Featured</h2>
