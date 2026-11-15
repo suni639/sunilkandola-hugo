@@ -2,6 +2,8 @@
 title = "Agentic Payments Lab, Part 2: Build Notes"
 date = 2026-11-01
 draft = false
+weight = 11
+aliases = ["/projects/agentic-payments-lab-part-2-build-notes/"]
 description = "Session-by-session notes on building Part 2 of the Agentic Payments Lab: signed mandates, the bank's own consents, the executor and the attacks on them."
 summary = "The detailed build diary behind Part 2: what each session built, what went wrong, and how each safety check was tested."
 
@@ -21,9 +23,9 @@ showTableOfContents = true
 This is a personal learning project. Everything in it is fictional: no real banks, money, data or people. The views are my own.
 {{< /alert >}}
 
-These are the detailed notes behind [Part 2: Can You Give an AI Permission to Spend?](/projects/agentic-payments-lab-part-2/).
+These are the detailed notes behind [Part 2: Can You Give an AI Permission to Spend?](/projects/agentic-payments-lab/part-2/).
 Read that first. It explains the ideas and the results. This page is for readers who want to see how each piece
-was built and tested, one session at a time. Terms are explained in the main article and the [payments primer](/projects/agentic-payments-lab-primer/).
+was built and tested, one session at a time. Terms are explained in the main article and the [payments primer](/projects/agentic-payments-lab/primer/).
 
 ## Before starting: two fixes from Part 1
 
@@ -324,4 +326,4 @@ slip was signed for this exact bill, and if a slip turns up on two bills, it pay
 **Ratings.** For each risk, Claude Code proposed a rating in the risk register: *effective* (the control worked
 under attack), *partially effective* (it worked, with a known gap) or *ineffective*. The final review in session 8
 moved one more to partially effective (paying the same bill twice), and the owner confirmed them all. The full
-count is in the [results of the main article](/projects/agentic-payments-lab-part-2/#results).
+count is in the [results of the main article](/projects/agentic-payments-lab/part-2/#results).

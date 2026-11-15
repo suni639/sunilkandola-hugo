@@ -2,6 +2,8 @@
 title = "Agentic Payments Lab: A Ten-Minute Payments Primer"
 date = 2026-11-15
 draft = false
+weight = 1
+aliases = ["/projects/agentic-payments-lab-primer/"]
 description = "How money actually moves between bank accounts, by card and on blockchains, explained from scratch for readers of the Agentic Payments Lab series."
 summary = "The payments basics behind the series: who is involved in a payment, how a bank transfer moves, push and pull payments, why payments are hard to reverse, and where cards and digital money fit."
 
@@ -84,8 +86,8 @@ There are two basic ways money can move:
 - **Pull.** The payee takes the money, with the payer's earlier permission. Direct Debits and card payments are pull
   payments.
 
-This difference matters a lot for AI agents. In [Part 1](/projects/agentic-payments-lab-part-1/), the AI
-*suggests* push payments and a person sends them. In [Part 2](/projects/agentic-payments-lab-part-2/), the
+This difference matters a lot for AI agents. In [Part 1](/projects/agentic-payments-lab/part-1/), the AI
+*suggests* push payments and a person sends them. In [Part 2](/projects/agentic-payments-lab/part-2/), the
 company gives permission in advance, closer to a pull, and the AI pays within it. The newer UK scheme Part 2
 borrows from, **variable recurring payments (VRP)**, sits in between. The payer sets up a permission at their bank,
 with limits: a maximum per payment, a maximum per month, and start and end dates. Payments are then made within
@@ -224,8 +226,8 @@ there is no one to call afterwards.
 
 | Part | Payment ideas it relies on |
 | --- | --- |
-| [Part 1](/projects/agentic-payments-lab-part-1/): an AI suggests bank transfers | Push payments, Confirmation of Payee, duplicates and idempotency, maker-checker, audit trail |
-| [Part 2](/projects/agentic-payments-lab-part-2/): an AI pays within a signed permission | Authorisation, variable recurring payments, open banking consents, evidence for disputes |
+| [Part 1](/projects/agentic-payments-lab/part-1/): an AI suggests bank transfers | Push payments, Confirmation of Payee, duplicates and idempotency, maker-checker, audit trail |
+| [Part 2](/projects/agentic-payments-lab/part-2/): an AI pays within a signed permission | Authorisation, variable recurring payments, open banking consents, evidence for disputes |
 | Part 3: an AI shops with a card | Card parties, tokens, chargebacks |
 | Part 4: a bank watches for a misbehaving AI | Fraud monitoring, operational risk measures |
 | Part 5: machines pay machines | Stablecoins, keys, finality |

@@ -2,6 +2,8 @@
 title = "Agentic Payments Lab, Part 2: Can You Give an AI Permission to Spend?"
 date = 2026-11-15
 draft = false
+weight = 3
+aliases = ["/projects/agentic-payments-lab-part-2/"]
 description = "A hands-on build where a company signs a digital permission slip letting an AI pay its regular bills without asking each time, and what it takes to keep that permission honest."
 summary = "A finance director signs a mandate letting an AI agent pay recurring bills within limits, with no approval per payment. Signatures, a second set of limits at the bank and a full evidence trail decide what actually gets paid. Then I tried to break it."
 
@@ -24,7 +26,7 @@ In Part 1 a person approved every payment the AI suggested. In Part 2 the person
 This is a personal learning project. Everything in it is fictional: no real banks, money, data or people. The views are my own.
 {{< /alert >}}
 
-New to payments? The [payments primer](/projects/agentic-payments-lab-primer/) explains the basics in ten minutes. This part builds on [Part 1](/projects/agentic-payments-lab-part-1/). The session-by-session detail is in the [build notes](/projects/agentic-payments-lab-part-2-build-notes/).
+New to payments? The [payments primer](/projects/agentic-payments-lab/primer/) explains the basics in ten minutes. This part builds on [Part 1](/projects/agentic-payments-lab/part-1/). The session-by-session detail is in the [build notes](/projects/agentic-payments-lab/part-2-build-notes/).
 
 ## The problem
 

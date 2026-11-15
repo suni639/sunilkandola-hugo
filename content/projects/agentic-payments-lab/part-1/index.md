@@ -2,6 +2,8 @@
 title = "Agentic Payments Lab, Part 1: Can an AI Pay Your Bills Safely?"
 date = 2026-11-01
 draft = false
+weight = 2
+aliases = ["/projects/agentic-payments-lab-part-1/"]
 description = "A hands-on build where an AI agent reads supplier invoices and proposes payments, and what it takes to stop it paying the wrong person."
 summary = "An AI agent proposes supplier payments to a mock bank. Fixed rules in code, a human approver and a tamper-evident audit log decide what actually gets paid. Then I tried to break it."
 
@@ -24,7 +26,7 @@ I built a small, fictional accounts-payable system in which an AI agent suggests
 This is a personal learning project. Everything in it is fictional: no real banks, money, data or people. The views are my own.
 {{< /alert >}}
 
-New to payments? The [payments primer](/projects/agentic-payments-lab-primer/) explains the basics in ten minutes. The session-by-session detail is in the [build notes](/projects/agentic-payments-lab-part-1-build-notes/), and the whole series is [here](/projects/agentic-payments-lab/).
+New to payments? The [payments primer](/projects/agentic-payments-lab/primer/) explains the basics in ten minutes. The session-by-session detail is in the [build notes](/projects/agentic-payments-lab/part-1-build-notes/), and the whole series is [here](/projects/agentic-payments-lab/).
 
 ## The problem
 
@@ -185,7 +187,7 @@ The ratings come from a final control assessment, which was itself challenged in
 
 ## What's next
 
-[Part 2](/projects/agentic-payments-lab-part-2/) moves from approval to **delegated authority**. Instead of a person approving every payment, the company gives the agent a **mandate**: signed limits such as "up to £2,000 a payment and £3,000 a month, to these suppliers, until March". That raises the question regulators are now asking. When an agent acts within its mandate but against your wishes, who is responsible?
+[Part 2](/projects/agentic-payments-lab/part-2/) moves from approval to **delegated authority**. Instead of a person approving every payment, the company gives the agent a **mandate**: signed limits such as "up to £2,000 a payment and £3,000 a month, to these suppliers, until March". That raises the question regulators are now asking. When an agent acts within its mandate but against your wishes, who is responsible?
 
 ---
 

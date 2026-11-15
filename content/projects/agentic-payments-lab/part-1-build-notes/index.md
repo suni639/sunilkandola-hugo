@@ -2,6 +2,8 @@
 title = "Agentic Payments Lab, Part 1: Build Notes"
 date = 2026-10-18
 draft = false
+weight = 10
+aliases = ["/projects/agentic-payments-lab-part-1-build-notes/"]
 description = "Session-by-session notes on building Part 1 of the Agentic Payments Lab: the logbook, the pretend bank, the tool server, the AI agent and the human approver."
 summary = "The detailed build diary behind Part 1: what each session built, what went wrong, and how each safety check was tested."
 
@@ -21,9 +23,9 @@ showTableOfContents = true
 This is a personal learning project. Everything in it is fictional: no real banks, money, data or people. The views are my own.
 {{< /alert >}}
 
-These are the detailed notes behind [Part 1: Can an AI Pay Your Bills Safely?](/projects/agentic-payments-lab-part-1/).
+These are the detailed notes behind [Part 1: Can an AI Pay Your Bills Safely?](/projects/agentic-payments-lab/part-1/).
 Read that first. It explains the ideas and the results. This page is for readers who want to see how each piece
-was built and tested, one session at a time. Terms are explained in the main article and the [payments primer](/projects/agentic-payments-lab-primer/).
+was built and tested, one session at a time. Terms are explained in the main article and the [payments primer](/projects/agentic-payments-lab/primer/).
 
 ## A lesson learned before writing any code
 

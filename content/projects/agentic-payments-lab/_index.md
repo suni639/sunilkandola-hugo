@@ -1,14 +1,12 @@
 +++
 title = "Agentic Payments Lab"
-date = 2026-10-18
 draft = false
+orderByWeight = true
 description = "A six-part, hands-on series exploring how AI agents will make payments, and what it takes to make that safe, building towards the convergence of AI and blockchain-based money."
 summary = "Six hands-on projects on AI agents in payments, from a simple invoice-paying assistant to an agent treasury working across bank transfers, cards and digital money."
 
 tags = ["Agentic AI", "Payments", "Operational Risk", "DLT", "Stablecoins"]
 categories = ["Projects"]
-series = ["Agentic Payments Lab"]
-series_order = 0
 
 showAuthor = true
 showTaxonomies = true
@@ -30,7 +28,7 @@ part asks the same question alongside "how does it work?": **what could go wrong
 
 You don't need a technical background to follow along. Each part explains its terms from scratch.
 
-**New to payments?** Start with the [ten-minute payments primer](/projects/agentic-payments-lab-primer/).
+**New to payments?** Start with the [ten-minute payments primer](/projects/agentic-payments-lab/primer/).
 It explains how money moves between bank accounts, why payments are hard to reverse, and where cards and digital
 money fit.
 
@@ -38,8 +36,8 @@ money fit.
 
 | Part | Question it asks | What gets built | Status |
 | --- | --- | --- | --- |
-| [1](/projects/agentic-payments-lab-part-1/) | Can an AI pay your bills safely? | An AI that suggests invoice payments, with fixed checks and a human approver | Complete |
-| [2](/projects/agentic-payments-lab-part-2/) | How do you give an AI permission to spend, within limits? | Digital "mandates" and spending consents with caps, expiry and cancellation | Complete |
+| [1](/projects/agentic-payments-lab/part-1/) | Can an AI pay your bills safely? | An AI that suggests invoice payments, with fixed checks and a human approver | Complete |
+| [2](/projects/agentic-payments-lab/part-2/) | How do you give an AI permission to spend, within limits? | Digital "mandates" and spending consents with caps, expiry and cancellation | Complete |
 | 3 | How does an AI shop with a card? | A pretend online checkout where an AI pays with a restricted card token, plus disputes | Next |
 | 4 | How does a bank spot a misbehaving AI? | A monitoring system that scores AI-initiated payments for fraud | Planned |
 | 5 | How do machines pay machines? | An AI paying per use with digital dollars on a test blockchain | Planned |
@@ -64,3 +62,7 @@ the session-by-session detail.
 - **Honest results.** Each part reports which safeguards worked and which didn't.
 
 The code for every part is on [GitHub](https://github.com/suni639/agentic-payments-lab).
+
+## Read the series
+
+Start with the primer if payments are new to you, then read the parts in order.
