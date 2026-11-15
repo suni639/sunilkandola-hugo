@@ -1,7 +1,7 @@
 +++
 title = "Agentic Payments Lab, Part 1: Can an AI Pay Your Bills Safely?"
 date = 2026-11-01
-draft = true
+draft = false
 description = "A hands-on build where an AI agent reads supplier invoices and proposes payments, and what it takes to stop it paying the wrong person."
 summary = "An AI agent proposes supplier payments to a mock bank. Fixed rules in code, a human approver and a tamper-evident audit log decide what actually gets paid. Then I tried to break it."
 
@@ -23,6 +23,8 @@ I built a small, fictional accounts-payable system in which an AI agent suggests
 {{< alert "circle-info" >}}
 This is a personal learning project. Everything in it is fictional: no real banks, money, data or people. The views are my own.
 {{< /alert >}}
+
+New to payments? The [payments primer](/projects/agentic-payments-lab-primer/) explains the basics in ten minutes. The session-by-session detail is in the [build notes](/projects/agentic-payments-lab-part-1-build-notes/), and the whole series is [here](/projects/agentic-payments-lab/).
 
 ## The problem
 
@@ -153,6 +155,8 @@ Each layer assumes the one above it might fail. Underneath them all, every step 
 - **Look-alike letters beat simple checks.** A resent invoice whose number used Cyrillic letters wasn't recognised as a duplicate. A name typed in look-alike characters got round the rule that the person who runs the agent can't approve its payments.
 - **The AI's own words reach the approver unfiltered.** Text the AI writes is shown to the approver as it is, so an invoice could talk the AI into writing control codes that, in most terminals, can hide the warnings on screen. The risk register had missed this entirely, so it was added. One safeguard still works: a flagged payment can't be approved without a typed reason.
 
+The first and third of these were fixed at the start of Part 2, because Part 2 takes the person out of the loop for routine bills.
+
 **The real AI.** The first live run took 23 steps, cost about 10 US cents and matched all 11 expected outcomes. Across five live runs in total, it spotted things code can't, such as a "we're changing banks, please phone us" note with no numbers in it, and a bill that looked like a resend under a new invoice number. It also refused a polite request to pay a different supplier. But it wasn't perfectly consistent: on one invoice it added a warning in later runs that it hadn't added in the first. Useful, then, but a second opinion rather than a control.
 
 {{< mermaid >}}
@@ -181,4 +185,4 @@ The ratings come from a final control assessment, which was itself challenged in
 
 ## What's next
 
-Part 2 moves from approval to **delegated authority**. Instead of a person approving every payment, the customer gives the agent a **mandate**: signed limits such as "up to £200 a month to these suppliers, until December". That raises the question regulators are now asking. When an agent acts within its mandate but against your wishes, who is responsible?
+[Part 2](/projects/agentic-payments-lab-part-2/) moves from approval to **delegated authority**. Instead of a person approving every payment, the company gives the agent a **mandate**: signed limits such as "up to £2,000 a payment and £3,000 a month, to these suppliers, until March". That raises the question regulators are now asking. When an agent acts within its mandate but against your wishes, who is responsible?
