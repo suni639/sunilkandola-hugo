@@ -176,7 +176,7 @@ Session 4 built the second layer of permission, the one held by the bank.
 
 **Two permissions, not one.** The mandate is Dana's permission *to the AI*. But the bank never sees it. So
 Dana also gives the bank its own permission for each supplier. This is called a *consent*, and it's modelled
-on UK *variable recurring payments* (VRP). VRP is a real scheme, live since June 2026, that lets a customer
+on UK *variable recurring payments* (VRP). VRP is a real scheme (its commercial version launched in June 2026) that lets a customer
 allow a business to take repeated payments of different amounts from their account, within limits set at their
 bank. The real scheme is mostly used by people paying businesses such as utilities; here it is borrowed for a
 company paying its suppliers. Each consent fixes three things:

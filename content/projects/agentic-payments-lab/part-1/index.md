@@ -212,26 +212,23 @@ The ratings come from a final control assessment, which was itself challenged in
 
 ## Sources
 
-Checked on 15 November 2026. Official sources are listed first for each topic. The results in this article
-come from the project's own tests and records, so they aren't listed here.
+Checked on 22 November 2026, against official sources only. The results in this article come from the project's
+own tests and records, so they aren't listed here.
 
 **Card networks building payments for AI agents**
-- [Digital Transactions: AI commerce gets a boost from Visa, PayPal and Mastercard](https://www.digitaltransactions.net/ai-commerce-gets-a-boost-from-visa-paypal-and-mastercard/)
-- [Trending Topics: Visa bets on open infrastructure as payment giants race for agentic commerce](https://www.trendingtopics.eu/visa-bets-on-open-infrastructure-as-payment-giants-race-for-agentic-commerce/)
-- [Biometric Update: Mastercard's AP4M enables small agentic payments](https://www.biometricupdate.com/202606/mastercards-ap4m-enables-small-agentic-payments-at-machine-speed-and-scale)
+- [Visa: Visa introduces Trusted Agent Protocol (14 October 2025)](https://investor.visa.com/news/news-details/2025/Visa-Introduces-Trusted-Agent-Protocol-An-Ecosystem-Led-Framework-for-AI-Commerce/default.aspx)
+- [Cloudflare: collaborating with Visa, Mastercard and American Express on agentic commerce (14 October 2025)](https://www.cloudflare.com/press/press-releases/2025/cloudflare-collaborates-with-leading-payments-companies-to-secure-and-enable-agentic-commerce/)
+- [Mastercard: new trust and intelligence services for agentic commerce (30 September 2026)](https://investor.mastercard.com/investor-news/investor-news-details/2026/Mastercard-Advances-Agentic-Commerce-With-New-Trust-and-Intelligence-Services/default.aspx)
 
-**Fraud losses and refunds, including invoice scams**
-- [UK Finance: Annual Fraud Report 2026](https://www.ukfinance.org.uk/system/files/2026-06/UK%20Finance%20Fraud%20Report%202026.pdf)
-- [Payment Systems Regulator: APP scams reimbursement requirement, policy statement PS25/5](https://www.psr.org.uk/media/rhelv4op/ps25-5-app-scams-reimbursement-consolidated-policy-statement-may-2025.pdf)
-- [FinTech Futures: UK payment fraud losses topped £1.28bn in 2025](https://www.fintechfutures.com/financial-crime-fraud-prevention/uk-payment-fraud-losses-topped-1-28bn-in-2025-new-uk-finance-report-finds)
+**Fraud refunds and invoice scams**
+- [Payment Systems Regulator: APP fraud reimbursement protections](https://www.psr.org.uk/information-for-consumers/app-fraud-reimbursement-protections/) (cover individuals, microenterprises and charities)
+- [UK Finance: Annual Fraud Report 2026 (PDF, June 2026)](https://www.ukfinance.org.uk/system/files/2026-06/UK%20Finance%20Fraud%20Report%202026.pdf): invoice and mandate scams, including criminals posing as a supplier whose bank details have "changed"
 
 **Prompt injection**
-- [OWASP Top 10 for Large Language Model Applications (v1.1)](https://owasp.org/www-project-top-10-for-large-language-model-applications/assets/PDF/OWASP-Top-10-for-LLMs-2023-v1_1.pdf)
+- [OWASP: LLM01:2025 Prompt Injection](https://genai.owasp.org/llmrisk/llm01-prompt-injection/), the top risk in the OWASP Top 10 for LLM Applications 2025, including indirect injection through files
 
 **Model Context Protocol (MCP)**
 - [Model Context Protocol: specification](https://modelcontextprotocol.io/specification/latest)
 
 **Hidden control codes in text shown on a terminal**
-- [Bright Security: ANSI escape sequence injection](https://docs.brightsec.com/docs/ansi-escape-sequence-injection-aesi)
-- [Practical DevSecOps: ANSI escape code injection in agent output](https://www.practical-devsecops.com/glossary/mcp-ansi-escape-code-injection/)
-- [Mindgard: ANSI escape attack probe for AI models](https://docs.mindgard.ai/attack-library/prompt-injection/AnsiEscaped)
+- [MITRE: CWE-150, Improper Neutralization of Escape, Meta, or Control Sequences](https://cwe.mitre.org/data/definitions/150.html), which covers escape codes in AI output shown in a terminal

@@ -34,7 +34,7 @@ Approving every payment by hand is safe, but it isn't how anyone wants to use an
 
 That is **"human not present"**: the AI pays with nobody watching at the moment it pays. It's where the industry is heading. In April 2026, Google's **Agent Payments Protocol (AP2)**, a draft standard for letting AI agents pay, was handed to an industry standards body. Its core idea is a signed permission from the user to the agent. In June 2026, a UK scheme for repeated payments to businesses within limits set at the bank, **variable recurring payments (VRP)**, went live.
 
-It also raises a question UK regulators and HM Treasury are now asking. If money leaves your account without your permission, your bank usually has to refund you. But what if you gave an AI permission, and it paid something you didn't expect?
+It also raises a question HM Treasury is now asking, in a July 2026 consultation. If money leaves your account without your permission, your bank usually has to refund you. But what if you gave an AI permission, and it paid something you didn't expect?
 
 This project doesn't answer the legal question. It builds the evidence the answer turns on. For any payment the AI made on its own: **can you prove what was allowed, who acted, and that the payment stayed inside what was allowed?**
 
@@ -207,20 +207,16 @@ The one ineffective control is the fake-bill risk, which has no control yet. A r
 
 ## Sources
 
-Checked on 15 November 2026. Where an official announcement couldn't be found, the most reliable summaries are
-listed.
+Checked on 22 November 2026, against official sources only.
 
 **The Agent Payments Protocol (AP2) and the FIDO Alliance**
-- [Agent Payments Protocol (AP2) explained](https://agenticcommerceprotocol.info/standards/ap2)
-- [PPC Land: FIDO Alliance forms working groups to lock down AI agent payments](https://ppc.land/fido-alliance-forms-working-groups-to-lock-down-ai-agent-payments/)
-- [Spark: how AP2 standardises AI commerce](https://www.spark.money/research/google-ap2-agent-payment-protocol)
+- [FIDO Alliance: standards for trusted AI agent interactions (28 April 2026)](https://fidoalliance.org/fido-alliance-to-develop-standards-for-trusted-ai-agent-interactions/): Google contributed AP2
+- [AP2 specification, v0.2](https://ap2-protocol.org/ap2/specification/)
 
-**Commercial variable recurring payments (VRP), live June 2026**
-- [Open Banking Tracker: commercial VRP and the UK Payments Initiative](https://www.openbankingtracker.com/guides/commercial-vrp-ukpi)
-- [TrueLayer: the complete guide to commercial VRP](https://truelayer.com/blog/recurring-payments/the-complete-guide-to-cvrp/)
-- [Plaid: commercial VRP in the UK](https://plaid.com/en-gb/resources/payments/variable-recurring-payments-uk/)
+**Commercial variable recurring payments (VRP), launched June 2026**
+- [FCA: open banking takes next step forward with launch of UK Payments Initiative scheme (2 June 2026)](https://www.fca.org.uk/news/statements/open-banking-launch-uk-payments-initiative-scheme)
+- [Open Banking: variable recurring payments](https://www.openbanking.org.uk/variable-recurring-payments-vrps-cvrps/): commercial VRPs live through the UK Payments Initiative
 
-**HM Treasury and the FCA on consent and liability for AI payments**
-- [Baker McKenzie: consultation on modernisation of payments regulation](https://www.bakermckenzie.com/en/insight/publications/2026/07/united-kingdom-consultation-on-modernisation-of-payments-regulation)
-- [Lewis Silkin: HM Treasury consults on a future-proof framework for payments](https://www.lewissilkin.com/insights/2026/07/16/hm-treasury-consults-on-a-future-proof-framework-for-payments-stablecoins-and-op-102nc2h)
-- [Bratby Law: agentic payments and HM Treasury's July 2026 consultation](https://bratby.law/agentic-payments-accountability-gap/)
+**Consent, refunds and liability for AI payments**
+- [HM Treasury: Modernising payment services regulation, consultation (14 July 2026)](https://www.gov.uk/government/consultations/modernising-payment-services-regulation/modernising-payment-services-regulation-consultation): Question 15 asks whether rules on authentication, consent and liability for unauthorised payments need updating for agentic payments
+- [The Payment Services Regulations 2017, regulation 76](https://www.legislation.gov.uk/uksi/2017/752/regulation/76): the payment provider must refund an unauthorised payment
