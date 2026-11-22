@@ -20,7 +20,7 @@ showTableOfContents = true
 +++
 
 {{< alert "circle-info" >}}
-This is a personal learning project. Everything in it is fictional: no real banks, money, data or people. The views are my own.
+This is a personal learning project. Everything in it is fictional: no real banks, money, data or people. Nothing here is legal advice. The views are my own.
 {{< /alert >}}
 
 These are the detailed notes behind [Part 2: Can You Give an AI Permission to Spend?](/projects/agentic-payments-lab/part-2/).

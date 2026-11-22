@@ -23,7 +23,7 @@ I built a small, fictional accounts-payable system in which an AI agent suggests
 {{< /lead >}}
 
 {{< alert "circle-info" >}}
-This is a personal learning project. Everything in it is fictional: no real banks, money, data or people. The views are my own.
+This is a personal learning project. Everything in it is fictional: no real banks, money, data or people. Nothing here is legal advice. The views are my own.
 {{< /alert >}}
 
 New to payments? The [payments primer](/projects/agentic-payments-lab/primer/) explains the basics in ten minutes. The session-by-session detail is in the [build notes](/projects/agentic-payments-lab/part-1-build-notes/), and the whole series is [here](/projects/agentic-payments-lab/).
@@ -190,6 +190,20 @@ pie showData
 {{< /mermaid >}}
 
 The ratings come from a final control assessment, which was itself challenged in a second-line style review. That review moved one control from "effective" to "partially effective", because its known blind spot (someone who can rewrite both the log and its checkpoint file) is exactly the insider the control exists to catch.
+
+---
+
+## How close is this to the real thing?
+
+The bank and the approver are pretend, but they copy real payment systems where it matters for risk. The [companion page](/projects/agentic-payments-lab/real-world/) explains each piece in detail, including the payment messages and codes.
+
+| Real world | In this lab | What it means for the findings |
+| --- | --- | --- |
+| Banks exchange ISO 20022 messages, with standard status and reason codes | Small JSON messages that keep the real names and codes, such as `RJCT` (rejected) and `AM04` (insufficient funds) | The checks are the same kind a bank makes; the bank's own fraud checks aren't modelled |
+| UK Confirmation of Payee answers yes, close match, no, or unavailable | The mock bank answers the first three; if a check can't run, nothing is paid | Same idea, with the safe default for "unavailable" |
+| Approvers log in, and their identity is checked | Names are typed | Look-alike letters beat maker-checker here; a real login would stop that particular trick |
+| Audit trails are protected by separate systems and people | A fingerprinted chain, with its checkpoint stored beside it | Someone who can edit both can rewrite history, as the risk table says |
+| A real AI model | The same: a real model, connected to real tools | Five live runs; the AI caught things code missed, but not every time |
 
 ---
 

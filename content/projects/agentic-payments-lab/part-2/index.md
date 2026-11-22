@@ -23,7 +23,7 @@ In Part 1 a person approved every payment the AI suggested. In Part 2 the person
 {{< /lead >}}
 
 {{< alert "circle-info" >}}
-This is a personal learning project. Everything in it is fictional: no real banks, money, data or people. The views are my own.
+This is a personal learning project. Everything in it is fictional: no real banks, money, data or people. Nothing here is legal advice. The views are my own.
 {{< /alert >}}
 
 New to payments? The [payments primer](/projects/agentic-payments-lab/primer/) explains the basics in ten minutes. This part builds on [Part 1](/projects/agentic-payments-lab/part-1/). The session-by-session detail is in the [build notes](/projects/agentic-payments-lab/part-2-build-notes/).
@@ -185,6 +185,20 @@ pie showData
 {{< /mermaid >}}
 
 The one ineffective control is the fake-bill risk, which has no control yet. A reviewer acting as a risk oversight team then challenged the final write-up, and caught it claiming more than the tests showed, as happened in Part 1.
+
+---
+
+## How close is this to the real thing?
+
+The mandates and the bank's consents copy real designs in simplified form. The [companion page](/projects/agentic-payments-lab/real-world/) explains each piece in detail.
+
+| Real world | In this lab | What it means for the findings |
+| --- | --- | --- |
+| AP2 mandates: an open one with limits signed in advance, and a closed one per payment | The same two kinds, as simple signed blocks of data, with Ed25519 signatures | The ideas are tested, not AP2's exact formats |
+| UK commercial VRP: limits per payment, per period and an end date, held at the bank | One consent per supplier with the same three limits, enforced by the mock bank | The bank's layer works the same way |
+| The payer sets up a consent in their banking app, with a fingerprint or face scan | An admin command stands in | The lab assumes the setup step itself is genuine |
+| Firms keep signing keys in hardware vaults | Keys sit in a private folder on disk | Key theft is easier here, which is why the stolen-key risk is only partially effective |
+| Payments go on between banks through a payment scheme | The mock bank settles them itself | Settlement risk isn't tested |
 
 ---
 

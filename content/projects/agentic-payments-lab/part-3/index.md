@@ -22,7 +22,7 @@ In Part 2 the AI paid bills to suppliers the company already knew. In Part 3 it 
 {{< /lead >}}
 
 {{< alert "circle-info" >}}
-This is a personal learning project. Everything in it is fictional: no real banks, money, data or people. The views are my own.
+This is a personal learning project. Everything in it is fictional: no real banks, money, data or people. Nothing here is legal advice. The views are my own.
 {{< /alert >}}
 
 New to payments? The [payments primer](/projects/agentic-payments-lab/primer/) explains the basics in ten minutes. This part builds on [Part 2](/projects/agentic-payments-lab/part-2/). The fuller walkthrough, with every risk and the full test list, is in the [build notes](/projects/agentic-payments-lab/part-3-build-notes/).
@@ -178,6 +178,21 @@ When a charge is disputed, Lantern's code builds one evidence file: Dana's signe
 Here's the uncomfortable part. **"Authorised" is not the same as "wanted".** If Lantern's own AI bought something inside its permission that nobody needed, Lantern loses a "not authorised" dispute. The signatures that protect the shop are the same ones that prove the company agreed. And because the bank sees the AI's signature, not Dana's permission, the same is true if the AI's keys were **stolen**.
 
 That decision table is my own rule, not a card scheme's. But Visa's October 2026 rulebook points the same way for AI services registered with Visa: the cardholder is responsible for what the AI does, as if they had done it themselves. Delegating authority to an AI means accepting whatever its keys sign.
+
+---
+
+## How close is this to the real thing?
+
+The shop, the card issuer and the disputes copy real designs where it matters for risk, and simplify the rest. The [companion page](/projects/agentic-payments-lab/real-world/) explains each piece in detail, including the card decline codes and the signed request format.
+
+| Real world | In this lab | What it means for the findings |
+| --- | --- | --- |
+| Agents sign web requests under the HTTP Message Signatures standard, and publish their keys (Web Bot Auth) | The same signature standard, in a smaller form; the shop loads trusted keys from a file | The checks are realistic; how keys are published and trusted isn't tested |
+| Card schemes issue AI-specific tokens, and declines carry two-digit response codes | A token with one shop, limits and an end date; decline codes whose meanings match Visa's list | The bank's layer works the same way |
+| The shop's bank and the card network sit between the shop and the issuer | The shop asks the issuer directly | Network-level checks, such as Mastercard's AI score, aren't modelled |
+| Approval and collecting the money are separate steps, and 3-D Secure may ask a person to confirm | Money moves at once; no 3-D Secure | Holds, partial charges, refunds and a person confirming aren't tested |
+| Card schemes' detailed dispute conditions, deadlines and fees | Three reasons, a 7-day deadline and a fixed table | The table is the lab's rule, though Visa's rules point the same way on responsibility |
+| A real AI model choosing what to buy | A scripted stand-in pressing fixed buttons; a live run is planned | The controls are all in code, but how often the real model triggers them isn't measured yet |
 
 ---
 
