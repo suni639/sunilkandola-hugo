@@ -43,15 +43,15 @@ money fit.
 | --- | --- | --- | --- |
 | [1](/projects/agentic-payments-lab/part-1/) | Can an AI pay your bills safely? | An AI that suggests invoice payments, with fixed checks and a human approver | Complete |
 | [2](/projects/agentic-payments-lab/part-2/) | How do you give an AI permission to spend, within limits? | Digital "mandates" and spending consents with caps, expiry and cancellation | Complete |
-| 3 | How does an AI shop with a card? | A pretend online checkout where an AI pays with a restricted card token, plus disputes | Next |
-| 4 | How does a bank spot a misbehaving AI? | A monitoring system that scores AI-initiated payments for fraud | Planned |
+| [3](/projects/agentic-payments-lab/part-3/) | How does an AI shop with a card? | A pretend online checkout where an AI pays with a restricted card token, plus disputes | Complete |
+| 4 | How does a bank spot a misbehaving AI? | A monitoring system that scores AI-initiated payments for fraud | Next |
 | 5 | How do machines pay machines? | An AI paying per use with digital dollars on a test blockchain | Planned |
 | 6 | Can one set of controls cover every way of paying? | An AI treasury choosing between bank transfer, card and digital money, under one rulebook | Planned |
 
 Each finished part has a main article, which explains the ideas and the results, and a set of build notes with
 the session-by-session detail.
 
-## What the first two parts found
+## What the first three parts found
 
 - **What an AI can't do matters more than what it's told.** In Part 1 the AI had no "pay" button, so even a fully
   fooled AI couldn't send money to a fraudster's account.
@@ -59,6 +59,9 @@ the session-by-session detail.
   different answers on different runs.
 - **Removing the person removes checks nobody wrote down.** In Part 2 the AI paid regular bills on its own, within
   a signed permission. The permission held, but nobody was left asking "is this bill real?".
+- **"Authorised" is not the same as "wanted".** In Part 3 the AI shopped with a restricted card token. Signatures
+  stopped bots, edited baskets and look-alike shops. But the same signatures that protect the shop prove the company
+  agreed, so the company pays for a purchase its AI was allowed to make but nobody needed.
 
 ## Ground rules
 

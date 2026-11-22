@@ -201,7 +201,7 @@ The one ineffective control is the fake-bill risk, which has no control yet. A r
 
 ## What's next
 
-Part 3 puts the AI in a shop. It pays by card, carries a signed identity that the merchant can check, and has to deal with disputes when something goes wrong. That's also where the gaps found here get their natural fixes: signing the supplier's actual bank details, not just its code, and checking the agent's identity at the payment provider.
+[Part 3](/projects/agentic-payments-lab/part-3/) puts the AI in a shop. It pays by card, carries a signed identity that the merchant can check, and has to deal with disputes when something goes wrong. That's also where the gaps found here get their natural fixes: signing the supplier's actual bank details, not just its code, and checking the agent's identity at the payment provider.
 
 ---
 
