@@ -34,7 +34,7 @@ Two units come up throughout this piece:
 - **GW (gigawatts)** measures power: how much electricity is needed at one moment. National demand peaked at about 46 GW in 2025, and NESO expects around 62 GW by 2030 as heating and transport switch to electricity.
 - **GWh and TWh (gigawatt-hours, terawatt-hours)** measure energy: how much is used over time, or how much a battery holds. A terawatt-hour is a thousand gigawatt-hours.
 
-The "typical weather year" in the target is doing a lot of work. The risk is the untypical week. Germans have a word for it, **Dunkelflaute**, the "dark doldrums": days on end of little wind and little sun, usually in winter, when cold weather pushes demand up. A big high-pressure system can sit over the whole North Sea, so our neighbours often have the same problem at the same time.
+The phrase "typical weather year" matters, because the risk sits in the weeks that aren't typical. Germans have a word for them, **Dunkelflaute**, the "dark doldrums": days on end of little wind and little sun, usually in winter, when cold weather pushes demand up. A big high-pressure system can sit over the whole North Sea, so our neighbours often have the same problem at the same time.
 
 So this project asks one question: **if every wind and solar target is met, how much power is missing in the worst week, and can batteries cover it?**
 
@@ -66,7 +66,7 @@ The model picked out the week from Thursday 16 January, and it gets worse as it 
 
 {{< figure src="feature.png" alt="Stacked area chart of the week of 16 to 23 January 2025 on the 2030 grid. Nuclear is a thin green band at 4 GW, wind and solar shrink from about 35 GW to under 5 GW, batteries appear briefly on the Friday evening, and a red unmet gap fills most of the space up to a demand line that peaks near 59 GW each evening" caption="The 2030 grid in the worst week of 2025 weather. Red is the demand that wind, solar, nuclear and batteries can't meet." >}}
 
-Here is what came out.
+These were the main results for that week.
 
 | Measure | Result |
 |---|---|
@@ -76,31 +76,31 @@ Here is what came out.
 | Energy missing across the week | **4.8 TWh** |
 | Battery contribution | A few hours on the Friday evening, then nothing |
 
-The 51 GW figure is not a forecast of blackouts. The model deliberately leaves out gas, imports, hydro and biomass, because the point is to measure how much of the job they would have to do. Read it as: on that Wednesday evening, almost everything has to come from somewhere other than wind, solar and nuclear.
+The 51 GW figure is not a forecast of blackouts. The model deliberately leaves out gas, imports, hydro and biomass, because the point is to measure how much of the job they would have to do. What it means in practice is that on that Wednesday evening, almost all of Britain's electricity would have to come from somewhere other than wind, solar and nuclear.
 
 ---
 
 ## Why batteries don't fix it
 
-My first assumption was that batteries would shrink the gap a lot. They barely touch it.
+I'd assumed the batteries would shrink the gap a lot, but they barely touch it.
 
 The batteries were already empty when the week began. They last held any charge on the Tuesday, two days earlier, and had spent it on the evening peaks. On the Friday afternoon some spare wind topped them up, they spent it on the Friday evening peak, and for the remaining five and a half days there was never any spare power to recharge them.
 
-So I asked a kinder question: what if the fleet started the week completely full?
+So I tried a more generous test, with the fleet starting the week completely full.
 
 {{< figure src="battery-endurance.png" alt="Bar chart of how many hours a fully charged battery fleet lasts in the event: 6 hours for 30 GW with 4-hour batteries, 29 hours for 30 GW with 12-hour batteries, 31 hours for 100 GW with 4-hour batteries, against a 168-hour event" caption="Even starting full, the best case covers about a day of a seven-day event." >}}
 
 A full 30 GW, four-hour fleet holds 120 GWh. Against a week that is 4.8 TWh short, that's about 2.5% of what's needed, and it's gone in six hours. Tripling the fleet to 100 GW, or making every battery last 12 hours, buys about a day.
 
-This is the core finding: **batteries are sprinters, not marathon runners.** They are very good at moving power from a windy afternoon to the evening peak. They can't carry the country through a week without wind, because there's nothing to charge them from.
+That was the main finding for me. Batteries are very good at moving power from a windy afternoon to the evening peak, but they can't carry the country through a week without wind, because there's nothing to charge them from.
 
-Building more wind doesn't solve it either. Raising offshore wind from 50 to 60 GW cut the peak gap by less than half a gigawatt. More turbines in a calm still produce very little.
+Building more wind doesn't solve it either. Raising offshore wind from 50 to 60 GW cut the peak gap by less than half a gigawatt, because extra turbines produce very little in a calm.
 
 ---
 
 ## What could fill the gap
 
-Over the whole year, the same 2030 grid produced about 55 TWh more clean power than it needed, mostly on windy days, and much of it with nowhere to go. That's more than ten times the energy missing in the worst week. The problem isn't the total amount of clean power. It's timing: the spare power arrives weeks or months before the still week.
+Over the whole year, the same 2030 grid produced about 55 TWh more clean power than it needed, mostly on windy days, and much of it with nowhere to go. That's more than ten times the energy missing in the worst week. The shortage comes down to timing, since the spare power arrives weeks or months before the still week and there's no way yet to hold on to it until then.
 
 That points to a few options, each with a catch.
 
@@ -113,7 +113,7 @@ That points to a few options, each with a catch.
 
 *These sizes are my rough working assumptions, not official figures.*
 
-The government's own plan reaches a similar answer. It expects to keep around 35 GW of unabated gas power stations in reserve for security of supply. And the Royal Society's [large-scale electricity storage study](https://royalsociety.org/news-resources/projects/low-carbon-energy-programme/large-scale-electricity-storage/executive-summary/), which modelled 37 years of real weather, concluded that a 2050 Britain running mainly on wind and solar would need around 60 to 100 TWh of hydrogen storage. Both are answers to the week in this chart.
+The government's own plan reaches a similar answer. It expects to keep around 35 GW of unabated gas power stations in reserve for security of supply. And the Royal Society's [large-scale electricity storage study](https://royalsociety.org/news-resources/projects/low-carbon-energy-programme/large-scale-electricity-storage/executive-summary/), which modelled 37 years of real weather, concluded that a 2050 Britain running mainly on wind and solar would need around 60 to 100 TWh of hydrogen storage. Both are planning for weeks like the one in the chart above.
 
 ---
 
@@ -122,7 +122,7 @@ The government's own plan reaches a similar answer. It expects to keep around 35
 This is a simple model, so it's worth being clear about where it's rough.
 
 - **The wind pattern is a stand-in.** NESO's half-hourly data gives load factors for smaller wind farms connected to local networks. I used that pattern for the whole 2030 fleet, including offshore, which tends to be windier and steadier. The real gap could be somewhat smaller.
-- **One year of weather.** 2025 had a severe week, but it may not be the worst. The Royal Society used 37 years for a reason.
+- **One year of weather.** 2025 had a severe week, but it may not be the worst on record, which is why the Royal Society used 37 years of data.
 - **Britain as an island.** Imports are left out on purpose, as a stress test. In practice they would help, unless the neighbours are short too.
 - **A "copper plate" grid.** The model assumes power flows freely from Scotland to London. In reality the cables between them fill up, which would make things worse. That bottleneck is the subject of my [Storm Jocelyn project](/projects/storm-jocelyn-wind-constraints/).
 
@@ -130,9 +130,9 @@ This is a simple model, so it's worth being clear about where it's rough.
 
 ## Key takeaways
 
-1. **Flexibility isn't one thing.** Batteries handle hours. A still winter week needs something that stores energy for weeks, or power stations that can run when the weather won't.
-2. **The total isn't the problem, timing is.** The 2030 grid makes more clean power than it needs across a year, but not in the week that matters.
-3. **Typical years hide the risky weeks.** A target built on a typical weather year can be met while the system is still exposed to an untypical one.
-4. **Simple models can still ask sharp questions.** A few hundred lines of Python and public data were enough to show why the official plan keeps 35 GW of gas in reserve.
+1. **Batteries cover hours, and a still winter week needs more.** Getting through it takes storage that lasts for weeks, or power stations that can run whatever the weather.
+2. **There's enough clean power over a year.** The 2030 grid makes more than it needs across twelve months, but too little of it arrives in the week that matters.
+3. **A typical-year target can hide a bad week.** The 95% goal can be met while the system is still exposed to unusual weather.
+4. **A simple model was enough to see the problem.** A few hundred lines of Python and public data showed why the official plan keeps 35 GW of gas in reserve.
 
-The lights stay on in 2030 because of what we build for the week nobody plans around.
+The obvious next step would be to rerun the model with more years of weather and with imports included, to see how much of the gap remains in a more realistic setup.

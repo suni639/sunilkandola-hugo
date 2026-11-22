@@ -27,11 +27,11 @@ The code is [on GitHub](https://github.com/suni639/pdf-to-text).
 
 ## The problem
 
-Getting text out of a PDF sounds trivial until the PDF has hundreds of pages. The free online tools I tried either timed out or failed partway through large files. The ones that coped charged a monthly fee for what I needed once or twice.
+Getting text out of a PDF sounds easy, but it gets harder once the PDF runs to hundreds of pages. The free online tools I tried either timed out or failed partway through large files, and the ones that coped wanted a monthly subscription for something I only needed occasionally.
 
-Then there's the question of trust. Uploading a document to a converter means handing a copy to a company you know nothing about, to be stored for an unknown time on servers you can't see. For a public report that might not matter. For contracts, statements or anything with personal details, it does.
+I was also uneasy about trust. Uploading a document to a converter means handing a copy to a company you know nothing about, to be stored for an unknown time on servers you can't see. That might not matter for a public report, but it does for contracts, statements or anything with personal details.
 
-What I wanted was simple: drop in a PDF, get an editable Word document back, and have nothing leave my machine.
+I wanted to drop in a PDF, get an editable Word document back, and have nothing leave my machine.
 
 ---
 
@@ -41,7 +41,7 @@ A small web app that runs on my own computer. Double-click a desktop shortcut an
 
 {{< figure src="feature.png" alt="The converter's page: a card titled PDF to Word Converter with a dashed drop zone reading Drag and drop your PDF here, a Browse Files button and the footer Simple, Fast, Local" caption="The whole interface. Drop a PDF on the box and a Word file comes back." >}}
 
-The page looks like any website, but its address is `localhost`: your own computer. The file goes from your browser to a program on the same machine and back again.
+The page looks like any website, but its address is `localhost`, meaning your own computer, so the file goes from your browser to a program on the same machine and back again.
 
 ---
 
@@ -75,12 +75,12 @@ When I came back to the project for this write-up, I tested it with some generat
 | A file that isn't a PDF | Rejected with a clear message |
 | A scanned page (text only in an image) | No text, now with a warning |
 
-Speed was never the problem the online tools made it look like. On a laptop, a library like PyMuPDF reads thousands of pages in seconds. The online converters were limited by uploads, queues and free-tier caps, not by the work itself.
+The speed surprised me after my experience with the online tools. On a laptop, a library like PyMuPDF reads thousands of pages in seconds, so I suspect the online converters were held back by uploads, queues and free-tier limits rather than by the conversion itself.
 
-It's worth being clear about what it doesn't do:
+There are a few things it doesn't do:
 
 - **Text only.** Images, tables and formatting don't come across. You get the words, in reading order, page by page. That was exactly what I needed, but it isn't a layout-perfect conversion.
-- **No scanned documents.** A scanned PDF is a picture of text, not text. Reading it needs **OCR** (optical character recognition), which this tool doesn't do.
+- **No scanned documents.** A scanned PDF stores each page as a picture, so reading it needs **OCR** (optical character recognition), which this tool doesn't do.
 - **No locked files.** Password-protected PDFs fail.
 
 ---
@@ -93,7 +93,7 @@ Testing it again turned up three things that didn't match the promise of "nothin
 - **Silent empty files.** A scanned PDF produced a blank Word document with no explanation. It now says that no text was found and that the PDF may be scanned.
 - **A call to Google.** The page loaded its font from Google Fonts. Your PDF never went there, but the page did contact Google each time it opened. It now uses the computer's own fonts and makes no outside requests at all.
 
-None of these were dramatic, but a privacy tool should keep its promise in the small print too.
+None of these were dramatic, but for a tool whose whole point is privacy they were worth fixing.
 
 ---
 
@@ -112,9 +112,9 @@ None of these were dramatic, but a privacy tool should keep its promise in the s
 
 ## Key takeaways
 
-1. **Small tools can solve real annoyances.** A few hundred lines of code replaced a subscription I'd have used twice.
-2. **Local beats uploaded for private documents.** If a job can run on your own machine, there's no reason to send your files anywhere.
-3. **The bottleneck often isn't the computing.** Four seconds for 2,000 pages. The online tools were slow for business reasons, not technical ones.
-4. **Check the small print of your own promises.** "Local" only counts if nothing is left behind and nothing calls out.
+1. **A small tool was enough.** A few hundred lines of code did the job I'd been looking at subscriptions for.
+2. **Private documents are better converted locally.** If a job can run on your own machine, there's little reason to send your files anywhere.
+3. **The conversion itself is fast.** A 2,000-page PDF took about four seconds, so the slowness I'd seen online wasn't down to the work involved.
+4. **It's worth testing your own privacy claims.** I only found the leftover copies and the call to Google because I went back and checked.
 
-Drop in a PDF, get the words back, and nothing leaves the laptop.
+If I return to it, the most useful addition would be OCR, so that scanned documents can be converted too.

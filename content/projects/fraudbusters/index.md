@@ -31,7 +31,7 @@ The code is on GitHub: [Phases 1 and 2](https://github.com/suni639/fraudbusters)
 
 ## The problem
 
-Fraud detection is a numbers game. The more examples of fraud a model sees, the better it gets at spotting the next one. But fraud is rare, and each bank only sees a slice of it. A scam that hits five banks looks like five small, unrelated incidents.
+Fraud models get better the more examples of fraud they see, but fraud is rare and each bank only sees its own slice of it. A scam that hits five banks looks like five small, unrelated incidents.
 
 The obvious fix, putting everyone's data in one place, runs into data protection law, customer confidentiality and the fact that banks compete with each other.
 
@@ -84,11 +84,11 @@ That choice came from an earlier attempt. My first federated project used a neur
 
 {{< figure src="feature.png" alt="Bar chart of false alarms per fraud caught at a 50% cut-off: 16 for the pooled model (90 of 98 frauds caught), 7 for the federated model (89 caught) and 5 for the federated model with blockchain logging (86 caught)" caption="False alarms for every fraud caught, worked out from each model's recorded test results." >}}
 
-The headline: **the federated models caught almost as much fraud as the pooled one.** The pooled model caught 90 of the 98 frauds, the federated model 89.
+The main result is that **the federated models caught almost as much fraud as the pooled one**: 89 of the 98 frauds against the pooled model's 90.
 
-The false alarms look like a big win for federated learning, but that needs care. **AUPRC** measures how well a model ranks transactions from most to least suspicious, across every possible cut-off. All three score almost the same. So the federated models aren't better at telling fraud from genuine spending. They just land at a stricter point at the default "50% likely to be fraud" cut-off. Tune the pooled model's cut-off and you could get a similar trade-off.
+The false alarms look like a big win for federated learning, but that needs care. **AUPRC** measures how well a model ranks transactions from most to least suspicious, across every possible cut-off. All three score almost the same on it, which means the federated models are no better at telling fraud from genuine spending. They happen to land at a stricter point when the default "50% likely to be fraud" cut-off is applied, and tuning the pooled model's cut-off could probably give a similar trade-off.
 
-Even at five false alarms per fraud, a real bank would be blocking or checking a lot of genuine payments. That's why real fraud systems use far richer data and models than this.
+Even at five false alarms per fraud, a real bank would be blocking or checking a lot of genuine payments, which is one reason real fraud systems use far richer data and models than this.
 
 ---
 
@@ -100,13 +100,13 @@ I wrote a small **smart contract**, a program that runs on a blockchain, on a pr
 
 {{< figure src="blockchain-updates.png" alt="Screenshot of the Ganache test blockchain showing five contract-call transactions, each from the same sender address to the FederatedLearning contract" caption="The five model updates recorded on the test blockchain. All five came from the same address, which is one of the gaps listed below." >}}
 
-It worked, and the federated model performed much the same with the blockchain in the loop. But being honest about it, my version only covered part of the trust problem:
+It worked, and the federated model performed much the same with the blockchain in the loop, although my version only covered part of the trust problem:
 
 - **No access control.** Anyone could submit an update to the contract. A real network would need to limit it to member banks.
 - **One sender.** All five updates came from the same test account, so the record couldn't show which bank sent which model.
 - **Plain text.** The model settings were stored openly. Every participant could read every other bank's model.
 
-Each of these has a known fix: permissioned networks, a signing key for each bank, encryption. A fair question is whether you need a blockchain at all. A shared, append-only log signed by each bank would give much of the same audit trail. The blockchain's real advantage is that no single party controls the record.
+Each of these has a known fix in permissioned networks, a signing key for each bank and encryption. It's also fair to ask whether a blockchain is needed at all, since a shared, append-only log signed by each bank would give much of the same audit trail. The main thing a blockchain adds is that no single party controls the record.
 
 ---
 
@@ -114,9 +114,9 @@ Each of these has a known fix: permissioned networks, a signing key for each ban
 
 Even without raw data, model settings can leak information. Research has shown that, in some cases, details of the training data can be reconstructed from model updates. **Zero-knowledge proofs** offer a way round this: mathematical proofs that let you show something is true without revealing why. In principle, a bank could prove "I trained this model correctly on real data" without exposing the model or the data.
 
-This is where the project stopped. I tried PySnark, a Python library for building these proofs. Turning even one training step of a model into a proof means rewriting the maths as a circuit of whole-number operations, and logistic regression uses decimals and exponentials throughout. After several attempts the code still didn't produce a working proof, even for toy numbers, let alone the real models. I logged the work as unresolved and moved on.
+The project stopped at this phase. I tried PySnark, a Python library for building these proofs. Turning even one training step of a model into a proof means rewriting the maths as a circuit of whole-number operations, and logistic regression uses decimals and exponentials throughout. After several attempts the code still didn't produce a working proof, even for toy numbers, let alone the real models. I logged the work as unresolved and moved on.
 
-Zero-knowledge machine learning was a young field in 2024, and proving the training process, not just a prediction, is still the hard part.
+Zero-knowledge machine learning was a young field in 2024, and proving that a model was trained correctly is still much harder than proving a single prediction.
 
 ---
 
@@ -132,8 +132,8 @@ Zero-knowledge machine learning was a young field in 2024, and proving the train
 ## Key takeaways
 
 1. **Sharing models instead of data works.** On this dataset, five banks that never shared a transaction built a model that caught almost as much fraud as one trained on everything.
-2. **Read the right metric.** Accuracy was 97 to 99% for every model and meant almost nothing. Frauds caught, false alarms and ranking quality told the real story.
-3. **A blockchain gives you an audit trail, not trust for free.** Access control, signatures and privacy all still have to be designed in.
-4. **Know when a technology isn't ready for you yet.** Zero-knowledge proofs for training were beyond what I could build in 2024, and finding that out was a useful result in itself.
+2. **Accuracy was the wrong measure here.** Every model scored 97 to 99%, which said almost nothing; frauds caught, false alarms and ranking quality were far more useful.
+3. **The blockchain gave an audit trail, and the rest still had to be designed.** Access control, signatures and privacy weren't provided automatically.
+4. **Some of the technology wasn't ready for me yet.** Zero-knowledge proofs for training were beyond what I could build in 2024, and finding that out was useful in itself.
 
-The privacy problem between banks is real, and parts of the toolkit to solve it already work. The rest is still being built.
+The obvious next steps would be to try Phase 3B again with current zero-knowledge tools, and to run the federated setup with banks whose data looks less alike.

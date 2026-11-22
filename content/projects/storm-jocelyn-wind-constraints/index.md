@@ -81,19 +81,19 @@ At its peak, more than 2 GW of wind was being held back at once.
 
 {{< figure src="paying-twice.png" alt="Bar chart comparing £1.9 million paid to wind farms to turn down with £2.7 million paid to gas power stations to turn up on 24 January 2024" caption="Two sides of the same day. Not all of the gas payments were caused by the storm's constraints, so treat the gas figure as an upper bound." >}}
 
-This is the paradox in one picture. On a day of gale-force winds, the grid paid to switch off clean power in the north and paid again to burn gas in the south. Storm Jocelyn wasn't unusual, either. Storm Isha, two days earlier, led to even more wind being switched off on 22 January: about 42,400 MWh.
+The chart shows the odd position the grid was in. On a day of gale-force winds, it paid to switch off clean power in the north and paid again to burn gas in the south. Jocelyn wasn't an unusual case either, since Storm Isha two days earlier led to even more wind being switched off on 22 January: about 42,400 MWh.
 
 ---
 
 ## What I got wrong first time
 
-The first version of this project reported about 170,000 MWh switched off and an estimated cost of £12 million. Those numbers were wrong, by roughly five times.
+The first version of this project reported about 170,000 MWh switched off and an estimated cost of £12 million, which was wrong by roughly five times.
 
-The mistake was in step 1. I had downloaded the wrong dataset. Instead of the instructions NESO actually *accepted*, I'd pulled the **bid-offer pairs**: the prices and volumes every power station *offers* to the grid before anything is decided. Those are menus, not orders. My filter for "turn-downs" found nothing, fell back to counting every wind farm's menu, and added the lot. Some of the biggest "turn-downs" in that version came from Hornsea One, an offshore wind farm off Yorkshire, south of the bottleneck. That should have been a clue.
+The mistake was in step 1, where I'd downloaded the wrong dataset. Instead of the instructions NESO actually *accepted*, I'd pulled the **bid-offer pairs**, which are the prices and volumes every power station *offers* the grid before anything is decided. My filter for "turn-downs" found nothing in them, so the code fell back to counting every wind farm's offers and added them all up. Some of the biggest "turn-downs" in that version came from Hornsea One, an offshore wind farm off Yorkshire that sits south of the bottleneck, and that should have made me look harder.
 
 I only spotted it in November 2026, when I re-ran the analysis for this write-up and checked it against Elexon's settled volumes. The fix was to use the accepted volumes and the actual payments, which is what the figures above come from.
 
-Two things held up. The scale of the problem is real: thousands of megawatt-hours of wind, switched off in a day, mostly in Scotland. And my original assumption of about £70 for each megawatt-hour switched off wasn't far out: the real payments to wind farms worked out at about £60.
+Some of the original work did hold up. Thousands of megawatt-hours of wind really were switched off in a day, mostly in Scotland, and my assumption of about £70 for each megawatt-hour wasn't far out, as the real payments to wind farms worked out at about £60.
 
 ---
 
@@ -107,7 +107,7 @@ There are three broad answers, and the government has made a choice between them
 | Use the power where it's made | Put demand, like data centres, electrolysers for hydrogen or storage, near the wind | Happening slowly |
 | Change the price signal | **Zonal pricing**: cheaper power in Scotland on windy days, so demand moves there | Ruled out by the government in July 2025 |
 
-I originally built this project as evidence for zonal pricing. In its [July 2025 decision](https://www.gov.uk/government/publications/review-of-electricity-market-arrangements-rema-summer-update-2025/review-of-electricity-market-arrangements-rema-summer-update-2025-accessible-webpage) on electricity market reform, the government kept a single national price. Instead it chose "reformed national pricing", including a national plan for where generation and demand should be built. Whatever you think of that choice, constraint costs don't go away: they have to be managed through planning and grid building rather than prices.
+I originally built this project as evidence for zonal pricing. In its [July 2025 decision](https://www.gov.uk/government/publications/review-of-electricity-market-arrangements-rema-summer-update-2025/review-of-electricity-market-arrangements-rema-summer-update-2025-accessible-webpage) on electricity market reform, the government kept a single national price. Instead it chose "reformed national pricing", including a national plan for where generation and demand should be built. Constraint costs still have to be dealt with under that choice, so they'll be managed through planning and grid building rather than through prices.
 
 ---
 
@@ -122,9 +122,9 @@ I originally built this project as evidence for zonal pricing. In its [July 2025
 
 ## Key takeaways
 
-1. **The wind isn't the bottleneck, the wires are.** On 24 January, about 32,600 MWh of Scottish wind had nowhere to go.
-2. **We pay twice.** Once to switch the wind off, and again to switch gas on somewhere else.
-3. **Check what your data actually is.** My first answer was five times too big because I counted offers rather than instructions. The numbers looked plausible, which made the mistake easy to miss.
-4. **Price signals were one answer; planning is now the chosen one.** With zonal pricing ruled out, building the lines and siting new demand well matter even more.
+1. **The limit on 24 January was the grid.** About 32,600 MWh of Scottish wind had no way to reach the people who needed it.
+2. **Consumers end up paying for both sides.** The bill covers switching the wind off and switching gas on somewhere else.
+3. **Check what your data actually is.** My first answer was five times too big because I counted offers rather than instructions, and the numbers looked plausible enough that I didn't question them.
+4. **With zonal pricing ruled out, planning carries more weight.** Building the lines and putting new demand in the right places will have to do the work that price signals might have done.
 
-The windiest days should be the cheapest ones. For now, they come with an extra bill.
+A full winter of data, rather than one day, would be the natural next step for this analysis.

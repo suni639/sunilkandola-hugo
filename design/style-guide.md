@@ -57,3 +57,18 @@ Table of contents on.
 - Source key facts and link to the official source; recheck against official pages.
 - No AI filler: "it is evident", "leverage", "seamless", "game-changer", "delve", "robust".
 - Show the human role: what I knew or decided that the tool or model couldn't.
+
+## Rhythm: avoid patterns that read as AI-written
+
+- No contrast slogans: "the total is fine, the timing isn't", "X isn't the problem, Y is",
+  "not X but Y", "That isn't a failure of X. It's a mismatch of Y". Say the point plainly once.
+- No punchy fragments for effect ("Tripling it bought about a day." standing alone, "All true. But...").
+  Join short sentences into normal ones where they belong together.
+- No aphorisms or memorable one-liners as section or article endings
+  ("Batteries are sprinters, not marathon runners", "Two hours, no code and no returns").
+  End on an ordinary sentence that says what I think or what happens next.
+- No stacked rhetorical triplets, and no "Here's the thing" / "The result?" style set-ups.
+- Headings describe the content ("What my model showed about batteries"), not the
+  rhetorical role ("The claim", "Evidence 1", "So what", "The counterargument").
+- Vary sentence length naturally. Write the way I'd explain it to a colleague, with
+  connecting words (because, so, which, although) rather than a run of short declaratives.

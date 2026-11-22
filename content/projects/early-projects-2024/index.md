@@ -38,13 +38,13 @@ One of my first notebooks took a public dataset of monthly average house prices 
 | Fastest-rising borough | Hackney | | 9.3 times |
 | Slowest-rising borough | Bexley | | 5.1 times |
 
-By 2020 the gap between boroughs was stark: about £1.18 million in Kensington and Chelsea against about £301,000 in Barking and Dagenham. The notebook also broke the price series into its long-term trend and seasonal pattern, and the dip after the 2008 financial crisis stands out clearly in both lines.
+By 2020 there was a huge gap between boroughs, from about £1.18 million in Kensington and Chelsea to about £301,000 in Barking and Dagenham. The notebook also broke the price series into its long-term trend and seasonal pattern, and the dip after the 2008 financial crisis stands out clearly in both lines.
 
 ### Predicting supermarket spend
 
 Next came a practice dataset from DataCamp: a fictional supermarket's loyalty programme, with each customer's region, years in the scheme, joining month and promotions. The task was to predict how much each customer would spend in a year.
 
-I trained twelve different models, from simple linear regression to XGBoost, and compared them on data they hadn't seen. XGBoost and gradient boosting did best. The most useful lesson came from the worst performers. A single decision tree scored a perfect zero error on its training data, then made errors about twice as large as XGBoost's on new customers. It had memorised the training set rather than learned from it, a textbook case of **overfitting**.
+I trained twelve different models, from simple linear regression to XGBoost, and compared them on data they hadn't seen. XGBoost and gradient boosting did best, but I learned more from one of the weaker models. A single decision tree scored a perfect zero error on its training data and then made errors about twice as large as XGBoost's on new customers, because it had memorised the training set instead of learning general patterns from it. This is called **overfitting**.
 
 ---
 
@@ -56,7 +56,7 @@ I was following tokenisation closely, so I tried to automate the reading.
 2. **One scraper with settings.** Version 2 combined them, moved the sites and keywords into a settings file, and appended new articles to a single file each week. By the end it held about 290 articles.
 3. **Finding the themes.** I then ran simple text analysis on the headlines: word counts, a word cloud, and a **topic model**, which groups words that tend to appear together. It found five themes: bond issuance and security tokens (with Hong Kong and central bank digital currencies prominent), fund tokenisation, regulatory sandboxes including the UK's, exchanges and custody, and partnerships around tokenised deposits.
 
-A third version never got past its first commit. Instead, the idea grew into the [automated weekly digital asset briefing](/projects/da-intel-01/) that now runs on this site every week.
+A third version never got past its first commit, and the idea later grew into the [automated weekly digital asset briefing](/projects/da-intel-01/) that now runs on this site every week.
 
 ---
 
@@ -74,7 +74,7 @@ A simple arcade shooter in Python with Pygame, modelled on Space Invaders: move 
 
 A small desktop app for a question many families face: would both parents going back to work actually pay, once childcare is counted? You enter both take-home incomes, the childcare bill and other costs, and it shows what's left, with a pie chart and saved scenarios.
 
-Looking back, the maths was too simple: income minus costs. The real answer depends on free childcare hours, Tax-Free Childcare, the tax on the second income and the long-term value of staying in work. It's a question I'd like to come back to with those rules built in.
+Looking back, the maths was too simple, since it only took costs away from income. The real answer depends on free childcare hours, Tax-Free Childcare, the tax on the second income and the long-term value of staying in work, and a proper version would need all of those built in.
 
 ### The start of FraudBusters
 
@@ -84,9 +84,9 @@ I also explored a dataset of 6.4 million simulated online payments, of which onl
 
 ## Key takeaways
 
-1. **Small projects compound.** The scrapers became a weekly briefing, the smart contract became part of FraudBusters, and the payments dataset started the fraud work.
-2. **Test on data the model hasn't seen.** A perfect score on training data is a warning sign, not a result.
-3. **Build around real questions.** The projects that went furthest started from questions I actually wanted answered, not from a tutorial.
-4. **Simple is a starting point, not an answer.** The childcare calculator worked, but the real question needed far more than subtraction.
+1. **Several small projects led to bigger ones.** The scrapers turned into a weekly briefing, the smart contract became part of FraudBusters, and the payments dataset started the fraud work.
+2. **Test on data the model hasn't seen.** A perfect score on training data should make you suspicious of the model.
+3. **The projects that went furthest started from real questions.** They came from things I actually wanted to know, rather than from a tutorial.
+4. **A simple version is useful for getting started.** The childcare calculator worked, but answering the real question would take much more than subtraction.
 
-Everything bigger on this site started with something this size.
+Most of the larger projects elsewhere on this site grew out of one of these.
