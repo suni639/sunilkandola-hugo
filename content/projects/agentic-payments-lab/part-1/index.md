@@ -161,6 +161,25 @@ The first and third of these were fixed at the start of Part 2, because Part 2 t
 
 **The real AI.** The first live run took 23 steps, cost about 10 US cents and matched all 11 expected outcomes. Across five live runs in total, it spotted things code can't, such as a "we're changing banks, please phone us" note with no numbers in it, and a bill that looked like a resend under a new invoice number. It also refused a polite request to pay a different supplier. But it wasn't perfectly consistent: on one invoice it added a warning in later runs that it hadn't added in the first. Useful, then, but a second opinion rather than a control.
 
+### The twelve risks, and how well each is controlled
+
+"Effective" means the control was well designed and passed its tests, including tests where I broke it on purpose. "Partially effective" means a known gap remains. "Ineffective" means there's no working control yet. These are ratings from tests in a lab, not from a real system, as they stood at the end of Part 1.
+
+| Risk | What could happen | What stops it | Rating | What's left |
+| --- | --- | --- | --- | --- |
+| **The AI pays without approval** | The AI has, or finds, a way to move money | It has no tool that approves or pays; only the approval program, run by a person, can | Effective | Bank records aren't yet matched against approvals, so a payment made some other way wouldn't be spotted |
+| **Hidden instructions in an invoice** | Text in a bill tells the AI to pay elsewhere or skip checks | Payments go only to bank details in the approved supplier list; the AI can't supply its own | Partially effective | Code didn't check the supplier picked was the one on the invoice (fixed in [Part 2](/projects/agentic-payments-lab/part-2/)); bank details written with dots or other separators aren't spotted |
+| **"Our bank details have changed" fraud** | A bill claims the supplier has a new account | The supplier list is the only source of bank details; new details on a bill raise a warning | Partially effective | The same separator gap; a change notice with no numbers is caught only by the AI |
+| **Paying twice** | The same bill is resent, or a retry follows a timeout | A duplicate check on supplier and invoice number, run again at approval; the bank recognises a repeated request | Partially effective | Look-alike letters in the invoice number, or a resend with a new number, aren't caught |
+| **Wrong amount or currency** | The AI misreads the amount or currency | Code reads the total from the invoice itself; money is whole pence; pounds only | Effective | Only one invoice layout can be read; others are blocked, not guessed |
+| **Over the limits** | A large bill, or many in a day | Per-payment and daily limits checked by code and again by the bank | Effective | Code's funds check ignores approved payments not yet sent; the bank's limit is the hard stop |
+| **The approver rubber-stamps** | A person approves without reading | Warnings shown first; a typed reason for any flagged payment; no bulk approve; the person who runs the AI can't approve | Partially effective | Any reason is accepted, even "ok"; a name in look-alike letters got round the "can't approve your own" rule |
+| **The audit trail is incomplete or edited** | Missing or changed entries hide why a payment was made | Each entry carries a fingerprint of the one before; the chain is checked before every approval | Partially effective | Someone able to rewrite both the log and its checkpoint file isn't caught, and that's exactly the insider it should catch |
+| **The AI has too much access** | It reads secret files or uses shell or web tools | It has six named tools and no others; a gate refuses everything else | Effective | — |
+| **The bank is down or slow** | A timeout leaves a payment's status unknown | Fail closed: if a check can't run, nothing is approved; a retry repeats the exact same request | Effective | — |
+| **The model or prompt changes** | A new AI version or prompt edit changes behaviour silently | The model version is pinned; the prompt's fingerprint is checked by the tests | Partially effective | A model name that moves to newer versions passed as "pinned"; nothing forces the tests to run before a change |
+| **The AI's words mislead the approver** | An invoice steers what the AI writes, hiding warnings on screen | **None yet** | Ineffective | Added to the register during testing; fixed at the start of [Part 2](/projects/agentic-payments-lab/part-2/) |
+
 {{< mermaid >}}
 %%{init: {"theme": "base", "themeVariables": {"pie1": "#2e7d32", "pie2": "#f9a825", "pie3": "#c62828", "pieSectionTextColor": "#ffffff"}}}%%
 pie showData
