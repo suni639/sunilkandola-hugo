@@ -1,10 +1,10 @@
 +++
-title = "Where It Started: My First Small Projects from 2024"
+title = "My First Projects on GitHub, 2024"
 date = 2024-06-20
 lastmod = 2026-11-22
 draft = false
-description = "A roundup of the small projects I built in spring 2024 while learning data science and blockchain: house prices, a supermarket loyalty model, article scrapers, a first smart contract, a game and a childcare calculator."
-summary = "Before the bigger projects on this site, I spent the spring of 2024 building small things to learn: a look at 25 years of London house prices, a dozen models predicting supermarket spend, scrapers for digital asset news, a first smart contract and a game. Several of them led straight to bigger work."
+description = "A roundup of the small projects I put on GitHub in spring 2024: London house prices, a supermarket loyalty model, digital asset news scrapers, a smart contract set-up, a game and a childcare calculator."
+summary = "In spring 2024 I started putting my side projects on GitHub: 25 years of London house prices, a dozen models predicting supermarket spend, scrapers for digital asset news, a smart contract set-up and a game. Several of them led straight to bigger work."
 
 featureImage = "feature.png"
 featured = false
@@ -20,14 +20,14 @@ showDateUpdated = true
 +++
 
 {{< lead >}}
-Most of the projects on this site started as something much smaller. Between April and June 2024 I built a string of quick projects to learn data science, web scraping and blockchain. None of them deserves its own write-up, but together they show where the bigger work came from.
+My undergraduate degree, around 2010, combined mathematical economics with statistics and computer science, which was close to data science before the term was widely used. I kept teaching myself after that, started writing simple smart contracts in 2019, and got properly into Python in 2020, which pulled me further into data science and machine learning. In spring 2024 I started putting my side projects on GitHub, and these are the first ones. None of them needs its own write-up, but together they show where the bigger work on this site came from.
 {{< /lead >}}
 
-## Learning to work with data
+## Data analysis
 
 ### London house prices, 1995 to 2020
 
-One of my first notebooks took a public dataset of monthly average house prices for every London borough and asked a simple question: how much have prices really moved?
+One of the first notebooks I published took a public dataset of monthly average house prices for every London borough and asked a simple question: how much have prices really moved?
 
 {{< figure src="feature.png" alt="Line chart of average house prices from January 1995 to January 2020. London rises from about £74,000 to £477,000, England from about £53,000 to £247,000, with both dipping after 2008" caption="Average house prices in London and England, from the dataset I analysed." >}}
 
@@ -62,9 +62,9 @@ A third version never got past its first commit, and the idea later grew into th
 
 ## Building things
 
-### A first smart contract
+### A smart contract set-up
 
-A "hello world" for blockchains: a tiny Solidity contract that stores a message and lets you change it, deployed on a test blockchain on my laptop. It taught me the tools, Truffle and Ganache, that I used a week later to log model updates on a blockchain in [FraudBusters](/projects/fraudbusters/).
+A "hello world" Solidity contract that stores a message and lets you change it, deployed on a test blockchain on my laptop. I'd been writing simple smart contracts since 2019, and this one was mainly a way to get Truffle and Ganache working locally, the same tools I used a week later to log model updates on a blockchain in [FraudBusters](/projects/fraudbusters/).
 
 ### A first game
 
