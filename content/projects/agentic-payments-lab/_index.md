@@ -39,11 +39,11 @@ money fit.
 
 ## The six parts
 
-| Part | Question it asks | What gets built | Status |
+| Part | Question it asks | What gets built | Status and reading |
 | --- | --- | --- | --- |
-| [1](/projects/agentic-payments-lab/part-1/) | Can an AI pay your bills safely? | An AI that suggests invoice payments, with fixed checks and a human approver | Complete |
-| [2](/projects/agentic-payments-lab/part-2/) | How do you give an AI permission to spend, within limits? | Digital "mandates" and spending consents with caps, expiry and cancellation | Complete |
-| [3](/projects/agentic-payments-lab/part-3/) | How does an AI shop with a card? | A pretend online checkout where an AI pays with a restricted card token, plus disputes | Complete |
+| [1](/projects/agentic-payments-lab/part-1/) | Can an AI pay your bills safely? | An AI that suggests invoice payments, with fixed checks and a human approver | Complete: [article](/projects/agentic-payments-lab/part-1/) · [build notes](/projects/agentic-payments-lab/part-1-build-notes/) |
+| [2](/projects/agentic-payments-lab/part-2/) | How do you give an AI permission to spend, within limits? | Digital "mandates" and spending consents with caps, expiry and cancellation | Complete: [article](/projects/agentic-payments-lab/part-2/) · [build notes](/projects/agentic-payments-lab/part-2-build-notes/) |
+| [3](/projects/agentic-payments-lab/part-3/) | How does an AI shop with a card? | A pretend online checkout where an AI pays with a restricted card token, plus disputes | Complete: [article](/projects/agentic-payments-lab/part-3/) · [build notes](/projects/agentic-payments-lab/part-3-build-notes/) |
 | 4 | How does a bank spot a misbehaving AI? | A monitoring system that scores AI-initiated payments for fraud | Next |
 | 5 | How do machines pay machines? | An AI paying per use with digital dollars on a test blockchain | Planned |
 | 6 | Can one set of controls cover every way of paying? | An AI treasury choosing between bank transfer, card and digital money, under one rulebook | Planned |
