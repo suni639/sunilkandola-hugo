@@ -157,6 +157,24 @@ This time the attacks targeted the *permissions* themselves rather than the bill
 
 **The real AI.** In the live tests, the AI didn't claim the mandate covered the Quayside bill, even though the bill said it did. And it didn't stretch "utilities and subscriptions" to cover an insurance bill.
 
+### The eleven risks, and how well each is controlled
+
+"Effective" means the control was well designed and passed its tests, including tests where I broke it on purpose. "Partially effective" means a known gap remains. "Ineffective" means there's no working control yet. These are ratings from tests in a lab, not from a real system.
+
+| Risk | What could happen | What stops it | Rating | What's left |
+| --- | --- | --- | --- | --- |
+| **Paying outside the permission** | A bill is treated as covered when it isn't: wrong supplier, too much, over budget, out of date | Twelve checks in code when the AI suggests it, and the same checks again just before paying | Effective | Doesn't catch bills that are inside the permission but not owed (the last row) |
+| **A forged or edited mandate** | Someone raises a limit or adds a supplier after Dana signed | Dana's digital signature; the mandate is read from the tamper-evident audit log, not an editable file | Effective | Someone able to rewrite both the key list and the audit log could add a key |
+| **Cancelled or expired permission still used** | A payment goes out after Dana said stop | Cancellation and end date checked again at the moment of paying; Dana can also cancel at the bank | Effective | A payment already sent can only be stopped at the bank |
+| **Paying twice** | A permission slip is reused, or a lost reply leads to a second payment | Each slip is for one bill, one amount, used once; the bank recognises a repeated request | Partially effective | A resent bill with look-alike letters in its reference isn't recognised as a duplicate (a gap open since Part 1) |
+| **A stolen key** | The AI's key leaks, and someone signs payments with it | The key stays inside one program; payments still can't exceed the mandate or the bank's limits | Partially effective | A thief with the key *and* access to the data folder could authorise payments within the limits |
+| **Dana didn't understand what she signed** | Vague words the AI could stretch, or limits she misread | A plain-English summary built from exactly what is signed; she must type to confirm | Partially effective | Not tested with real people |
+| **No evidence in a dispute** | Dana says "I didn't allow that" and we can't show who allowed what | One evidence file linking her signature, the permission slip, the bank's record and the audit log | Partially effective | The file can't prove the audit log wasn't rewritten unless compared with a copy kept elsewhere |
+| **A problem never reaches a person** | A flagged or refused bill quietly disappears | Any warning sends a bill to a person; every bill ends with a recorded outcome | Partially effective | Bank details written with dots in them raise no warning |
+| **The AI claims permission it doesn't have** | A note in a bill leads the AI to say it's covered | The AI's claim is checked in code, never trusted | Effective | — |
+| **The two layers disagree** | Dana's mandate allows a payment that her bank consent doesn't | The bank's refusal is final; the bill goes to a person next time | Effective | — |
+| **A bill that isn't owed is paid** | A convincing fake bill from a real, covered supplier | **None yet** | Ineffective | Fixed in part in [Part 3](/projects/agentic-payments-lab/part-3/): newer mandates send a bill outside a supplier's usual pattern to a person |
+
 {{< mermaid >}}
 %%{init: {"theme": "base", "themeVariables": {"pie1": "#2e7d32", "pie2": "#f9a825", "pie3": "#c62828", "pieSectionTextColor": "#ffffff"}}}%%
 pie showData

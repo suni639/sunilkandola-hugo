@@ -139,6 +139,22 @@ Claude Code played the attacker, with one set of attacks per risk, and then brok
 
 **What a different computer found.** The project was built on Linux. When I ran the tests on my Windows laptop, two failed. Windows ends each line of a text file with an extra hidden character, and the code that reads staff requests didn't expect it. So it couldn't read any request saved on Windows, and every order went to a person. That was safe, because nothing got bought, but the check never let a genuine order through. It's fixed now, with a test. The lesson: test where the system will really run.
 
+### The seven risks, and how well each is controlled
+
+"Effective" means the control was well designed and passed its tests, including tests where I broke it on purpose. "Partially effective" means a known gap remains. These are ratings from tests in a lab, not from a real system.
+
+| Risk | What could happen | What stops it | Rating | What's left |
+| --- | --- | --- | --- | --- |
+| **A bot passes as our AI** | Someone copies, edits or replays the AI's requests to the shop | Every request is signed with the AI's key, must be fresh, used once and unaltered, and the key must be on the shop's trusted list | Effective | Relies on the shop's trusted list being right |
+| **The card token is stolen** | It leaks from a file or a log, and someone spends with it | The AI never sees it; it works at one shop, within limits; the bank also needs the AI's signature | Partially effective | The AI's two keys are meant to live on different computers. In this lab they don't, so one break-in could get both |
+| **The basket is changed** | The price or items are edited after the shop agreed them | The shop signs the basket; the permission slip names that exact basket | Effective | None found in tests |
+| **A look-alike shop** | A similar name, or a known shop's signing key swapped | Baskets must be signed by the key recorded when the shop was onboarded, and Dana's mandate signs that key | Partially effective | Onboarding is trusted: a fraudulent shop onboarded by a person passes every check |
+| **Something nobody wanted** | The AI invents a need, buys too much, or a fake staff request is planted | The basket must fit a staff request's quantity and budget; a request with no readable details goes to a person | Partially effective | A well-formed fake request is bought |
+| **The catalogue steers the AI** | A product description tells the AI to buy more | The AI can't pay; code checks quantity and limits whatever the AI does | Partially effective | A description that swaps the product, while staying inside the quantity and budget, would get through |
+| **A dispute is decided wrongly** | Evidence is missing, or the loss lands on the wrong party | One evidence file checking eleven links; a fixed decision table; one dispute per charge; a 7-day deadline for the shop | Partially effective | The evidence file reads the shop's and bank's records live rather than standing alone, and the decision table is my rule, not a card scheme's |
+
+Part 3 also gave Part 2's biggest gap, a fake bill from a real supplier, its first fix. A newer version of the mandate signs each supplier's usual pattern, and a bill outside it goes to a person. That moves the risk from ineffective to partially effective, for newer mandates only.
+
 {{< mermaid >}}
 %%{init: {"theme": "base", "themeVariables": {"pie1": "#2e7d32", "pie2": "#f9a825", "pieSectionTextColor": "#ffffff"}}}%%
 pie showData
