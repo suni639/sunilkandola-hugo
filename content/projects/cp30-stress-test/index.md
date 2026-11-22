@@ -1,6 +1,7 @@
 +++
 title = "When the Wind Stops: Stress-Testing the UK's Clean Power 2030 Plan"
-date = 2026-11-22
+date = 2026-02-12
+lastmod = 2026-11-22
 draft = false
 description = "A Python model that replays the worst week of 2025 weather on the grid the UK plans to have by 2030, and measures what wind, solar, nuclear and batteries can't cover."
 summary = "I replayed a cold, still week of January 2025 on the 2030 grid. Even with every wind and solar target met, a gap of up to 51 GW opened up, and the batteries were empty before the week began."
@@ -15,6 +16,7 @@ showAuthor = true
 showTaxonomies = true
 showReadingTime = true
 showTableOfContents = true
+showDateUpdated = true
 +++
 
 {{< lead >}}
@@ -122,7 +124,7 @@ This is a simple model, so it's worth being clear about where it's rough.
 - **The wind pattern is a stand-in.** NESO's half-hourly data gives load factors for smaller wind farms connected to local networks. I used that pattern for the whole 2030 fleet, including offshore, which tends to be windier and steadier. The real gap could be somewhat smaller.
 - **One year of weather.** 2025 had a severe week, but it may not be the worst. The Royal Society used 37 years for a reason.
 - **Britain as an island.** Imports are left out on purpose, as a stress test. In practice they would help, unless the neighbours are short too.
-- **A "copper plate" grid.** The model assumes power flows freely from Scotland to London. In reality the cables between them fill up, which would make things worse. That bottleneck is the subject of my next project.
+- **A "copper plate" grid.** The model assumes power flows freely from Scotland to London. In reality the cables between them fill up, which would make things worse. That bottleneck is the subject of my [Storm Jocelyn project](/projects/storm-jocelyn-wind-constraints/).
 
 ---
 
