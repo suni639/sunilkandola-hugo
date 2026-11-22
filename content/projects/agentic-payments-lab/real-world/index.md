@@ -310,7 +310,7 @@ shop. The decision table is a lab rule, not Visa's.
 | Strong customer authentication and passkeys | Admin commands stand in | They involve a person and a phone | The lab assumes the director's setup step is genuine |
 | Secure key storage (hardware vaults) | Keys in a private folder on disk | Simplicity | Key theft is easier than in a well-run firm; Parts 2 and 3 rate key risks partially effective |
 | Real AP2, Web Bot Auth and card token formats | Simplified JSON with the same ideas | Formats change fast; the ideas don't | Findings are about the ideas, not the formats |
-| A live AI run in Part 3 | A scripted stand-in pressing fixed buttons | The controls are all in code | How often the real model triggers each control isn't yet measured |
+| Many live AI runs | Three live runs in Part 3 (and five in Part 1) on a handful of test cases | Each run costs money | The runs show how the model behaves, not how often; it varied between runs |
 
 The test throughout: **does leaving it out change where a control sits or what it can see?** If not, it's left out. If
 it does, the write-up says so, as in the table above.
