@@ -25,7 +25,8 @@ This is a personal learning project. Everything in it is fictional: no real bank
 
 These are the detailed notes behind [Part 1: Can an AI Pay Your Bills Safely?](/projects/agentic-payments-lab/part-1/).
 Read that first. It explains the ideas and the results. This page is for readers who want to see how each piece
-was built and tested, one session at a time. Terms are explained in the main article and the [payments primer](/projects/agentic-payments-lab/primer/).
+was built and tested, one session at a time. AI stands for artificial intelligence, and other terms are explained
+in the main article and the [payments primer](/projects/agentic-payments-lab/primer/).
 
 ## A lesson learned before writing any code
 
@@ -40,8 +41,8 @@ Before building anything, I asked a second, different AI model to review the pla
    to make the expected result order-independent: exactly one of the pair gets paid.
 
 The reviewer also got something wrong: it claimed the software versions I'd chosen didn't exist. They did;
-it was working from out-of-date knowledge. That's a lesson too. Reviews by AI are valuable, but they need
-checking like any other evidence.
+it was working from out-of-date knowledge, which taught me that reviews by AI are valuable but need checking like
+any other evidence.
 
 A second review, at the start of the build, found one more gap of the same kind: **the payment amount still
 relied on the AI reading the invoice correctly.** Nothing in code compared the suggested amount with the
@@ -96,7 +97,8 @@ test then failed, as it should.
 ## The pretend bank, part 1: balances, suppliers and name checks
 
 The second build session started the pretend bank. It's a small program that runs on my laptop and answers
-requests the way a real bank's **API** would. It can't be reached from any other computer. So far it answers
+requests the way a real bank's **API** (application programming interface: the way one program asks another for
+something) would. It can't be reached from any other computer. So far it answers
 three questions:
 
 - **"How much money is in this account?"** At first this was always the starting balance of £60,000. Since
@@ -173,7 +175,7 @@ There's a second safety net. If the same instruction arrives under a *different*
 duplicate (AM05).
 
 **Watching a payment settle.** After acceptance a payment moves through three stages, using the standard
-ISO 20022 status codes:
+ISO 20022 status codes (ISO is the International Organization for Standardization):
 - **ACCP**: accepted;
 - **ACSP**: settlement in progress (after 1 second);
 - **ACSC**: settled, so the money has left (after 2 seconds).
@@ -189,7 +191,7 @@ is how the tests check what happens at exactly 1.000 seconds, or the next day, i
 came back with 32, plus nine questions the spec didn't answer, such as "should a refusal be remembered
 against its key?" I picked 27 cases, answered the nine questions, and wrote the answers into the spec. That
 gave 64 new automated tests. Then eleven controls were broken on purpose, one at a time, for example letting
-a key be reused for a different amount, or checking the balance before the limits. A test failed every time.
+a key be reused for a different amount, or checking the balance before the limits, and each time a test failed, as it should.
 
 ---
 
@@ -261,7 +263,7 @@ controls were broken on purpose, one at a time, and a test failed every time.
 ## The clerk: the AI agent
 
 The fifth session built the accounts clerk from the office table: the **AI agent**. It uses Anthropic's
-**Agent SDK**, a toolkit that runs Claude in a loop: Claude reads, picks a tool, sees the result, and decides
+**Agent SDK** (software development kit), a toolkit that runs Claude in a loop: Claude reads, picks a tool, sees the result, and decides
 what to do next, until the job is done.
 
 **Its instructions are written down and versioned.** The agent's standing instructions are called the
@@ -285,8 +287,8 @@ six tools of the rulebook. Three settings make sure nothing creeps back in:
 - it works in an empty folder of its own.
 
 On top of that, a small piece of our own code acts as a **gatekeeper**. It checks every tool the AI tries to
-use. Anything outside the six is refused and written in the logbook, so attempts are counted, not just
-blocked. Two independent locks on the same door means one can fail without the door opening.
+use. Anything outside the six is refused and written in the logbook, so attempts are counted as well as
+blocked. Having two independent checks means one can fail without the AI getting a tool it shouldn't have.
 
 **Limits on time and cost.** Each run stops after 40 **turns** (one turn is one round of the AI thinking and
 using a tool) or one US dollar of spending, whichever comes first. A confused or manipulated AI can't loop
@@ -310,7 +312,7 @@ pressing an "approve" button that doesn't exist (the request is refused and logg
 
 **How it was tested.** Claude read the installed toolkit's code first. It showed that "allowed tools" and
 "available tools" are separate settings, and that the toolkit loads settings from the computer unless told
-not to. Both shaped the design. Then came 47 new automated tests, all written before the code, plus 6
+not to, and both points shaped the design. Then came 47 new automated tests, all written before the code, plus 6
 live tests.
 
 **The first live run.** The real AI processed all eleven invoices in 23 turns for about 10 US cents, and every

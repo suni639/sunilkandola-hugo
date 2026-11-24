@@ -24,7 +24,7 @@ The lab's bank, shop and card issuer are pretend. But the messages they send eac
 This is a personal learning project. Everything in it is fictional: no real banks, money, data or people. Nothing here is legal advice. The views are my own.
 {{< /alert >}}
 
-**In one sentence:** every part of this lab is a small, pretend version of something real (a bank, a shop, a card
+**In one sentence:** every part of this AI (artificial intelligence) payments lab is a small, pretend version of something real (a bank, a shop, a card
 issuer, a signed permission), and this page explains, piece by piece, what the real thing does, how the lab copies
 it, what it leaves out, and why that matters for the findings.
 
@@ -34,15 +34,17 @@ to [Part 1](/projects/agentic-payments-lab/part-1/), [Part 2](/projects/agentic-
 
 ---
 
-## The idea: copy the parties, not their insides
+## How the lab decides what to copy
 
 A real bank runs thousands of systems. Copying them would take years and teach little about AI risk. So the lab
-follows one rule: **mock the parties, not their internals.** Each outside party (the bank, the shop, the card issuer)
+follows a rule I set at the start of Part 3: it **copies each outside party's role and checks, and leaves out
+its internal systems**. Each outside party (the bank, the shop, the card issuer)
 is a small program with just enough rules to show where its checks sit and what it decides. Where a real party
 teaches nothing new for this series, it's merged into another one, and the write-up says so.
 
-What the lab copies carefully is the part that matters for risk: **the messages that pass between the parties.** Who
-sends what, what it contains, what proves it's genuine, and what each side checks before it says yes. That's where
+What the lab copies carefully is the part that matters for risk: **the messages that pass between the parties**,
+meaning who sends what, what it contains, what proves it's genuine, and what each side checks before it says yes.
+That's where
 an AI agent can be fooled, and where a control can stop it. So the lab borrows real message formats, real status
 and reason codes, and real internet standards for signatures, in simplified form.
 
@@ -83,7 +85,8 @@ reference. The bank replies with another message saying what happened.
 
 Two families of message standards matter here:
 
-- **ISO 20022** is the international standard for payment messages between customers and banks, and between banks.
+- **ISO 20022** (from ISO, the International Organization for Standardization) is the international standard for
+  payment messages between customers and banks, and between banks.
   Each message type has a short code. The ones that matter here:
   - `pain.001`: a customer asks its bank to make a credit transfer (a payment)
   - `pain.002`: the bank reports back on the payment's status
@@ -95,8 +98,8 @@ Two families of message standards matter here:
   answers with a two-digit **response code**, such as `51` for "not sufficient funds".
 
 The lab doesn't send real ISO 20022 or ISO 8583 messages, which are long and full of fields this project doesn't
-need. It sends small JSON messages instead. JSON is a common, human-readable way of writing structured data. But
-it **keeps the real names, codes and meanings**, so the habits carry over.
+need. It sends small **JSON** messages instead (JSON is a common, human-readable way of writing structured data),
+but they **keep the real names, codes and meanings**, so the habits carry over.
 
 ---
 
@@ -152,7 +155,7 @@ fails closed: if any check can't run, the payment stops.
 the bank received it. Sending it again could pay twice. Payment systems solve this with an **idempotency key**: a
 unique label sent with the request. If the bank sees the same label again, it returns the original answer instead of
 paying again. The IETF, the body that sets internet standards, is turning this into a standard
-`Idempotency-Key` header. It's still a draft. The mock bank requires one on every payment. The same key with a
+`Idempotency-Key` header, although it's still a draft. The mock bank requires one on every payment. The same key with a
 different body is refused, which catches a resend that has been tampered with.
 
 **Testing for outages.** The mock bank can be told to fail at random or respond slowly, so the lab can test what
@@ -172,7 +175,7 @@ lab's agent is a real AI model connected to a real MCP tool server.
 files directly, run commands or browse the web. Invoice and product text reaches it only through a tool, marked as
 untrusted. This copies a real security principle, **least privilege**: give each part only the access it needs.
 It's also how the lab defends against **prompt injection**, hidden instructions planted in text the AI reads. OWASP
-ranks that the top risk for AI language models, including injection through files and web pages.
+(the Open Worldwide Application Security Project) ranks that the top risk for AI language models, including injection through files and web pages.
 
 ### The approver (Part 1)
 
@@ -204,12 +207,12 @@ standards group, uses signed **mandates**. An **open** mandate holds the limits 
 
 **How the lab copies it.** The director signs an open mandate with her own key. Code signs a closed mandate for each
 payment with the agent's key, and links it to the open one by including the open mandate's hash. The signatures use
-**Ed25519**, a widely used digital signature method, published by the IETF as RFC 8032. Before signing, the data is
+**Ed25519**, a widely used digital signature method, published by the IETF as RFC 8032 (a numbered internet standards document). Before signing, the data is
 written in one fixed way (keys in order, no spaces), so the same content always produces the same bytes and the
 same signature. RFC 8785 is a fuller standard for this.
 
-**Left out:** AP2's real formats and their transport between systems. The lab uses a simple signed block of JSON.
-Same idea, much less format.
+**Left out:** AP2's real formats and their transport between systems. The lab uses a simple signed block of JSON,
+which keeps the idea with far less formatting.
 
 ### Bank-side consents (Part 2)
 
@@ -240,7 +243,8 @@ directly (see "What isn't simulated").
 
 **What's real.** Visa's Trusted Agent Protocol, launched with Cloudflare in October 2025, lets an approved agent sign
 its web requests so a shop can tell it from a bot. It builds on **HTTP Message Signatures** (RFC 9421, 2024), an
-internet standard for signing selected parts of a web request. Cloudflare's **Web Bot Auth** draft adds a way for
+internet standard for signing selected parts of a web request (HTTP, the Hypertext Transfer Protocol, is how web
+browsers and servers talk). Cloudflare's **Web Bot Auth** draft adds a way for
 bots to publish their keys.
 
 **How the lab copies it.** Each checkout request carries two extra headers:
@@ -295,7 +299,7 @@ days to respond (a lab choice), and a fixed table decides. The company's evidenc
 director's signature to the bank's approval.
 
 **Left out:** the real dispute conditions, time limits and fees, and the card network that sits between issuer and
-shop. The decision table is a lab rule, not Visa's.
+shop. The decision table is my own rule rather than Visa's.
 
 ---
 
@@ -326,11 +330,12 @@ The findings in Parts 1–3 are about **where checks sit and what each party can
 - a signed basket can't be changed without detection
 
 Those are properties of the flow, and the flow is copied faithfully. The real systems are far more detailed, but
-they still have to answer the same questions: who signed this, what was agreed, and who checks it? Those questions
-carry over.
+they still have to answer the same questions: who signed this, what was agreed, and who checks it? Those questions apply to
+them just as much.
 
 What doesn't carry over is anything about scale, speed, cost, or how a real organisation runs its keys and its
-people. The lab can show that a control works when it runs. It can't show that a real firm would run it well.
+people. The lab can show that a control works when it runs, but whether a real firm would run it well depends on
+people and processes that these tests don't cover.
 
 ---
 

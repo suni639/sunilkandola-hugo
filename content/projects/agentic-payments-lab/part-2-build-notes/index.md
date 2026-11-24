@@ -25,7 +25,8 @@ This is a personal learning project. Everything in it is fictional: no real bank
 
 These are the detailed notes behind [Part 2: Can You Give an AI Permission to Spend?](/projects/agentic-payments-lab/part-2/).
 Read that first. It explains the ideas and the results. This page is for readers who want to see how each piece
-was built and tested, one session at a time. Terms are explained in the main article and the [payments primer](/projects/agentic-payments-lab/primer/).
+was built and tested, one session at a time. AI stands for artificial intelligence, and other terms are explained
+in the main article and the [payments primer](/projects/agentic-payments-lab/primer/).
 
 ## Before starting: two fixes from Part 1
 
@@ -55,17 +56,17 @@ gone.
 ## Checking the plan before building
 
 Before writing any code, I checked the plan itself. The plan is called the *spec* (short for specification). It
-says exactly what the system must do. I checked it against the twelve test bills by hand. Every total added up.
+says exactly what the system must do. I checked it against the twelve test bills by hand, and every total added up.
 The seven ordinary bills that fit within the director's permission add up to £3,221.18, but the monthly budget is
 £3,000.00. So at least one of them must always go to a person, whatever order the bills arrive in.
 
 The check also found a real hole. Sometimes a payment reaches the bank, but the bank's reply gets lost on the
 way back. The system then tries again, and the bank recognises the repeat, so it pays only once. But the plan
 also said: if the permission has run out, or someone cancelled it in the meantime, refuse to try again. That
-sounds safe. It isn't. The first attempt may already have paid the bill. The system would then record "refused"
+sounds safe, but the first attempt may already have paid the bill. The system would then record "refused"
 and put the money back in the budget. The same bill could then be suggested and paid a second time.
 
-The fix is simple. Before sending a payment, the system writes down "about to send". Once that note exists, it
+The fix was simple: before sending a payment, the system writes down "about to send". Once that note exists, it
 never refuses that payment. It only repeats the exact same request, which the bank will not pay twice. To stop a
 payment that is already on its way, you cancel the permission at the bank itself.
 
@@ -124,7 +125,7 @@ record always points to exactly one key.
 used. The AI's key can't be, because the system uses it with nobody there to type anything. A passphrase stored
 next to the key would protect nothing.
 
-**Testing the tests.** All the new tests passed the first time the code ran. That alone proves little. So I broke
+**Testing the tests.** All the new tests passed the first time the code ran, which on its own proves little, so I broke
 each safety check on purpose, one at a time, 25 in all, and made sure a test failed each time. Three breaks went
 unnoticed at first. One showed a real gap: a signature could be written two ways that both counted. I added a test
 for it. One check turned out to be a backup for another and can't be tested on its own. That is recorded, not
@@ -145,7 +146,7 @@ It also shows a *fingerprint* (a hash: a short code that changes if a single cha
 Dana must type the mandate's name, `MND-001`, to sign. Anything else cancels it.
 
 **A second pair of eyes.** I asked a separate AI reviewer, given no background, to read that summary as a
-director would and list anything they could misread. It found eight things. Four were real and cheap to fix,
+director would and list anything they could misread. It found eight things, of which four were real and cheap to fix,
 all wording: the mandate approves supplier *codes*, so payments go to whatever bank details are on file for
 them; "recurring bills" is only a description, so any bill within the limits can be paid; anything outside the
 limits goes to a person; and the monthly limits apply "whichever comes first". The other four weren't worth
@@ -174,7 +175,7 @@ other 5 are each backed up by a second check elsewhere, which is written down.
 
 Session 4 built the second layer of permission, the one held by the bank.
 
-**Two permissions, not one.** The mandate is Dana's permission *to the AI*. But the bank never sees it. So
+**A second permission, held by the bank.** The mandate is Dana's permission *to the AI*, but the bank never sees it. So
 Dana also gives the bank its own permission for each supplier. This is called a *consent*, and it's modelled
 on UK *variable recurring payments* (VRP). VRP is a real scheme (its commercial version launched in June 2026) that lets a customer
 allow a business to take repeated payments of different amounts from their account, within limits set at their
@@ -188,7 +189,7 @@ company paying its suppliers. Each consent fixes three things:
 
 If a payment breaks a limit, the bank refuses it with the code `AM14` ("amount exceeds agreed limit"). If there
 is no valid consent (unknown, cancelled, not started yet, or ended), it refuses with `MD01` ("no mandate").
-These are standard codes from ISO 20022, the international rulebook for payment messages.
+These are standard codes from ISO 20022 (ISO is the International Organization for Standardization), the international rulebook for payment messages.
 
 **Why the layers are set up differently on purpose.** Dana's mandate lets the AI pay Cirrus Desk up to
 £2,000.00 a time. Her consent at the bank allows only £250.00. So a £275.00 bill (B-08) passes the mandate but
@@ -208,9 +209,9 @@ back to life. So loading refuses any consent that already exists, and loads all 
 
 **Choices made without the owner.** Normally I would pick the edge cases for this session myself. This time I
 asked Claude Code to make the choices and write each one down with the option it rejected and why (decision
-record 0012). Then I broke 15 of the bank's checks on purpose, one at a time. A test caught every one.
+record 0012). Then I broke 15 of the bank's checks on purpose, one at a time, and a test caught every one.
 
-## The AI asks; code decides
+## How code checks what the AI claims
 
 Session 5 connected the signed mandate to the AI assistant and the tool server. The tool server is the program
 that gives the AI its tools and checks everything it asks for.
@@ -240,7 +241,8 @@ checks rules that hold in any order: never more than £3,000.00 authorised, at l
 and no budget wasted. In the rehearsal run, six bills were authorised (£2,401.18). The next one, £820.00, went
 to a person because only £598.82 was left. I ran the same bills in reverse order, and the rules still held.
 
-**A rehearsal, not the real thing.** The real AI test costs money and needs an API key (a password for the AI
+**A rehearsal before the real AI test.** The real AI test costs money and needs an API (application programming
+interface) key (a password for the AI
 service), which this session didn't have. So I rehearsed with a *stub*: a scripted stand-in that makes the same
 tool calls a careful assistant would. The live AI test is written and ready to run. The project's own safety
 rule stopped me treating the new instructions for the AI (*prompt* version 2) as approved without that live
@@ -307,7 +309,7 @@ the AI's key can't pay more than the mandate allows: the executor refuses, and i
 refuses too. That is *defence in depth*: two independent layers, so one failure isn't enough.
 
 **What broke, and was fixed.** An insider with access to the data folder copied a genuine one-payment permission
-slip onto a different bill. No extra money moved. But the system recorded the second bill as paid, sharing the
+slip onto a different bill. No extra money moved, but the system recorded the second bill as paid, sharing the
 first bill's payment. So the books would say a supplier was paid when it wasn't. Now the executor checks that the
 slip was signed for this exact bill, and if a slip turns up on two bills, it pays neither until a person looks.
 
@@ -326,4 +328,4 @@ slip was signed for this exact bill, and if a slip turns up on two bills, it pay
 **Ratings.** For each risk, Claude Code proposed a rating in the risk register: *effective* (the control worked
 under attack), *partially effective* (it worked, with a known gap) or *ineffective*. The final review in session 8
 moved one more to partially effective (paying the same bill twice), and the owner confirmed them all. The full
-count is in the [results of the main article](/projects/agentic-payments-lab/part-2/#results).
+count is in the [risk table in the main article](/projects/agentic-payments-lab/part-2/#the-eleven-risks-and-how-well-each-is-controlled).

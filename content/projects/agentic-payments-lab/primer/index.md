@@ -39,7 +39,7 @@ Even a simple bank transfer has at least five parties:
 | **Payee's bank** | Holds the payee's account and receives the money | Simplified away in this series |
 | **Payment scheme** | The shared rules and network the banks use to move money between them | In the UK, Faster Payments for most transfers |
 
-When an AI agent joins in, it adds a sixth party: someone acting *for* the payer who isn't the payer. Most of
+When an AI (artificial intelligence) agent joins in, it adds a sixth party: someone acting *for* the payer who isn't the payer. Most of
 this series is about what that changes.
 
 ---
@@ -63,12 +63,12 @@ graph LR
    the payer typed match the name on the receiving account?
 3. **Clearing.** The banks exchange messages saying what is owed to whom.
 4. **Credit.** The payee's bank puts the money in the payee's account.
-5. **Settlement.** The banks themselves square up, so the money has really moved between them, not just been
-   promised.
+5. **Settlement.** The banks themselves square up, so the money has really moved between them rather than only
+   being promised.
 
 In the UK, a Faster Payment usually reaches the payee within seconds, at any time of day. Some take longer, for
 example when a bank holds a payment to check it for fraud. Settlement comes later: the banks square up in batches,
-three times each working day, through their accounts at the Bank of England. Other systems are slower still. Bacs,
+three times each working day, through their accounts at the Bank of England. Other systems are slower: Bacs,
 which carries Direct Debits, takes about three working days.
 
 **Why the steps matter for this series.** Each step is a place where a control can sit, and each is a place where
@@ -99,12 +99,13 @@ those limits without asking each time.
 
 These two words sound alike but mean different things:
 
-- **Authentication** proves *who you are*. A password, a fingerprint, or a code sent to your phone. UK and EU rules
+- **Authentication** proves *who you are*, for example with a password, a fingerprint or a code sent to your phone.
+  UK and EU (European Union) rules
   require **strong customer authentication** for most payments: two separate kinds of proof, such as something you
   know and something you have.
 - **Authorisation** is *permission for this payment*. "Yes, I want to pay £482.40 to Brightwater."
 
-AI agents strain both. An agent isn't the account holder, so it can't authenticate as one. And when it pays without
+AI agents put pressure on both ideas. An agent isn't the account holder, so it can't authenticate as one. And when it pays without
 asking, the account holder didn't authorise *this* payment, only payments *like* it. Part 2's signed mandates are one
 answer: they turn "I said the AI could" into evidence a computer can check.
 
@@ -123,14 +124,14 @@ The rules on who bears a loss depend on what went wrong:
 - **Authorised payments to a fraudster.** If you were tricked into sending money yourself, for example by a fake
   "our bank details have changed" letter, the payment counts as authorised. That is called **authorised push
   payment (APP) fraud**. Since October 2024, UK rules require payment firms to reimburse most APP fraud victims who
-  paid by Faster Payments or CHAPS, up to £85,000 a claim. That protection covers individuals, micro-businesses and
+  paid by Faster Payments or CHAPS (the UK's system for high-value payments), up to £85,000 a claim. That protection covers individuals, micro-businesses and
   charities. A larger business isn't covered, so if it pays a fraudster's account, it usually bears the loss.
-- **Card payments** are different. A cardholder can ask their card issuer to reverse a payment, for example for goods
+- **Card payments** work differently. A cardholder can ask their card issuer to reverse a payment, for example for goods
   that never arrived. This is called a **chargeback**, and it is a big part of Part 3.
 
 An AI agent paying for you raises an awkward question: was a payment it made, within limits you set but not one
-you expected, authorised or not? Regulators in the UK are asking exactly that. The series doesn't answer the legal
-question. It builds the evidence the answer would turn on.
+you expected, authorised or not? HM Treasury, the UK government's finance ministry, asked exactly that in a July 2026 consultation.
+The series leaves the legal question to lawyers and builds the evidence any answer would depend on.
 
 ---
 
@@ -155,7 +156,7 @@ part of the series builds controls like these, attacks them, and rates how well 
 
 ## Payment messages and codes
 
-Banks talk to each other in standard messages. The international standard is **ISO 20022**. It defines what a
+Banks talk to each other in standard messages. The international standard is **ISO 20022**, from ISO, the International Organization for Standardization. It defines what a
 payment message contains, and short codes for what happened to it. For example:
 
 | Code | Meaning |
@@ -167,7 +168,8 @@ payment message contains, and short codes for what happened to it. For example:
 | AC01 | Refused: the account number is wrong |
 
 The pretend bank in this series borrows these codes, so its answers look like a real bank's. You don't need to
-remember them: the articles always say what a code means.
+remember them: the articles always say what a code means. I couldn't check `ACSC` against an official page,
+because the ISO 20022 site blocks automated reading and the official guides I could read don't use it.
 
 ---
 
@@ -237,25 +239,31 @@ there is no one to call afterwards.
 
 ## Sources
 
-Checked on 15 November 2026. Official sources are listed first for each topic.
+Official sources only. The Faster Payments and Bank of England pages were checked on 15 November 2026; the rest on
+22 November 2026.
 
 **Fraud refunds (authorised push payment fraud)**
+- [Payment Systems Regulator: APP fraud reimbursement protections](https://www.psr.org.uk/information-for-consumers/app-fraud-reimbursement-protections/)
 - [Payment Systems Regulator: APP scams reimbursement requirement, consolidated policy statement PS25/5](https://www.psr.org.uk/media/rhelv4op/ps25-5-app-scams-reimbursement-consolidated-policy-statement-may-2025.pdf)
-- [Norton Rose Fulbright: APP fraud round-up](https://www.nortonrosefulbright.com/en/knowledge/publications/9e38c87a/app-fraud-round-up-recent-developments-and-key-takeaways)
 
 **Faster Payments: speed and settlement**
 - [Pay.UK: how Faster Payments work](https://www.wearepay.uk/what-we-do/payment-systems/faster-payment-system/how-faster-payments-work/)
 - [Bank of England: working paper on RTGS and instant payment schemes (2026)](https://www.bankofengland.co.uk/-/media/boe/files/working-paper/2026/substitution-between-rtgs-and-instant-payment-schemes.pdf)
 - [Bank of England: RTGS and CHAPS service description](https://www.bankofengland.co.uk/-/media/boe/files/payments/rtgs-and-chaps-service-description)
-- [Stripe: a guide to Faster Payments](https://stripe.com/resources/more/what-is-faster-payments-a-guide-to-the-uks-real-time-bank-transfer-system)
 
 **Payment message codes (ISO 20022)**
-- [Token.io: ISO 20022 statuses](https://support.token.io/hc/en-us/articles/28803889578393-What-are-the-ISO20022-statuses)
-- [Cobase: pain.002 status message guide](https://www.cobase.com/insight-hub/pain.002-status-message-guide)
+- [European Payments Council: SEPA Credit Transfer customer-to-PSP implementation guidelines, 2025 (PDF)](https://www.europeanpaymentscouncil.eu/sites/default/files/kb/file/2024-11/EPC132-08%20SCT%20C2PSP%20IG%202025%20V1.0.pdf)
+- [European Payments Council: SEPA Instant Credit Transfer inter-PSP implementation guidelines, 2023 (PDF)](https://www.europeanpaymentscouncil.eu/sites/default/files/kb/file/2023-11/EPC122-16%20SCT%20Inst%20Inter-PSP%20IG%202023%20V1.2_0.pdf)
+
+**Confirmation of Payee**
+- [Pay.UK: Confirmation of Payee](https://www.wearepay.uk/what-we-do/overlay-services/confirmation-of-payee/)
 
 **Variable recurring payments**
-- [Open Banking Tracker: commercial VRP and the UK Payments Initiative](https://www.openbankingtracker.com/guides/commercial-vrp-ukpi)
-- [TrueLayer: the complete guide to commercial VRP](https://truelayer.com/blog/recurring-payments/the-complete-guide-to-cvrp/)
+- [FCA: launch of the UK Payments Initiative scheme (2 June 2026)](https://www.fca.org.uk/news/statements/open-banking-launch-uk-payments-initiative-scheme)
+- [Open Banking: variable recurring payments](https://www.openbanking.org.uk/variable-recurring-payments-vrps-cvrps/)
+
+**AI payments and liability**
+- [HM Treasury: Modernising payment services regulation, consultation (14 July 2026)](https://www.gov.uk/government/consultations/modernising-payment-services-regulation/modernising-payment-services-regulation-consultation)
 
 ---
 

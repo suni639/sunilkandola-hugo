@@ -19,7 +19,7 @@ showTableOfContents = true
 +++
 
 {{< lead >}}
-In Part 1 a person approved every payment the AI suggested. In Part 2 the person signs a permission once, in advance, and the AI pays the regular bills on its own. Then I tried every way I could think of to stretch, forge or ignore that permission.
+In Part 1 a person approved every payment the AI (artificial intelligence) agent suggested. In Part 2 the person signs a permission once, in advance, and the AI pays the regular bills on its own. Then I tried every way I could think of to stretch, forge or ignore that permission.
 {{< /lead >}}
 
 {{< alert "circle-info" >}}
@@ -28,15 +28,15 @@ This is a personal learning project. Everything in it is fictional: no real bank
 
 New to payments? The [payments primer](/projects/agentic-payments-lab/primer/) explains the basics in ten minutes. This part builds on [Part 1](/projects/agentic-payments-lab/part-1/). The session-by-session detail is in the [build notes](/projects/agentic-payments-lab/part-2-build-notes/).
 
-## The problem
+## Why an AI needs permission to pay on its own
 
 Approving every payment by hand is safe, but it isn't how anyone wants to use an AI assistant. Nobody wants to sign off the broadband bill every month. The point of an agent is that it gets on with routine work while you're busy.
 
-That is **"human not present"**: the AI pays with nobody watching at the moment it pays. It's where the industry is heading. In April 2026, Google's **Agent Payments Protocol (AP2)**, a draft standard for letting AI agents pay, was handed to an industry standards body. Its core idea is a signed permission from the user to the agent. In June 2026, a UK scheme for repeated payments to businesses within limits set at the bank, **variable recurring payments (VRP)**, went live.
+That is **"human not present"**: the AI pays with nobody watching at the moment it pays, which is where the industry is heading. In April 2026, Google's **Agent Payments Protocol (AP2)**, a draft standard for letting AI agents pay, was handed to an industry standards body. Its core idea is a signed permission from the user to the agent. In June 2026, a UK scheme for repeated payments to businesses within limits set at the bank, **variable recurring payments (VRP)**, went live.
 
-It also raises a question HM Treasury is now asking, in a July 2026 consultation. If money leaves your account without your permission, your bank usually has to refund you. But what if you gave an AI permission, and it paid something you didn't expect?
+It also raises a question that HM Treasury, the UK government's finance ministry, is now asking in a July 2026 consultation. If money leaves your account without your permission, your bank usually has to refund you. But what if you gave an AI permission, and it paid something you didn't expect?
 
-This project doesn't answer the legal question. It builds the evidence the answer turns on. For any payment the AI made on its own: **can you prove what was allowed, who acted, and that the payment stayed inside what was allowed?**
+This project leaves the legal question to lawyers and builds the evidence any answer would depend on. For any payment the AI made on its own, **can you prove what was allowed, who acted, and that the payment stayed inside what was allowed?**
 
 ---
 
@@ -73,7 +73,7 @@ flowchart TD
 | Bank | Mock bank | Applies its own consent limits |
 | Finance manager | A human | Yes, for everything the mandate doesn't cover |
 
-**Signing it so it can't be forged.** The mandate is protected by a **digital signature**: a short code made from the document and Dana's secret key. Anyone can check it, and if a single digit changes afterwards, the check fails. I tried raising the limit from £2,000 to £2,900 after signing. The mandate was rejected.
+**Signing it so it can't be forged.** The mandate is protected by a **digital signature**: a short code made from the document and Dana's secret key. Anyone can check it, and if a single digit changes afterwards, the check fails. I tried raising the limit from £2,000 to £2,900 after signing, and the mandate was rejected.
 
 **Reading before signing.** A signature only means something if the signer understood what they signed. So before Dana signs, she sees a plain-English summary built from exactly the data being signed. An independent AI reviewer read an early version as a director would and spotted that Dana reads supplier *names* but signs supplier *codes*, and that "recurring bills" sounds like a limit when it's only a description. Both are now spelled out on screen.
 
@@ -103,9 +103,9 @@ sequenceDiagram
     Note over A,B: Every step is written to the tamper-evident audit log
 {{< /mermaid >}}
 
-Three details matter.
+Three details in this flow matter most.
 
-**The AI's claim is just a claim.** The AI may say "this is covered by Dana's mandate", but code doesn't take its word. It runs twelve checks: is the mandate real and still signed, not cancelled, in date, for this AI, for this supplier and account, in pounds, under the per-payment limit, within the monthly budget and count, free of any warning, and is the supplier not on hold? Only if all twelve pass is the bill **authorised**.
+**Code checks the AI's claim instead of trusting it.** The AI may say "this is covered by Dana's mandate", but code doesn't take its word. It runs twelve checks: is the mandate real and still signed, not cancelled, in date, for this AI, for this supplier and account, in pounds, under the per-payment limit, within the monthly budget and count, free of any warning, and is the supplier not on hold? Only if all twelve pass is the bill **authorised**.
 
 **The AI never holds the key.** An authorised bill gets a **closed mandate**: a permission slip for that one payment, recording the amount, the supplier and a fingerprint of the bill. It's signed with the AI's key, but that key lives only inside the tool server. The AI never sees it, and the slip expires after 24 hours.
 
@@ -113,7 +113,7 @@ Three details matter.
 
 ---
 
-## Twelve ways to get it wrong
+## The test bills and their traps
 
 | Bill | The trap | What should happen |
 | --- | --- | --- |
@@ -133,7 +133,7 @@ Paid, 6 bills   £2,401.18  |█████████████████
 Annex gas         £820.00  |                        ██████|████  doesn't fit: sent to a person
 ```
 
-The Cirrus Desk bill is the interesting one. Dana's mandate lets the AI pay Cirrus up to £2,000, but her consent at the bank allows only £250. The mandate says yes, the bank says no, and the stricter layer wins. The bill comes back to a person next time it's suggested, rather than being retried forever.
+The Cirrus Desk bill is the interesting one. I set it up so that Dana's mandate lets the AI pay Cirrus up to £2,000, while her consent at the bank allows only £250. The bank refuses the payment, its refusal is final, and the bill comes back to a person the next time it's suggested instead of being retried forever.
 
 ---
 
@@ -147,15 +147,15 @@ This time the attacks targeted the *permissions* themselves rather than the bill
 - Splitting a big bill into two smaller payments is blocked: each payment must equal the bill's total.
 - Editing the mandate file changes nothing, because the tamper-evident audit log is the source of truth.
 - A payment one second after the mandate ends is refused.
-- Someone who steals the AI's key still can't pay more than the mandate allows. The executor refuses, and if they go around it, the bank refuses too. That's **defence in depth**.
+- Someone who steals the AI's key still can't pay more than the mandate allows. The executor refuses, and if they go around it, the bank refuses too, which is what **defence in depth** means: independent layers, so that one failing doesn't let money through.
 
 **What broke, and was fixed.** An insider with access to the data folder copied a genuine permission slip onto a different bill. No extra money moved, but the books recorded the second bill as paid when it wasn't. The executor now checks the slip was signed for that exact bill.
 
-**The worst bug wasn't found by attacking.** Before the attacks, a fresh AI reviewer with no background read the executor's code and found that two copies running at once could record a real payment as refused. The budget would come back, and the bill could be paid twice. All my tests had passed. It's fixed now, with a test.
+**The worst bug wasn't found by attacking.** Before the attacks, a fresh AI reviewer with no background read the executor's code and found that two copies running at once could record a real payment as refused. The budget would come back, and the bill could be paid twice. All my tests had passed at the time. It's now fixed, with a test of its own.
 
-**What's still open.** Every check in Part 2 asks "is this payment inside the permission?". None asks "is this bill real, and do we owe it?". A convincing fake bill from a covered supplier is paid automatically, to the real supplier, up to the monthly limit. In Part 1, the person approving each payment was quietly doing that job. Removing the person removed a control nobody had written down.
+**What's still open.** Every check in Part 2 asks whether a payment is inside the permission, and none asks whether the bill is real and actually owed. A convincing fake bill from a covered supplier is paid automatically, to the real supplier, up to the monthly limit. In Part 1, the person approving each payment was quietly doing that job, so removing them also removed a control that nobody had written down.
 
-**The real AI.** In the live tests, the AI didn't claim the mandate covered the Quayside bill, even though the bill said it did. And it didn't stretch "utilities and subscriptions" to cover an insurance bill.
+**The real AI.** In the live tests, the AI didn't claim the mandate covered the Quayside bill, even though the bill said it did, and it didn't stretch "utilities and subscriptions" to cover an insurance bill.
 
 ### The eleven risks, and how well each is controlled
 
@@ -171,8 +171,8 @@ This time the attacks targeted the *permissions* themselves rather than the bill
 | **Dana didn't understand what she signed** | Vague words the AI could stretch, or limits she misread | A plain-English summary built from exactly what is signed; she must type to confirm | Partially effective | Not tested with real people |
 | **No evidence in a dispute** | Dana says "I didn't allow that" and we can't show who allowed what | One evidence file linking her signature, the permission slip, the bank's record and the audit log | Partially effective | The file can't prove the audit log wasn't rewritten unless compared with a copy kept elsewhere |
 | **A problem never reaches a person** | A flagged or refused bill quietly disappears | Any warning sends a bill to a person; every bill ends with a recorded outcome | Partially effective | Bank details written with dots in them raise no warning |
-| **The AI claims permission it doesn't have** | A note in a bill leads the AI to say it's covered | The AI's claim is checked in code, never trusted | Effective | — |
-| **The two layers disagree** | Dana's mandate allows a payment that her bank consent doesn't | The bank's refusal is final; the bill goes to a person next time | Effective | — |
+| **The AI claims permission it doesn't have** | A note in a bill leads the AI to say it's covered | The AI's claim is checked in code, never trusted | Effective | None found in tests |
+| **The two layers disagree** | Dana's mandate allows a payment that her bank consent doesn't | The bank's refusal is final; the bill goes to a person next time | Effective | None found in tests |
 | **A bill that isn't owed is paid** | A convincing fake bill from a real, covered supplier | **None yet** | Ineffective | Fixed in part in [Part 3](/projects/agentic-payments-lab/part-3/): newer mandates send a bill outside a supplier's usual pattern to a person |
 
 {{< mermaid >}}
@@ -194,7 +194,7 @@ The mandates and the bank's consents copy real designs in simplified form. The [
 
 | Real world | In this lab | What it means for the findings |
 | --- | --- | --- |
-| AP2 mandates: an open one with limits signed in advance, and a closed one per payment | The same two kinds, as simple signed blocks of data, with Ed25519 signatures | The ideas are tested, not AP2's exact formats |
+| AP2 mandates: an open one with limits signed in advance, and a closed one per payment | The same two kinds, as simple signed blocks of data, with digital signatures (Ed25519, a widely used method) | The lab tests the ideas, using simpler formats than AP2's |
 | UK commercial VRP: limits per payment, per period and an end date, held at the bank | One consent per supplier with the same three limits, enforced by the mock bank | The bank's layer works the same way |
 | The payer sets up a consent in their banking app, with a fingerprint or face scan | An admin command stands in | The lab assumes the setup step itself is genuine |
 | Firms keep signing keys in hardware vaults | Keys sit in a private folder on disk | Key theft is easier here, which is why the stolen-key risk is only partially effective |
@@ -205,11 +205,11 @@ The mandates and the bank's consents copy real designs in simplified form. The [
 ## What I learned
 
 1. **A signed permission works, if code checks it every time.** Under attack, no payment went outside what Dana signed and the bank allowed, and every payment traces back to her signature in one evidence file.
-2. **Two independent layers beat one.** The AI's permission and the bank's are set up separately. When one was bypassed, the other still held.
-3. **Taking the person out removes checks nobody wrote down.** Before automating an approval, list everything the approver was *actually* doing, not just what their job description says.
-4. **An AI's claim of authority is a claim, not evidence.** Let it say what it thinks covers a payment, then check in code.
+2. **Two independent layers of permission held when one was bypassed.** The AI's permission and the bank's are set up separately, so a stolen AI key still couldn't get past the bank's limits.
+3. **Taking the person out removes checks nobody wrote down.** Before automating an approval, list everything the approver actually does in practice, including the checks nobody wrote into their job description.
+4. **Code should check an AI's claim of authority.** Let the AI say what it thinks covers a payment, then check that claim in code.
 5. **The order of steps is a control.** Writing "about to send" before sending, and having the bank look up a repeated request before checking the consent, is what stops a lost reply turning into a double payment.
-6. **Ordinary files lie.** Anything that decides money (the budget used, a past refusal) is read from the tamper-evident audit log, never from a file someone could edit.
+6. **Decisions about money should come from the tamper-evident log.** Anything that decides money (the budget used, a past refusal) is read from the tamper-evident audit log, never from a file someone could edit.
 
 ---
 

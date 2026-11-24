@@ -4,7 +4,7 @@ draft = false
 layout = "series"
 featured = true
 featureImage = "feature.png"
-intro = """AI agents are starting to make payments for people, and money itself is becoming programmable. In this hands-on series I build small, entirely fictional payment systems with AI, then try to break them, asking one question throughout: **what could go wrong, and how would you know?**
+intro = """AI (artificial intelligence) agents are starting to make payments for people, and money itself is becoming programmable. In this hands-on series I build small, entirely fictional payment systems with AI, then try to break them, asking one question throughout: **what could go wrong, and how would you know?**
 
 No technical or banking background needed. New to payments? Start with the primer, then read the parts in order."""
 description = "A six-part, hands-on series exploring how AI agents will make payments, and what it takes to make that safe, building towards the convergence of AI and blockchain-based money."
@@ -24,8 +24,9 @@ This is a personal learning project. Everything in it is fictional: no real bank
 
 AI is moving from answering questions to taking actions, and one of the most consequential actions is
 paying for things. Banks, card networks and payment companies are racing to let AI **agents** make payments
-on people's behalf. At the same time, money itself is becoming programmable, through stablecoins and
-tokenised bank deposits that live on blockchains.
+on people's behalf. At the same time, money itself is becoming programmable, through **stablecoins** (digital tokens designed to
+hold a steady value, usually one US dollar) and **tokenised bank deposits** (ordinary bank money recorded on a
+**blockchain**, a shared digital ledger that many parties can check).
 
 This series is my hands-on way of understanding where those two trends meet. Each part builds a small,
 working, entirely fictional system, then tries to break it. My background is in payments risk, so every
@@ -57,15 +58,16 @@ the session-by-session detail.
 
 ## What the first three parts found
 
-- **What an AI can't do matters more than what it's told.** In Part 1 the AI had no "pay" button, so even a fully
-  fooled AI couldn't send money to a fraudster's account.
-- **Checks in code beat the AI's judgement.** The AI spotted most tricks, but not every time, and gave slightly
-  different answers on different runs.
-- **Removing the person removes checks nobody wrote down.** In Part 2 the AI paid regular bills on its own, within
-  a signed permission. The permission held, but nobody was left asking "is this bill real?".
-- **"Authorised" is not the same as "wanted".** In Part 3 the AI shopped with a restricted card token. Signatures
-  stopped bots, edited baskets and look-alike shops. But the same signatures that protect the shop prove the company
-  agreed, so the company pays for a purchase its AI was allowed to make but nobody needed.
+- **Limiting what an AI can do protected money better than instructions did.** In Part 1 the AI had no "pay"
+  button, so even a fully fooled AI couldn't send money to a fraudster's account.
+- **Checks in code were more reliable than the AI's judgement.** The AI spotted most tricks, but not every time,
+  and it gave slightly different answers on different runs.
+- **Taking the person out also took away checks nobody had written down.** In Part 2 the AI paid regular bills on
+  its own, within a signed permission. The permission held, but nobody was left asking whether each bill was real.
+- **An AI can make an authorised purchase that nobody wanted.** In Part 3 the AI shopped with a restricted card
+  token, and signatures stopped bots, edited baskets and look-alike shops. The same signatures that protect the shop
+  also prove the company agreed, so the company pays for a purchase its AI was allowed to make even if nobody needed
+  it.
 
 ## Open gaps across the series
 

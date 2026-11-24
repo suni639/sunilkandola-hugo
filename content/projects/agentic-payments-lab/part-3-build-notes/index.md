@@ -26,36 +26,36 @@ These are the detailed notes behind [Part 3: How Does an AI Shop With a Card?](/
 Read that first. It explains the ideas and the results. This page is for readers who want every party, check, risk
 and test in one place. Terms are explained below and in the [payments primer](/projects/agentic-payments-lab/primer/).
 
-**In one sentence:** I built a pretend online shop and a pretend card issuer, let a (fictional) company's AI buy
+**In one sentence:** I built a pretend online shop and a pretend card issuer, let a (fictional) company's AI (artificial intelligence) agent buy
 supplies from the shop with a restricted card token, and then tried every way I could think of to make it buy the
 wrong thing, pay the wrong shop or pay twice, and asked who loses money when it does.
 
-**Key takeaways**
+**The main findings**
 
 - **A shop can tell a trusted AI from a bot, if the AI signs its requests.** Every attempt to pass as the company's
   AI without its secret key was refused.
 - **The basket the shop signed is the strongest piece of evidence.** It fixes the price and the items, so neither
   the AI nor anyone else can change them afterwards without being caught.
-- **"Authorised" is not the same as "wanted".** If the company's own AI buys something inside its permission that
-  nobody needed, the company, not the shop, ends up paying for it. The permission that protects the shop is the
-  same one that makes the company responsible.
+- **An AI can make an authorised purchase that nobody wanted, and the company pays for it.** If the company's own
+  AI buys something inside its permission that nobody needed, the company ends up paying, because the permission
+  that protects the shop also makes the company responsible.
 
 ---
 
-## Why this matters
+## Why shopping is harder than paying bills
 
 In [Part 1](/projects/agentic-payments-lab/part-1/) an AI suggested bill payments and a person approved each one. In
 [Part 2](/projects/agentic-payments-lab/part-2/) a director signed a permission, a **mandate**, so the AI could pay
 regular bills on its own, within limits.
 
-Paying a bill sends money to someone you already know. **Shopping is different.** Two outside parties now make their
-own decisions:
+Paying a bill sends money to someone you already know, whereas shopping brings in two outside parties that make
+their own decisions:
 
 - the **shop** (the merchant) decides the price, and whether it is willing to serve this caller at all;
 - the **card issuer** (the bank that issued the company card) decides whether to pay.
 
 And card payments have a **way back**: the cardholder can dispute a charge and, in some cases, get the money
-returned. That is called a **chargeback**.
+returned, which is called a **chargeback**.
 
 The card industry is building for AI shoppers now:
 
@@ -68,7 +68,7 @@ The card industry is building for AI shoppers now:
 - **Banks spotting AI payments.** In September 2026 Mastercard began testing, in the US, a score that tells a card
   issuer how likely it is that an AI started a payment.
 
-Disputes are less settled. Visa's rulebook (October 2026 edition) now says the cardholder is responsible for what
+The rules for disputes are less settled. Visa's rulebook (October 2026 edition) now says the cardholder is responsible for what
 their AI service does "as if the Cardholder initiated the Transaction". It also says a shop can't make a cardholder
 give up the right to dispute. But I found no dispute process written specially for AI purchases: the usual ones
 apply. (I checked Visa's rules, not Mastercard's.) This project makes that question concrete.
@@ -99,8 +99,8 @@ signed basket and the staff request it is for.
 **Staff request.** A short note from an employee asking for something, ending with four lines code can read:
 who asked, the item, how many, and the budget.
 
-**Dispute and chargeback.** The cardholder tells the card issuer "this charge is wrong". The shop sends its evidence.
-The issuer decides. If the cardholder wins, the money is returned: a chargeback.
+**Dispute and chargeback.** The cardholder tells the card issuer "this charge is wrong", the shop sends its evidence,
+and the issuer decides. If the cardholder wins, the money is returned, which is a chargeback.
 
 **Onboarding.** A person at the company checking a new supplier and recording its details, here including the
 public key it uses to sign baskets.
@@ -116,8 +116,8 @@ finance director, **Dana**, lets the procurement AI buy them from one approved s
 | --- | --- | --- |
 | The AI (`agent-pr-01`) | Reads staff requests, searches the shop, asks for a basket, proposes the purchase | What to put in the basket |
 | Harbour Trade Supplies (`MER-201`) | The approved shop | The price (it signs the basket); whether to serve the caller |
-| Fenwick Office Direct (`MER-202`) | A real supplier, but not in Dana's permission | — |
-| Harbour Trade Supplies **Direct** (`MER-203`) | A look-alike shop, never checked by the company | — |
+| Fenwick Office Direct (`MER-202`) | A real supplier, but not in Dana's permission | Nothing in this project |
+| Harbour Trade Supplies **Direct** (`MER-203`) | A look-alike shop, never checked by the company | Nothing in this project |
 | Code at Lantern | Checks every proposal against Dana's mandate and the staff request | Whether this exact basket is allowed |
 | The executor | Completes allowed purchases, after checking again | Nothing new: it re-checks and pays |
 | The card issuer | Holds the token's rules and the AI's public key | Whether to pay |
@@ -155,11 +155,11 @@ end: requested by sam.okafor, nitrile gloves, quantity 10, budget £160.00.
 7. **The shop checks** the signature (is this really Lantern's AI, is the request fresh and unaltered, has it
    been used before?) and that the closed mandate is for this basket. Then it asks the card issuer.
 8. **The card issuer checks** the token's rules (right shop, under £250, inside £1,000 this month) and the AI's own
-   signature, against the key Dana enrolled with the token. It approves.
+   signature, against the key Dana enrolled with the token, and approves the payment.
 9. **The shop confirms the order** and sends a signed receipt. Every step is in Lantern's tamper-evident logbook.
 
-If anything fails at step 4, the purchase goes to a person, with every reason listed. A person then buys it
-themselves, or doesn't.
+If anything fails at step 4, the purchase goes to a person, with every reason listed, and a person decides
+whether to buy it themselves.
 
 ---
 
@@ -193,7 +193,7 @@ Six staff requests, each built to test something:
 **The fix found while attacking.** The executor's computer holds the AI's identity key and the token. If both were
 stolen, the thief could write their own permission slip, and nobody outside Lantern checked that it was genuine. The
 shop now checks the slip's signature too, against the AI's other key, which lives on a different part of the
-system. Stealing the executor's files is no longer enough.
+system, so stealing the executor's files is no longer enough to buy anything.
 
 ---
 
@@ -211,7 +211,7 @@ system. Stealing the executor's files is no longer enough.
 | Write-up | Control assessment, with an independent reviewer acting as risk oversight | Done; owner confirmed the ratings (22 November 2026) |
 | Live AI | Connecting the real AI model to the shop, so it can be tested like Parts 1 and 2 | Wiring built (22 November 2026). First live run: the real AI ignored the planted "add 6 units" text, and found one gap, now fixed: a request it didn't propose left no trace. Second run: that fix worked, but the AI sent a clean order to a person over a budget worry code already checks; the instructions were tightened. Third run: everything behaved as expected |
 
-## Results
+## What the tests and live runs showed
 
 **The short answer.** The controls held at their limits. No attack bought more than both the mandate and the token
 allowed, bought from an unapproved shop, changed a signed basket, or paid twice after a lost reply, once the fixes
@@ -221,24 +221,24 @@ order can be traced, in one file, from Dana's signature to the shop's receipt an
 **What's still open:**
 
 1. **A fake staff request gets bought.** Anyone who can put a well-formed request in the folder can order something
-   inside the limits. It is Part 2's fake-bill problem again. Code can check that a basket matches a request. It
-   can't check that the request is genuine. The fix is outside the AI: requests should come from a system that knows
+   inside the limits. It is Part 2's fake-bill problem again: code checks that a basket matches a request, but
+   nothing checks that a real member of staff wrote it. The fix is outside the AI: requests should come from a system that knows
    who the staff are.
-2. **The right product isn't checked.** Code checks quantity and budget, not whether "gloves" in the basket are the
-   gloves Sam meant. That is a judgement for the AI, and here it is only a second opinion.
+2. **The right product isn't checked.** Code checks the quantity and the budget only, so whether the gloves in the
+   basket are the ones Sam meant is a judgement for the AI, and here it is only a second opinion.
 3. **Who pays for an unwanted purchase?** In the dispute rules built here, if the company's AI bought something
    inside its permission, the company loses a "not authorised" dispute. The signatures that protect the shop are
    the same ones that prove the company agreed. And because the bank can't see the director's permission, only the
    AI's signature, the same is true if the AI's keys were **stolen**. That is this project's own rule, but Visa's
    rulebook now points the same way for AI services registered with Visa: the cardholder is responsible for what
-   the AI does, as if they had done it themselves. It points at the real question: delegating authority to an AI
-   means accepting whatever its keys sign.
+   the AI does, as if they had done it themselves. My view is that a company giving an AI authority to spend
+   should expect to carry the cost of whatever the AI's keys sign, and set its limits with that in mind.
 4. **Shops are trusted from the moment a person onboards them.** If someone onboards a fraudulent shop and the
    director signs it into the mandate, every control passes.
 
 **Part 2's fake-bill problem now has a first fix.** A new version of Part 2's mandate also signs each supplier's
 bank details and its usual pattern (how many bills a month, and roughly how much). A bill outside that pattern goes
-to a person. Older mandates keep the gap.
+to a person, although older mandates still have the gap.
 
 **The real AI.** Most tests use a script that stands in for the AI, so it can be made to misbehave on purpose. I then
 ran the real AI model three times over the six staff requests, each run costing about 7 US cents. It never obeyed
@@ -249,25 +249,26 @@ twice. But it wasn't perfectly consistent:
   should decide, but only in its closing message. Nothing in the logbook showed the request was unhandled. Now code
   records every request the AI didn't propose.
 - **Run 2** sent a perfectly good labels order to a person, worried that the month's spending "may be near the
-  limit". Code already checks that, exactly. Needless alarms like this train people to wave things through, so I
+  limit", although code already checks that exactly. Needless alarms like this train people to wave things through, so I
   told the AI to raise concerns only about things code can't check.
 - **Run 3** behaved exactly as expected, including the bank declining the labels order.
 
 **How the problems were found.** As in Parts 1 and 2, no single method found everything:
 
-- The tests passed first time, which proves little.
+- The tests passed first time, which on its own proves little.
 - Breaking each check on purpose showed two checks had no test of their own: another check always fired first.
 - Thinking like a thief found the forged-permission-slip gap.
 - **An independent reviewer, acting as risk oversight, found five more**, including two about money: if the bank's
-  reply to the shop got lost, the retry charged the card twice; and one charge could be disputed, and refunded,
-  twice. Both are fixed. It also caught my write-up rating three risks higher than the tests supported, and a test
+  reply to the shop got lost, the retry charged the card twice; and one charge could be disputed and refunded
+  twice. Both are now fixed. It also caught my write-up rating three risks higher than the tests supported, and a test
   that didn't really test the fix it was meant to prove.
 - **Running the real AI found two more**: a request that could vanish without trace, and needless alarms. A script
-  that always does the same thing could never have found either.
+  that always does the same thing could never have found either of them.
 - **Running the tests on a different computer found one more.** The project was built on Linux. On Windows, text
   files end each line with an extra hidden character. The code didn't expect it, so it couldn't read any staff
   request saved on Windows, and every order went to a person. That was safe, because nothing got bought, but it
-  meant the check never let a genuine order through. Now fixed. The lesson: test where the system will really run.
+  meant the check never let a genuine order through. It's now fixed, and I now run the tests on the kind of computer
+  the system will actually run on before I call a part finished.
 
 ---
 
