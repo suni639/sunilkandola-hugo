@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="_shared.css">
+<style>
+  .step { width: 220px; padding: 22px 12px 18px; font-size: 26px; }
+  .step .ico { font-size: 44px; display: block; margin-bottom: 6px; }
+  .step .r { font-size: 18px; font-weight: 600; color: #475569; margin-top: 6px; }
+  .file { font-family: Consolas, monospace; font-size: 16px; text-align: left; background: #f1f5f9; border-radius: 8px; padding: 8px 12px; margin-top: 10px; color: #334155; font-weight: 400; line-height: 1.45; }
+  .site { border-color: #b45309; background: #fffbeb; }
+  .sec { display: block; background: #fff; border: 2px solid #f59e0b; border-radius: 10px; padding: 5px; margin-top: 7px; font-size: 18px; }
+</style></head>
+<body>
+  <div class="top">
+    <div class="eyebrow">Insight · Building the hub</div>
+    <h1>Why I built this site</h1>
+    <div class="q">A home I own for projects, insights and stories</div>
+  </div>
+  <div class="flow">
+    <div class="node step"><span class="ico">📝</span>Markdown<div class="file">+++<br>title = "…"<br>+++<br># My project</div></div>
+    <div class="arrow"></div>
+    <div class="node step"><span class="ico">🗂️</span>GitHub<div class="r">every change versioned</div></div>
+    <div class="arrow"></div>
+    <div class="node step"><span class="ico">⚙️</span>Hugo<div class="r">builds static pages</div></div>
+    <div class="arrow"></div>
+    <div class="node step site"><span class="ico">🌍</span>Live site<span class="sec">Projects</span><span class="sec">Insights</span><span class="sec">Briefs</span></div>
+  </div>
+  <div class="bottom">
+    <div>☁️ <b>Cloudflare Pages</b> deploys every push</div>
+    <div>Hugo + Blowfish</div>
+  </div>
+</body></html>

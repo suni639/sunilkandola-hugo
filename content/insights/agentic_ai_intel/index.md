@@ -4,6 +4,7 @@ date: 2026-06-11
 description: "An insight into upgrading my weekly digital asset tracker from a monolithic automation script to a collaborative multi-agent AI system."
 series: ["Building the Hub"]
 series_order: 2
+featureImage: "feature.png"
 tags: ["Hugo", "Engineering", "AI", "Agentic"]
 ---
 

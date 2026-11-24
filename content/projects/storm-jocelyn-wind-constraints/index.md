@@ -7,7 +7,7 @@ description = "Using Elexon's balancing data to measure how much wind power Brit
 summary = "On a stormy day in January 2024, Britain paid Scottish wind farms about £1.9 million to switch off, then paid gas power stations to make up the difference. I used the grid's own records to measure it, and got it wrong the first time."
 
 featureImage = "feature.png"
-featured = true
+featured = false
 
 tags = ["Python", "Energy", "Wind", "Elexon", "Streamlit", "Data Analysis"]
 categories = ["Projects"]

@@ -7,7 +7,7 @@ description = "A four-phase learning project on credit card fraud detection: a p
 summary = "Banks would catch more fraud if they pooled their data, but they can't share it. I tested federated learning, where each bank trains on its own data and only shares the model, then added a blockchain and tried zero-knowledge proofs. Two of those worked."
 
 featureImage = "feature.png"
-featured = true
+featured = false
 
 tags = ["Python", "Machine Learning", "Federated Learning", "Fraud", "Blockchain", "Zero-Knowledge Proofs", "Payments"]
 categories = ["Projects"]

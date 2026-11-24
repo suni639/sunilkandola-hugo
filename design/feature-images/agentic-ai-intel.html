@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="_shared.css">
+<style>
+  .flow { justify-content: center; padding-top: 10px; }
+  .tag { position: absolute; top: -16px; left: 50%; transform: translateX(-50%); background: #64748b; color: #fff; font-size: 15px; letter-spacing: .1em; text-transform: uppercase; padding: 3px 10px; border-radius: 6px; font-weight: 700; }
+  .tag.now { background: #15803d; }
+  .before { width: 210px; padding: 26px 12px 20px; border-style: dashed; border-color: #94a3b8; color: #64748b; position: relative; }
+  .before .ico { font-size: 46px; display: block; margin-bottom: 6px; filter: grayscale(1); }
+  .before .s { font-size: 24px; }
+  .before .t { font-size: 17px; font-weight: 600; margin-top: 6px; }
+  .vs { flex: 0 0 60px; margin: 0 14px; }
+  .vs::after { border-left-color: #94a3b8; }
+  .vs { background: #94a3b8; }
+  .team { display: flex; align-items: center; position: relative; padding: 30px 18px 22px; border: 3px solid #15803d; border-radius: 18px; background: #f0fdf4; }
+  .agent { width: 168px; padding: 18px 8px; font-size: 22px; }
+  .agent .ico { font-size: 40px; display: block; margin-bottom: 4px; }
+  .agent .r { font-size: 16px; font-weight: 600; color: #475569; margin-top: 4px; }
+  .team .arrow { flex: 0 0 34px; }
+</style></head>
+<body>
+  <div class="top">
+    <div class="eyebrow">Insight · Building the hub</div>
+    <h1>From one prompt to three agents</h1>
+    <div class="q">How I rebuilt my weekly digital asset tracker</div>
+  </div>
+  <div class="flow">
+    <div class="node before"><span class="tag">Before</span><span class="ico">🤖</span><div class="s">One script</div><div class="t">One big prompt does everything</div></div>
+    <div class="arrow vs"></div>
+    <div class="team"><span class="tag now">After</span>
+      <div class="node agent"><span class="ico">🔎</span>Scout<div class="r">finds and enriches</div></div>
+      <div class="arrow"></div>
+      <div class="node agent"><span class="ico">🧭</span>Strategist<div class="r">filters the noise</div></div>
+      <div class="arrow"></div>
+      <div class="node agent"><span class="ico">✍️</span>Editor<div class="r">writes and checks</div></div>
+    </div>
+  </div>
+  <div class="bottom">
+    <div>📬 <b>Output:</b> a weekly brief, emailed and published here</div>
+    <div>Each agent has one job</div>
+  </div>
+</body></html>

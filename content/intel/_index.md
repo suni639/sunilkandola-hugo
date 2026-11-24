@@ -3,6 +3,8 @@ title: "Intelligence Briefings"
 description: "Weekly briefings on institutional digital assets, CBDCs, and regulatory frameworks."
 layout: "list"
 cascade:
+  featureimage: "img/weekly-brief.png"
+  showTaxonomies: true
   showDate: true
   showAuthor: false
   showReadingTime: true

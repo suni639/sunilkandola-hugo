@@ -32,9 +32,9 @@
       {{ .Site.Params.Author.name | default .Site.Title }}
     </h1>
     {{ with .Site.Params.Author.headline }}
-      <h2 class="text-xl text-neutral-500 dark:text-neutral-400">
+      <p class="text-xl text-neutral-500 dark:text-neutral-400">
         {{ . | markdownify }}
-      </h2>
+      </p>
     {{ end }}
     <div class="mt-1 text-2xl">
       {{ partialCached "author-links.html" . }}
@@ -43,19 +43,87 @@
   <section class="prose dark:prose-invert w-full">{{ .Content }}</section>
 </article>
 {{/* Site override of the Blowfish profile partial (copied from theme e9699d8c).
-     Only change: a "Featured" section above "Recent", listing any page or section
-     (e.g. a series index) with `featured = true` in its front matter, newest first. */}}
+     Below the profile header the homepage runs, in order:
+       1. Latest brief: a compact strip for the newest weekly brief in "intel", so the
+          briefs show the site is active without filling the card grid.
+       2. Recent: the three newest pages from projects, insights and stories, skipping
+          anything in Featured and the parts of a featured series.
+       3. Featured: pages or sections with `featured = true`, newest first. Keep it to three.
+       4. More insights: up to three insights not already shown in Recent, as a short list. */}}
 {{ $featured := where site.Pages "Params.featured" true }}
-{{ with $featured }}
-  <section>
-    <h2 class="mt-8 text-2xl font-extrabold mb-10">Featured</h2>
-    <section class="w-full grid gap-4 sm:grid-cols-2 md:grid-cols-3">
-      {{ range .ByDate.Reverse }}
-        {{ partial "article-link/card.html" . }}
-      {{ end }}
-    </section>
+
+{{ $recent := slice }}
+{{ range (where site.RegularPages "Section" "in" (slice "projects" "insights" "stories")).ByDate.Reverse }}
+  {{ $inFeaturedSeries := and .Parent (eq .Parent.Params.featured true) }}
+  {{ if and (lt (len $recent) 3) (ne .Params.featured true) (not $inFeaturedSeries) }}
+    {{ $recent = $recent | append . }}
+  {{ end }}
+{{ end }}
+
+{{ with index (where site.RegularPages "Section" "intel").ByDate.Reverse 0 }}
+  {{ $thumb := "" }}
+  {{ with .Params.featureimage }}
+    {{ with resources.Get . }}{{ $thumb = (.Resize "320x").RelPermalink }}{{ end }}
+  {{ end }}
+  <section class="home-brief not-prose">
+    <a class="home-brief__link" href="{{ .RelPermalink }}">
+      {{ with $thumb }}<img class="home-brief__img" src="{{ . }}" alt="" loading="lazy" decoding="async">{{ end }}
+      <span class="home-brief__body">
+        <span class="home-brief__eyebrow">This week's digital asset brief</span>
+        <span class="home-brief__title">{{ .Title }}</span>
+        <span class="home-brief__meta">{{ .Date | time.Format site.Params.dateFormat }} &middot; {{ .ReadingTime }} min read</span>
+      </span>
+    </a>
+    <a class="home-more" href="{{ .CurrentSection.RelPermalink }}">All briefs &rarr;</a>
   </section>
 {{ end }}
-<section>
-  {{ partial "recent-articles/main.html" . }}
-</section>
+
+{{ with $recent }}
+  <section>
+    <div class="home-section-head">
+      <h2 class="text-2xl font-extrabold">Recent</h2>
+    </div>
+    <div class="w-full grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+      {{ range . }}
+        {{ partial "article-link/card.html" . }}
+      {{ end }}
+    </div>
+  </section>
+{{ end }}
+
+{{ with $featured }}
+  <section>
+    <div class="home-section-head">
+      <h2 class="text-2xl font-extrabold">Featured projects</h2>
+      {{ with site.GetPage "/projects" }}<a class="home-more" href="{{ .RelPermalink }}">All projects &rarr;</a>{{ end }}
+    </div>
+    <div class="w-full grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+      {{ range first 3 .ByDate.Reverse }}
+        {{ partial "article-link/card.html" . }}
+      {{ end }}
+    </div>
+  </section>
+{{ end }}
+
+{{ $moreInsights := slice }}
+{{ range (where site.RegularPages "Section" "insights").ByDate.Reverse }}
+  {{ if and (lt (len $moreInsights) 3) (not (in $recent .)) }}
+    {{ $moreInsights = $moreInsights | append . }}
+  {{ end }}
+{{ end }}
+{{ with $moreInsights }}
+  <section>
+    <div class="home-section-head">
+      <h2 class="text-2xl font-extrabold">More insights</h2>
+      {{ with site.GetPage "/insights" }}<a class="home-more" href="{{ .RelPermalink }}">All insights &rarr;</a>{{ end }}
+    </div>
+    <ul class="home-list not-prose">
+      {{ range . }}
+        <li>
+          <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          <span class="home-list__meta">{{ .Date | time.Format site.Params.dateFormat }} &middot; {{ .ReadingTime }} min read</span>
+        </li>
+      {{ end }}
+    </ul>
+  </section>
+{{ end }}

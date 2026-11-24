@@ -7,7 +7,7 @@ description = "A small local web app that turns PDFs of any size into editable W
 summary = "Online PDF converters either choked on my large files or wanted me to upload them to a stranger's server. So I built a drag-and-drop converter that runs entirely on my laptop. It turned a 2,000-page PDF into a Word document in four seconds."
 
 featureImage = "feature.png"
-featured = true
+featured = false
 
 tags = ["Python", "Flask", "PDF", "Privacy", "Tools"]
 categories = ["Projects"]

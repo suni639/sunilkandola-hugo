@@ -16,11 +16,12 @@
   weight = 10
   pre = "code"
 
-[[main]]
-  name = "Stories"
-  pageRef = "stories"
-  weight = 20
-  pre = "pencil"
+# Stories is hidden until the section has its first post.
+#[[main]]
+#  name = "Stories"
+#  pageRef = "stories"
+#  weight = 20
+#  pre = "pencil"
 
 [[main]]
   name = "Insights"
@@ -39,6 +40,12 @@
   pageRef = "/about"
   weight = 40
   pre = "mug-hot"
+
+[[main]]
+  name = "Contact"
+  pageRef = "/contact"
+  weight = 50
+  pre = "envelope"
 
 #[[main]]
 #  name = "Blog"

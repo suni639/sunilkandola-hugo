@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="_shared.css">
+<style>
+  .flow { justify-content: center; gap: 0; }
+  .config { width: 250px; padding: 20px 14px 16px; text-align: left; }
+  .config .label, .book .label { font-size: 17px; letter-spacing: .1em; text-transform: uppercase; color: #64748b; margin-bottom: 10px; text-align: center; }
+  .kv { font-family: Consolas, monospace; font-size: 17px; font-weight: 400; color: #334155; background: #f1f5f9; border-radius: 8px; padding: 10px 12px; line-height: 1.6; }
+  .kv b { color: #b45309; font-weight: 700; }
+  .agentbox { width: 180px; padding: 20px 8px; font-size: 22px; border-color: #b45309; background: #fffbeb; }
+  .agentbox .ico { font-size: 40px; display: block; margin-bottom: 4px; }
+  .agentbox .r { font-size: 16px; font-weight: 600; color: #92400e; margin-top: 4px; }
+  .book { width: 420px; padding: 18px 16px 16px; border-color: #15803d; }
+  .tabs { display: flex; gap: 6px; margin-bottom: 12px; }
+  .tab { flex: 1; font-size: 15px; font-weight: 700; padding: 6px 4px; border-radius: 6px 6px 0 0; background: #dcfce7; color: #166534; border-bottom: 3px solid #15803d; }
+  .chart { position: relative; height: 150px; border-left: 2px solid #94a3b8; border-bottom: 2px solid #94a3b8; margin: 0 6px 0 10px; }
+  .chart svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .cap { font-size: 16px; font-weight: 600; color: #475569; margin-top: 8px; }
+</style></head>
+<body>
+  <div class="top">
+    <div class="eyebrow">Project · Financial modelling</div>
+    <h1>Rebuilding a six-year model</h1>
+    <div class="q">Cash runway, supplier minimums, and why I went back to Excel</div>
+  </div>
+  <div class="flow">
+    <div class="node config">
+      <div class="label">Assumptions</div>
+      <div class="kv">supplier_moq: <b>…</b><br>inventory_days: <b>…</b><br>shipping_rate: <b>…</b><br>packaging: <b>…</b></div>
+    </div>
+    <div class="arrow"></div>
+    <div class="node agentbox"><span class="ico">🤖</span>AI agents<div class="r">build the workbook</div></div>
+    <div class="arrow"></div>
+    <div class="node book">
+      <div class="label">Excel workbook</div>
+      <div class="tabs"><span class="tab">P&amp;L</span><span class="tab">Cash flow</span><span class="tab">Balance sheet</span></div>
+      <div class="chart">
+        <svg viewBox="0 0 380 150" preserveAspectRatio="none">
+          <line x1="0" y1="95" x2="380" y2="95" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="6 6"/>
+          <polyline points="0,40 50,62 100,85 150,108 190,118 230,104 280,78 330,52 380,30" fill="none" stroke="#15803d" stroke-width="5" stroke-linejoin="round"/>
+          <circle cx="190" cy="118" r="7" fill="#b45309"/>
+        </svg>
+      </div>
+      <div class="cap">Cash over six years, with the low point marked</div>
+    </div>
+  </div>
+  <div class="bottom">
+    <div>📊 <b>Every cell</b> open to inspection</div>
+    <div>Lulu &amp; Burdie, pre-launch</div>
+  </div>
+</body></html>

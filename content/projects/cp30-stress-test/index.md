@@ -7,7 +7,7 @@ description = "A Python model that replays the worst week of 2025 weather on the
 summary = "I replayed a cold, still week of January 2025 on the 2030 grid. Even with every wind and solar target met, a gap of up to 51 GW opened up, and the batteries were empty before the week began."
 
 featureImage = "feature.png"
-featured = true
+featured = false
 
 tags = ["Python", "Energy", "Clean Power 2030", "Streamlit", "Data Analysis", "Risk"]
 categories = ["Projects"]

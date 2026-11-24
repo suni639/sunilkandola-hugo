@@ -11,18 +11,16 @@ title = "Sunil Kandola"
   dateFormat = "2 January 2006"
   logo = "img/profile-circle.png"
   # secondaryLogo = "img/profile.png"
-  # description = "My awesome website"
+  description = "Projects and writing by Sunil Kandola on payments, digital assets, financial regulation, applied AI and Britain's electricity grid, plus a weekly digital asset brief."
   # copyright = "Copy, _right?_ :thinking_face:"
 
 [params.author]
   name = "Sunil Kandola"
-  email = "sunilkandola87@gmail.com"
   image = "img/profile.png"
   imageQuality = 96
-  headline = "Builder | Founder | Adventurer"
+  headline = "Payments, digital assets and applied AI, tested in working projects"
   bio = "Builder | Founder | Adventurer"
    links = [
-     { email = "mailto:sunilkandola87@gmail.com" },
 #     { link = "https://link-to-some-website.com/" },
 #     { amazon = "https://www.amazon.com/hz/wishlist/ls/wishlist-id" },
 #     { apple = "https://www.apple.com" },

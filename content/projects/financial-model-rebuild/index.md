@@ -7,7 +7,7 @@ description = "How I rebuilt Lulu & Burdie's 6-year pre-launch financial model i
 summary = "A case study on building a pre-launch financial forecasting model, modeling cash runways and supplier MOQs, and why I chose Excel transparency over Python Streamlit."
 
 # -- Visuals --
-featureImage = ""  # You can link a hero image here later
+featureImage = "feature.png"
 
 # -- Organization --
 tags = ["Financial Modelling", "Excel", "Python", "E-Commerce", "Antigravity", "AI Agents", "Pre-Launch"]

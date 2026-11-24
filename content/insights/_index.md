@@ -6,6 +6,9 @@ description = "My opinions and deep dives into contemporary events, developments
 layout = "list" 
 showHero = false
 showRecent = true
+
+[cascade]
+  showTaxonomies = true
 +++
 
 A space for long-form reflections. Here, I break down technical and social concepts, and share my thoughts on life in general.

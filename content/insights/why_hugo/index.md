@@ -4,6 +4,7 @@ date: 2026-02-14
 description: "An insight into why I moved away from 'rented' platforms to build a high-agency home using Hugo and Blowfish."
 series: ["Building the Hub"]
 series_order: 1
+featureImage: "feature.png"
 tags: ["Hugo", "Engineering", "Web Development"]
 ---
 
