@@ -220,7 +220,7 @@ The bank and the approver are pretend, but they copy real payment systems where 
 
 ## What's next
 
-[Part 2](/projects/agentic-payments-lab/part-2/) moves from approval to **delegated authority**. Instead of a person approving every payment, the company gives the agent a **mandate**: signed limits such as "up to £2,000 a payment and £3,000 a month, to these suppliers, until March". That raises the question regulators are now asking. When an agent acts within its mandate but against your wishes, who is responsible?
+[Part 2](/projects/agentic-payments-lab/part-2/) moves from approval to **delegated authority**. Instead of a person approving every payment, the company gives the agent a **mandate**: signed limits such as "up to £2,000 a payment and £3,000 a month, to these suppliers, until March". That raises the question HM Treasury, the UK government's finance ministry, asked in a July 2026 consultation: when an agent acts within its mandate but against your wishes, who is responsible?
 
 ---
 
@@ -243,6 +243,9 @@ own tests and records, so they aren't listed here.
 
 **Model Context Protocol (MCP)**
 - [Model Context Protocol: specification](https://modelcontextprotocol.io/specification/latest)
+
+**AI payments and liability**
+- [HM Treasury: Modernising payment services regulation, consultation (14 July 2026)](https://www.gov.uk/government/consultations/modernising-payment-services-regulation/modernising-payment-services-regulation-consultation)
 
 **Hidden control codes in text shown on a terminal**
 - [MITRE: CWE-150, Improper Neutralization of Escape, Meta, or Control Sequences](https://cwe.mitre.org/data/definitions/150.html), which covers escape codes in AI output shown in a terminal
